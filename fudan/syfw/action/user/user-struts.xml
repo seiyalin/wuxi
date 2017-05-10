@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="user-action" namespace="/jsp/syfw/user" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+		<!-- 用户注册 -->
+		<action name="register" class="org.wuxi.fudan.syfw.action.user.UserAction" method="register">
+		
+			<result type="json" >
+				<param name="root">isRegisterSuccess</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存养殖企业信息 -->
+		<action name="breedCompany_Save" class="org.wuxi.fudan.syfw.action.user.UserAction" method="breedCompanySave">
+		
+			<result type="json" >
+				<param name="root">breedCompanySave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存加工企业信息 -->
+		<action name="processCompany_Save" class="org.wuxi.fudan.syfw.action.user.UserAction" method="processCompanySave">
+		
+			<result type="json" >
+				<param name="root">processCompanySave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 用户登录 -->
+		<action name="login" class="org.wuxi.fudan.syfw.action.user.UserAction" method="login">
+		
+			<result type="json" >
+				<param name="root">isLoginSuccess</param>
+			</result>
+	
+		</action>
+		
+		
+	</package>
+
+</struts>

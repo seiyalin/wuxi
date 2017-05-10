@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="process-action" namespace="/jsp/syfw/process" extends="base-default,json-default">
+	<!--package提供了将多个Action组织为一个模块的方式, action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+	<!--加工管理：ProcessInfoAction  -->
+	
+		<!-- 获取要选择的加工企业列表 -->
+		<action name="getProcessCompany" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="getOptionalCompany">
+		
+			<result type="json" >
+				<param name="root">OptionalCompanyList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加加工人员 -->
+		<action name="processStaff_Save" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="saveProcessStaff">
+		
+			<result type="json" >
+				<param name="root">ProcessStaffSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取企业的所有员工列表 -->
+		<action name="processStaff_List" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="getListProcessStaff">
+		
+			<result type="json" >
+				<param name="root">ProcessStaffDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除员工-->
+		<action name="processStaff_Delete" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="deleteProcessStaff">
+		
+			<result type="json" >
+				<param name="root">ProcessStaffDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取要选择的养殖批次列表 -->
+		<action name="getProcessBreed" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="getOptionalBreed">
+		
+			<result type="json" >
+				<param name="root">OptionalBreedNoList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存加工记录 -->
+		<action name="processInfo_Save" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="saveProcessInfo">
+		
+			<result type="json" >
+				<param name="root">ProcessInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取加工记录列表 -->
+		<action name="processInfo_List" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="getListProcessInfo">
+		
+			<result type="json" >
+				<param name="root">ProcessInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取要选择的养殖企业列表 -->
+		<action name="processInfo_Delete" class="org.wuxi.fudan.syfw.action.process.ProcessInfoAction" method="deleteProcessInfo">
+		
+			<result type="json" >
+				<param name="root">ProcessInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		
+		
+		
+		
+	</package>
+
+</struts>

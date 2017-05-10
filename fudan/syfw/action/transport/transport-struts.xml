@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="transport-action" namespace="/jsp/syfw/transport" extends="base-default,json-default">
+	<!--package提供了将多个Action组织为一个模块的方式, action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+	<!--运输管理：TransportationInfoAction  -->
+	
+		<!-- 获取要选择的餐饮企业列表 -->
+		<action name="getRestaurantCompany" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="getOptionalRestaurant">
+		
+			<result type="json" >
+				<param name="root">OptionalRestaurantList</param>
+			</result>
+	
+		</action>
+		
+		
+		<!-- 获取要选择的成品箱-->
+		<action name="getOptionalCage" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="getOptionalCage">
+		
+			<result type="json" >
+				<param name="root">OptionalCagesList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存销售订单记录 -->
+		<action name="TransInfo_Save" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="saveTransInfo">
+		
+			<result type="json" >
+				<param name="root">TransInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取订单列表 -->
+		<action name="TransInfo_List" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="getListTransInfo">
+		
+			<result type="json" >
+				<param name="root">TransInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除销售订单 -->
+		<action name="TransInfo_Delete" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="deleteTransInfo">
+		
+			<result type="json" >
+				<param name="root">TransInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		
+		
+		
+		
+	</package>
+
+</struts>

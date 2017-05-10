@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="sale-action" namespace="/jsp/syfw/sale" extends="base-default,json-default">
+	<!--package提供了将多个Action组织为一个模块的方式, action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+	<!--加工管理：SaleInfoAction  -->
+	
+		<!-- 获取要选择的餐饮企业列表 -->
+		<action name="getRestaurantCompany" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="getOptionalRestaurant">
+		
+			<result type="json" >
+				<param name="root">OptionalRestaurantList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加餐饮企业 -->
+		<action name="Restaurant_Save" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="saveRestaurant">
+		
+			<result type="json" >
+				<param name="root">RestaurantSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取所有餐饮企业 -->
+		<action name="Restaurant_List" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="getListRestaurant">
+		
+			<result type="json" >
+				<param name="root">RestaurantDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除餐厅-->
+		<action name="Restaurant_Delete" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="deleteRestaurant">
+		
+			<result type="json" >
+				<param name="root">RestaurantDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取要选择的成品箱-->
+		<action name="getOptionalCage" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="getOptionalCage">
+		
+			<result type="json" >
+				<param name="root">OptionalCagesList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存销售订单记录 -->
+		<action name="OrderInfo_Save" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="saveOrderInfo">
+		
+			<result type="json" >
+				<param name="root">OrderInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取订单列表 -->
+		<action name="OrderInfo_List" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="getListOrderInfo">
+		
+			<result type="json" >
+				<param name="root">OrderInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除销售订单 -->
+		<action name="OrderInfo_Delete" class="org.wuxi.fudan.syfw.action.sale.OrderInfoAction" method="deleteOrderInfo">
+		
+			<result type="json" >
+				<param name="root">OrderInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		
+		
+		
+		
+	</package>
+
+</struts>

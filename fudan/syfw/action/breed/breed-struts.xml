@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="breed-action" namespace="/jsp/syfw/breed" extends="base-default,json-default">
+	<!--package提供了将多个Action组织为一个模块的方式, action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+	<!--养殖区域,网箱，养殖人员管理：BreedAreaAction  -->
+	
+		<!-- 获取要选择的养殖企业列表 -->
+		<action name="getBreedCompany" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="getOptionalCompany">
+		
+			<result type="json" >
+				<param name="root">OptionalCompanyList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存养殖区域信息 -->
+		<action name="breedArea_Save" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="saveBreedArea">
+		
+			<result type="json" >
+				<param name="root">BreedAreaSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取本企业的所有养殖区域 -->
+		<action name="breedArea_List" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="getListBreedArea">
+		
+			<result type="json" >
+				<param name="root">BreedAreaDisplay</param>
+			</result>
+	
+		</action>
+		
+			<!-- 删除养殖区域 -->
+		<action name="breedArea_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="deleteBreedArea">
+		
+			<result type="json" >
+				<param name="root">BreedAreaDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取要更新的养殖区域 -->
+		<action name="breedArea_LoadForUpdate" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="loadForUpdate">
+		
+			<result type="json" >
+				<param name="root">BreedAreaLoad</param>
+			</result>
+	
+		</action>
+		
+		<!-- 更新养殖区域 -->
+		<action name="breedArea_Update" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="updateBreedArea">
+		
+			<result type="json" >
+				<param name="root">BreedAreaUpdate</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存养殖人员信息 -->
+		<action name="breedStaff_Save" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="saveBreedStaff">
+		
+			<result type="json" >
+				<param name="root">BreedStaffSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取本企业的所有养殖人员 -->
+		<action name="breedStaff_List" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="getListBreedStaff">
+		
+			<result type="json" >
+				<param name="root">BreedStaffDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除养殖人员 -->
+		<action name="breedStaff_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="deleteBreedStaff">
+		
+			<result type="json" >
+				<param name="root">BreedStaffDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取可选的网箱列表 -->
+		<action name="getOptionalNet" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="getOptionalNetCageByArea">
+		
+			<result type="json" >
+				<param name="root">OptionalNetCageList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存水质信息 -->
+		<action name="WaterQuality_Save" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="saveWaterQuality">
+		
+			<result type="json" >
+				<param name="root">WaterQualitySave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取网箱的所有水质信息 -->
+		<action name="WaterQualityByNet_List" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="getListWaterQualityByNetCage">
+		
+			<result type="json" >
+				<param name="root">WaterQualityDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取区域的所有水质信息 -->
+		<action name="WaterQualityByArea_List" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="getListWaterQualityByArea">
+		
+			<result type="json" >
+				<param name="root">WaterQualityDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除水质信息 -->
+		<action name="WaterQuality_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedAreaAction" method="deleteWaterQuality">
+		
+			<result type="json" >
+				<param name="root">WaterQualityDelete</param>
+			</result>
+	
+		</action>
+		
+
+
+  <!-- 原料管理： FeedInfoAction --> 
+
+		<!-- 保存原料信息 -->
+		<action name="Material_Save" class="org.wuxi.fudan.syfw.action.breed.FeedInfoAction" method="saveMaterial">
+		
+			<result type="json" >
+				<param name="root">MaterialSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取本企业的所有原料 -->
+		<action name="Material_List" class="org.wuxi.fudan.syfw.action.breed.FeedInfoAction" method="getListMaterial">
+		
+			<result type="json" >
+				<param name="root">MaterialDisplay</param>
+			</result>
+	
+		</action>
+		
+			<!-- 删除原料-->
+		<action name="Material_Delete" class="org.wuxi.fudan.syfw.action.breed.FeedInfoAction" method="deleteMaterial">
+		
+			<result type="json" >
+				<param name="root">MaterialDelete</param>
+			</result>
+	
+		</action>
+		
+		
+		<!--成长记录管理：BreedLogAction  -->
+		
+			<!-- 可选的网箱列表-->
+		<action name="getNetCages" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getOptionalNetCage">
+		
+			<result type="json" >
+				<param name="root">OptionalNetCageList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存产品批次-->
+		<action name="BreedNo_Save" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="saveBreedNo">
+		
+			<result type="json" >
+				<param name="root">BreedNoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 该企业所有养殖批次-->
+		<action name="BreedNo_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListBreedNo">
+		
+			<result type="json" >
+				<param name="root">BreedNoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 该养殖区域所有养殖批次-->
+		<action name="BreedNoByArea_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListBreedNoByArea">
+		
+			<result type="json" >
+				<param name="root">BreedNoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除产品批次-->
+		<action name="BreedNo_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="deleteBreedNo">
+		
+			<result type="json" >
+				<param name="root">BreedNoDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 可选的养殖批次列表-->
+		<action name="getBreedNos" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getOptionalBreedNo">
+		
+			<result type="json" >
+				<param name="root">OptionalBreedNoList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 可选的原料列表-->
+		<action name="getMaterials" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getOptionalMaterial">
+		
+			<result type="json" >
+				<param name="root">OptionalMaterialList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加喂养记录-->
+		<action name="BreedLog_Save" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="saveBreedLog">
+		
+			<result type="json" >
+				<param name="root">BreedLogSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示该批产品所有喂养记录-->
+		<action name="BreedLog_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListBreedLog">
+		
+			<result type="json" >
+				<param name="root">BreedLogDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除喂养记录-->
+		<action name="BreedLog_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="deleteBreedLog">
+		
+			<result type="json" >
+				<param name="root">BreedLogDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加疾病记录-->
+		<action name="IllnessInfo_Save" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="saveIllnessInfo">
+		
+			<result type="json" >
+				<param name="root">IllnessInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示该批产品所有疾病记录-->
+		<action name="IllnessInfo_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListIllnessInfo">
+		
+			<result type="json" >
+				<param name="root">IllnessInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除疾病记录-->
+		<action name="IllnessInfo_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="deleteIllnessInfo">
+		
+			<result type="json" >
+				<param name="root">IllnessInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加防疫检疫记录-->
+		<action name="VaccineInfo_Save" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="saveVaccineInfo">
+		
+			<result type="json" >
+				<param name="root">VaccineInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示该批产品所有防疫检疫记录-->
+		<action name="VaccineInfo_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListVaccineInfo">
+		
+			<result type="json" >
+				<param name="root">VaccineInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除防疫检疫记录-->
+		<action name="VaccineInfo_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="deleteVaccineInfo">
+		
+			<result type="json" >
+				<param name="root">VaccineInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		
+		<!-- 获得可选的未出塘的养殖批次-->
+		<action name="getInPondNos" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getOptionalInPondNos">
+		
+			<result type="json" >
+				<param name="root">OptionalInPondNoList</param>
+			</result>
+	
+		</action>
+		
+		<!-- 保存出塘记录-->
+		<action name="OutPond_Save" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="saveOutPond">
+		
+			<result type="json" >
+				<param name="root">OutPondSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示企业所有出塘记录-->
+		<action name="OutPond_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListOutPond">
+		
+			<result type="json" >
+				<param name="root">OutPondDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除出塘记录-->
+		<action name="OutPond_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="deleteOutPond">
+		
+			<result type="json" >
+				<param name="root">OutPondDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加质检记录-->
+		<action name="QualityControl_Save" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="saveQualityControl">
+		
+			<result type="json" >
+				<param name="root">QualityControlSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示该批产品所有质检记录-->
+		<action name="QualityControl_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListQualityControl">
+		
+			<result type="json" >
+				<param name="root">QualityControlDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除质检记录-->
+		<action name="QualityControl_Delete" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="deleteQualityControl">
+		
+			<result type="json" >
+				<param name="root">QualityControlDelete</param>
+			</result>
+	
+		</action>
+		
+	</package>
+
+</struts>

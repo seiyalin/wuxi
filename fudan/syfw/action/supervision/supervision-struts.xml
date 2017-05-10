@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="supervision-action" namespace="/jsp/syfw/supervision" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+		<!-- 用户提交投诉 -->
+		<action name="complaintInfo_Save" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="addComplaintInfo">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取要回复的投诉信息 -->
+		<action name="complaintInfo_Load" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="loadForComplaint">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoLoad</param>
+			</result>
+	
+		</action>
+		
+		<!-- 提交投诉回复信息 -->
+		<action name="complaintReact_Save" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="addComplaintReact">
+		
+			<result type="json" >
+				<param name="root">ComplaintReactSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除投诉信息 -->
+		<action name="complaintInfo_Delete" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="deleteComplaintInfo">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除投诉反馈信息 -->
+		<action name="complaintReact_Delete" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="deleteComplaintReact">
+		
+			<result type="json" >
+				<param name="root">ComplaintReactDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示投诉信息 -->
+		<action name="complaintInfo_GetList" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="getComplaintInfoList">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示某个投诉的回复信息 -->
+		<action name="complaintReact_Display" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="displayComplaintReact">
+		
+			<result type="json" >
+				<param name="root">ComplaintReactDisplay</param>
+			</result>
+	
+		</action>
+		
+	</package>
+
+</struts>
