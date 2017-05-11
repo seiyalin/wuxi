@@ -68,6 +68,12 @@ public class UserAction extends ActionSupport{
 		if(userService.findObjectById(id)==null){  //未注册过的新用户
 			
 			try {
+				user = new User();
+				user.setId(id);
+				user.setPassword(password);
+				user.setPhone(phone);
+				user.setRole(role);
+				user.setUsername(username);
 				userService.save(user);  //储存用户信息
 				isRegisterSuccess = JsonUtils.toJSONResult(true);
 				return SUCCESS;

@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.WaterQuality" table="water_quility" catalog="syfw11">
         <id name="waterId" type="java.lang.String">
-            <column name="waterId" length="20" />
+            <column name="waterId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="netCage" class="org.wuxi.fudan.syfw.model.hibernate.NetCage" fetch="select" cascade="save-update">

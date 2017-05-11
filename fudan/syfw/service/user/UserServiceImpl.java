@@ -103,7 +103,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	//@Resource: dao注入service
-	@Resource(name="userDao")
+	@Resource
 	public void setUserDao(UserDao userDao) { //在UserServiceImpl中，通过自动注入userDao的同时，
 		//将userDao传递给BaseServiceImpl转换为BaseDao
 		super.setBaseDao(userDao);   //注入userDao

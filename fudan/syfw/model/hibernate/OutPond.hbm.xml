@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.OutPond" table="out_pond" catalog="syfw11">
         <id name="outPondId" type="java.lang.String">
-            <column name="outPondId" length="30" />
+            <column name="outPondId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="breedCompany" class="org.wuxi.fudan.syfw.model.hibernate.BreedCompany" fetch="select" cascade="save-update">

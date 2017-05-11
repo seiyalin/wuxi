@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.OrderInfo" table="order_info" catalog="syfw11">
         <id name="orderId" type="java.lang.String">
-            <column name="orderId" length="20" />
+            <column name="orderId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="restaurantCompany" class="org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany" fetch="select" cascade="save-update">

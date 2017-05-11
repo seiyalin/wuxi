@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.NetCage" table="net_cage" catalog="syfw11">
         <id name="netcageId" type="java.lang.String">
             <column name="netcageId" length="15" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="breedArea" class="org.wuxi.fudan.syfw.model.hibernate.BreedArea" fetch="select" cascade="save-update">
             <column name="areaId" length="30" not-null="true">

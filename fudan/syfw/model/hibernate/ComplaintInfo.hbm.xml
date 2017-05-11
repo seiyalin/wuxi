@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.ComplaintInfo" table="complaint_info" catalog="syfw11">
         <id name="complaintId" type="java.lang.String">
-            <column name="complaintId" length="20" />
+            <column name="complaintId" length="40" />
             <generator class="uuid" />
         </id>
         <property name="complaintCompany" type="java.lang.String">

@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.ProcessCompany" table="process_company" catalog="syfw11">
         <id name="companyId" type="java.lang.String">
             <column name="companyId" length="30" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <property name="companyName" type="java.lang.String">
             <column name="companyName" length="40" not-null="true">

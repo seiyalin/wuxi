@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.TrepangGi" table="trepang_gi" catalog="syfw11">
         <id name="trepangId" type="java.lang.String">
-            <column name="trepangId" length="30" />
+            <column name="trepangId" length="40" />
             <generator class="uuid" />
         </id>
         <property name="trepangBrand" type="java.lang.String">

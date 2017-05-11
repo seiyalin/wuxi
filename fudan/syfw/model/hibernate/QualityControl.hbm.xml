@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.QualityControl" table="quality_control" catalog="syfw11">
         <id name="qcId" type="java.lang.String">
-            <column name="qcId" length="20" />
+            <column name="qcId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">

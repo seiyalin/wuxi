@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.BreedNo" table="breed_no" catalog="syfw11">
         <id name="breedNo" type="java.lang.String">
             <column name="breedNo" length="20" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="outPond" class="org.wuxi.fudan.syfw.model.hibernate.OutPond" fetch="select">
             <column name="outPondId" length="30">

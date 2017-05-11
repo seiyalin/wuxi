@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.ProcessInfo" table="process_info" catalog="syfw11">
         <id name="cageId" type="java.lang.String">
             <column name="cageId" length="30" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">
             <column name="breedNo" length="20" not-null="true">

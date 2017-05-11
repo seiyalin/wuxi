@@ -28,7 +28,7 @@
 	
 		</action>
 		
-		<!-- 保存销售订单记录 -->
+		<!-- 保存运输记录 -->
 		<action name="TransInfo_Save" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="saveTransInfo">
 		
 			<result type="json" >
@@ -37,7 +37,7 @@
 	
 		</action>
 		
-		<!-- 获取订单列表 -->
+		<!-- 获取运输列表 -->
 		<action name="TransInfo_List" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="getListTransInfo">
 		
 			<result type="json" >
@@ -46,7 +46,7 @@
 	
 		</action>
 		
-		<!-- 删除销售订单 -->
+		<!-- 删除运输记录 -->
 		<action name="TransInfo_Delete" class="org.wuxi.fudan.syfw.action.transport.TransportationInfoAction" method="deleteTransInfo">
 		
 			<result type="json" >

@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.TransportationInfo" table="transportation_info" catalog="syfw11">
         <id name="transId" type="java.lang.String">
-            <column name="transId" length="20" />
+            <column name="transId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="restaurantCompany" class="org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany" fetch="select" cascade="save-update">

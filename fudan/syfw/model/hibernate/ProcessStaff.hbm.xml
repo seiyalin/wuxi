@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.ProcessStaff" table="process_staff" catalog="syfw11">
         <id name="idcard" type="java.lang.String">
             <column name="IDcard" length="20" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="processCompany" class="org.wuxi.fudan.syfw.model.hibernate.ProcessCompany" fetch="select" cascade="save-update">
             <column name="companyId" length="30" not-null="true">

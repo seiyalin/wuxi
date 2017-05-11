@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.BreedLog" table="breed_log" catalog="syfw11">
         <id name="logId" type="java.lang.String">
-            <column name="logId" length="20" />
+            <column name="logId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">

@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.BreedArea" table="breed_area" catalog="syfw11">
         <id name="areaId" type="java.lang.String">
             <column name="areaId" length="30" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="breedCompany" class="org.wuxi.fudan.syfw.model.hibernate.BreedCompany" fetch="select" cascade="save-update">
             <column name="companyId" length="30" not-null="true">

@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.IllnessInfo" table="illness_info" catalog="syfw11">
         <id name="illnessId" type="java.lang.String">
-            <column name="illnessId" length="20" />
+            <column name="illnessId" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">

@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.CrabGi" table="crab_gi" catalog="syfw11">
         <id name="crabId" type="java.lang.String">
-            <column name="crabId" length="30" />
+            <column name="crabId" length="40" />
             <generator class="uuid" />
         </id>
         <property name="type" type="java.lang.String">

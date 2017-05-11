@@ -8,7 +8,7 @@
     <class name="org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany" table="restaurant_company" catalog="syfw11">
         <id name="restaurantId" type="java.lang.String">
             <column name="restaurantId" length="30" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <property name="restaurantName" type="java.lang.String">
             <column name="restaurantName" length="40" not-null="true">
