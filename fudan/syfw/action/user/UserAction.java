@@ -65,15 +65,15 @@ public class UserAction extends ActionSupport{
 
 	//用户注册
 	public String register(){
-		if(userService.findObjectById(id)==null){  //未注册过的新用户
+		if(userService.findObjectById(user.getId())==null){  //未注册过的新用户
 			
 			try {
-				user = new User();
+				/*user = new User();
 				user.setId(id);
 				user.setPassword(password);
 				user.setPhone(phone);
 				user.setRole(role);
-				user.setUsername(username);
+				user.setUsername(username);*/
 				userService.save(user);  //储存用户信息
 				isRegisterSuccess = JsonUtils.toJSONResult(true);
 				return SUCCESS;
@@ -87,17 +87,17 @@ public class UserAction extends ActionSupport{
 		}	
 		//注册过的用户
 		isRegisterSuccess = JsonUtils.toJSONResult(false, "该用户已注册");
-		return ERROR;
+		return SUCCESS;
 			
 	}
 	
 	//save breedCompany information
 	public String breedCompanySave(){
-		if(userService.findBreedCompanyById(companyId)==null){  //未添加过企业详细信息，save
+		if(userService.findBreedCompanyById(breedCompany.getCompanyId())==null){  //未添加过企业详细信息，save
 			try {
-				breedCompany.setUserId(id);
+				//breedCompany.setUserId(user.getId());
 				userService.saveBreedCompany(breedCompany);  //储存养殖企业信息
-				breedCompanySave = JsonUtils.toJSONResult(true);
+				setBreedCompanySave(JsonUtils.toJSONResult(true));
 				return SUCCESS;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -106,19 +106,22 @@ public class UserAction extends ActionSupport{
 				
     			return ERROR;				
 			}			
-		}	
-		//添加过的企业，update
-		userService.updateBreedCompany(breedCompany);
-		breedCompanySave = JsonUtils.toJSONResult(true);
-		return SUCCESS;
+		}
+		else{
+			//添加过的企业，update
+			userService.updateBreedCompany(breedCompany);
+			breedCompanySave = JsonUtils.toJSONResult(true);
+			return SUCCESS;
+		}
+		
 			
 	}
 	
 	//save processCompany information
 		public String processCompanySave(){
-			if(userService.findProcessCompanyById(companyId)==null){  //未添加过企业详细信息，save
+			if(userService.findProcessCompanyById(processCompany.getCompanyId())==null){  //未添加过企业详细信息，save
 				try {
-					processCompany.setUserId(id);
+					processCompany.setUserId(user.getId());
 					userService.saveProcessCompany(processCompany);  //储存养殖企业信息
 					processCompanySave = JsonUtils.toJSONResult(true);
 					return SUCCESS;

@@ -10,22 +10,22 @@
             <column name="epcis" length="20" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select">
+        <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">
             <column name="breedNo" length="20" not-null="true">
                 <comment>产品批次</comment>
             </column>
         </many-to-one>
-        <many-to-one name="processInfo" class="org.wuxi.fudan.syfw.model.hibernate.ProcessInfo" fetch="select">
+        <many-to-one name="processInfo" class="org.wuxi.fudan.syfw.model.hibernate.ProcessInfo" fetch="select" cascade="save-update">
             <column name="cageId" length="30" not-null="true">
                 <comment>成品箱编号</comment>
             </column>
         </many-to-one>
-        <many-to-one name="transportationInfo" class="org.wuxi.fudan.syfw.model.hibernate.TransportationInfo" fetch="select">
+        <many-to-one name="transportationInfo" class="org.wuxi.fudan.syfw.model.hibernate.TransportationInfo" fetch="select" cascade="save-update">
             <column name="transId" length="20" not-null="true">
                 <comment>运输编号</comment>
             </column>
         </many-to-one>
-        <many-to-one name="orderInfo" class="org.wuxi.fudan.syfw.model.hibernate.OrderInfo" fetch="select">
+        <many-to-one name="orderInfo" class="org.wuxi.fudan.syfw.model.hibernate.OrderInfo" fetch="select" cascade="save-update">
             <column name="orderId" length="20" not-null="true">
                 <comment>订单编号</comment>
             </column>
@@ -52,7 +52,7 @@
         </property>
         <property name="breedSpecies" type="java.lang.String">
             <column name="breedSpecies" length="30">
-                <comment>企业养殖品种</comment>
+                <comment>投苗品种</comment>
             </column>
         </property>
     </class>

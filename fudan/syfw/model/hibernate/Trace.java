@@ -13,16 +13,16 @@ public class Trace  implements java.io.Serializable {
 
     // Fields    
 
-     private String epcis;
-     private BreedNo breedNo;
-     private ProcessInfo processInfo;
-     private TransportationInfo transportationInfo;
-     private OrderInfo orderInfo;
-     private String breedCompany;
-     private String processCompany;
-     private Date outPondTime;
-     private String restaurant;
-     private String breedSpecies;
+     private String epcis;			//追溯码
+     private BreedNo breedNo;		//养殖批次
+     private ProcessInfo processInfo;	//加工信息
+     private TransportationInfo transportationInfo; //运输信息
+     private OrderInfo orderInfo;		//对应订单信息
+     private String breedCompany;		//养殖企业
+     private String processCompany;		//加工企业
+     private Date outPondTime;			//出塘时间
+     private String restaurant;			//餐饮企业
+     private String breedSpecies;		//品种
 
 
     // Constructors
