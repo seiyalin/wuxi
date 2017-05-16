@@ -12,21 +12,22 @@ public class CrabGi  implements java.io.Serializable {
 
     // Fields    
 
-     private String crabId;
-     private String type;
-     private String sex;
-     private String appearance;
-     private String crabRoe;
-     private Long crudeProtein;
-     private Long crudeFat;
-     private String otherDescr;
-     private String crust;
-     private String belly;
-     private String claw;
-     private String fair;
-     private String clamp;
-     private String back;
-     private String paw;
+     private String crabId;		//蟹编号
+     private String thumbnail;  //缩略图
+     private String type;		//品种
+     private String sex;		//性别
+     private String appearance;	//感官特色
+     private String crabRoe;	//蟹黄
+     private Float crudeProtein;	//粗蛋白(百分比）
+     private Float crudeFat;		//粗脂肪(百分比）
+     private String otherDescr;	//其他
+     private String crust;		//壳
+     private String belly;		//肚（腹）
+     private String claw;		//爪
+     private String fair;		//毛
+     private String clamp;		//钳
+     private String back;		//背
+     private String paw;		//螯
 
 
     // Constructors
@@ -37,7 +38,7 @@ public class CrabGi  implements java.io.Serializable {
 
     
     /** full constructor */
-    public CrabGi(String type, String sex, String appearance, String crabRoe, Long crudeProtein, Long crudeFat, String otherDescr, String crust, String belly, String claw, String fair, String clamp, String back, String paw) {
+    public CrabGi(String type, String sex, String appearance, String crabRoe, Float crudeProtein, Float crudeFat, String otherDescr, String crust, String belly, String claw, String fair, String clamp, String back, String paw) {
         this.type = type;
         this.sex = sex;
         this.appearance = appearance;
@@ -65,7 +66,17 @@ public class CrabGi  implements java.io.Serializable {
         this.crabId = crabId;
     }
 
-    public String getType() {
+    public String getThumbnail() {
+		return thumbnail;
+	}
+
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+
+	public String getType() {
         return this.type;
     }
     
@@ -97,19 +108,19 @@ public class CrabGi  implements java.io.Serializable {
         this.crabRoe = crabRoe;
     }
 
-    public Long getCrudeProtein() {
+    public Float getCrudeProtein() {
         return this.crudeProtein;
     }
     
-    public void setCrudeProtein(Long crudeProtein) {
+    public void setCrudeProtein(Float crudeProtein) {
         this.crudeProtein = crudeProtein;
     }
 
-    public Long getCrudeFat() {
+    public Float getCrudeFat() {
         return this.crudeFat;
     }
     
-    public void setCrudeFat(Long crudeFat) {
+    public void setCrudeFat(Float crudeFat) {
         this.crudeFat = crudeFat;
     }
 

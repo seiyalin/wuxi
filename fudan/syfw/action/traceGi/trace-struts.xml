@@ -73,8 +73,86 @@
 	
 		</action>
 		
+		<!-- 添加蟹地理标识 -->
+		<action name="CrabInfo_Save" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="addCrabGi">
 		
+			<result type="json" >
+				<param name="root">CrabInfoSave</param>
+			</result>
+	
+		</action>
 		
+		<!-- 根据type查询蟹地理标识 -->
+		<action name="CrabInfo_SearchByType" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="findCrabByType">
+		
+			<result type="json" >
+				<param name="root">CrabInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 根据外观查询蟹地理标识 -->
+		<action name="CrabInfo_SearchByAppearance" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="findCrabByAppearance">
+		
+			<result type="json" >
+				<param name="root">CrabInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除蟹地理标识 -->
+		<action name="CrabInfo_Delete" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="deleteCrab">
+		
+			<result type="json" >
+				<param name="root">CrabInfoDelete</param>
+			</result>
+	
+		</action>
+		
+		<!-- 添加海参地理标识 -->
+		<action name="TrepangInfo_Save" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="addTrepangGi">
+		
+			<result type="json" >
+				<param name="root">TrepangInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 根据type查询海参地理标识 -->
+		<action name="TrepangInfo_SearchByType" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="findTrepangByType">
+		
+			<result type="json" >
+				<param name="root">TrepangInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 根据brand查询海参地理标识 -->
+		<action name="TrepangInfo_SearchByBrand" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="findTrepangByBrand">
+		
+			<result type="json" >
+				<param name="root">TrepangInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 根据外观查询海参地理标识 -->
+		<action name="TrepangInfo_SearchByAppearance" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="findTrepangByAppearance">
+		
+			<result type="json" >
+				<param name="root">TrepangInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 删除蟹地理标识 -->
+		<action name="TrepangInfo_Delete" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="deleteTrepang">
+		
+			<result type="json" >
+				<param name="root">TrepangInfoDelete</param>
+			</result>
+	
+		</action>
 		
 		
 	</package>

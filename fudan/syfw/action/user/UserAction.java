@@ -95,7 +95,7 @@ public class UserAction extends ActionSupport{
 	public String breedCompanySave(){
 		if(userService.findBreedCompanyById(breedCompany.getCompanyId())==null){  //未添加过企业详细信息，save
 			try {
-				//breedCompany.setUserId(user.getId());
+			//	breedCompany.setUserId(user.getId());
 				userService.saveBreedCompany(breedCompany);  //储存养殖企业信息
 				setBreedCompanySave(JsonUtils.toJSONResult(true));
 				return SUCCESS;
@@ -154,6 +154,10 @@ public class UserAction extends ActionSupport{
 			if(username.trim().equals(u.getUsername()) && password.trim().equals(u.getPassword())){
 				isLoginSuccess = JsonUtils.toJSONResult(true);
 				isLoginSuccess.put("role", u.getRole());   //返回用户角色
+				if(u.getRole()=="养殖企业")
+					isLoginSuccess.put("companyId", userService.findBreedCompanyByUserId(u.getId()).getCompanyId());
+				if(u.getRole()=="加工企业")
+					isLoginSuccess.put("companyId", userService.findProcessCompanyByUserId(u.getId()).getCompanyId());
 				return SUCCESS;
 			}				
 			

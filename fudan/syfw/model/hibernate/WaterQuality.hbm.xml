@@ -21,17 +21,17 @@
             </column>
         </property>
         <property name="temperature" type="java.lang.Float">
-            <column name="temperature" precision="10" scale="0">
+            <column name="temperature" precision="10" scale="2">
                 <comment>水温</comment>
             </column>
         </property>
         <property name="ph" type="java.lang.Float">
-            <column name="ph" precision="10" scale="0">
+            <column name="ph" precision="10" scale="2">
                 <comment>ph</comment>
             </column>
         </property>
         <property name="oxygen" type="java.lang.Float">
-            <column name="oxygen" precision="12" scale="0">
+            <column name="oxygen" precision="12" scale="2">
                 <comment>含氧量</comment>
             </column>
         </property>

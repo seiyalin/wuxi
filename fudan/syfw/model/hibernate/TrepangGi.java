@@ -12,17 +12,18 @@ public class TrepangGi  implements java.io.Serializable {
 
     // Fields    
 
-     private String trepangId;
-     private String trepangBrand;
-     private String trepangType;
-     private String appearance;
-     private Long protein;
-     private Long water;
-     private Long salt;
-     private Long sand;
-     private String otherDescr;
-     private String color;
-     private String shape;
+     private String trepangId;  //海参编号
+     private String thumbnail;	//缩略图
+     private String trepangBrand;	//海参品牌（獐子岛，大连，烟台）
+     private String trepangType;	//海参种类（淡干，盐渍，活，干，盐干）
+     private String appearance;	//感官特色
+     private Float protein;		//蛋白质
+     private Float water;		//水分
+     private Float salt;			//盐分
+     private Float sand;			//含砂量
+     private String otherDescr;	//其他
+     private String color;		//色泽
+     private String shape;		//体型
 
 
     // Constructors
@@ -33,7 +34,7 @@ public class TrepangGi  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TrepangGi(String trepangBrand, String trepangType, String appearance, Long protein, Long water, Long salt, Long sand, String otherDescr, String color, String shape) {
+    public TrepangGi(String trepangBrand, String trepangType, String appearance, Float protein, Float water, Float salt, Float sand, String otherDescr, String color, String shape) {
         this.trepangBrand = trepangBrand;
         this.trepangType = trepangType;
         this.appearance = appearance;
@@ -57,7 +58,17 @@ public class TrepangGi  implements java.io.Serializable {
         this.trepangId = trepangId;
     }
 
-    public String getTrepangBrand() {
+    public String getThumbnail() {
+		return thumbnail;
+	}
+
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+
+	public String getTrepangBrand() {
         return this.trepangBrand;
     }
     
@@ -81,35 +92,35 @@ public class TrepangGi  implements java.io.Serializable {
         this.appearance = appearance;
     }
 
-    public Long getProtein() {
+    public Float getProtein() {
         return this.protein;
     }
     
-    public void setProtein(Long protein) {
+    public void setProtein(Float protein) {
         this.protein = protein;
     }
 
-    public Long getWater() {
+    public Float getWater() {
         return this.water;
     }
     
-    public void setWater(Long water) {
+    public void setWater(Float water) {
         this.water = water;
     }
 
-    public Long getSalt() {
+    public Float getSalt() {
         return this.salt;
     }
     
-    public void setSalt(Long salt) {
+    public void setSalt(Float salt) {
         this.salt = salt;
     }
 
-    public Long getSand() {
+    public Float getSand() {
         return this.sand;
     }
     
-    public void setSand(Long sand) {
+    public void setSand(Float sand) {
         this.sand = sand;
     }
 
