@@ -195,7 +195,10 @@ public class BreedAreaAction extends ActionSupport{
      //更新养殖区域信息
      public String updateBreedArea(){
     	 try {
-			breedAreaService.update(breedArea);
+    		 if(breedAreaService.findObjectById(breedArea.getAreaId())!=null){
+    			 breedAreaService.update(breedArea);
+    		 }
+			
 			BreedAreaUpdate = JsonUtils.toJSONResult(true);
 			return SUCCESS;
 		} catch (Exception e) {

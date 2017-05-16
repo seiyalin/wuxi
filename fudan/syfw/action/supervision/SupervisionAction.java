@@ -109,7 +109,7 @@ public class SupervisionAction extends ActionSupport{
 	public String loadForComplaint(){
 		try {
 			complaintInfo = supervisionService.findObjectById(complaintId);
-			ComplaintInfoLoad = JsonUtils.toJSONResult(true);
+			ComplaintInfoLoad = JsonUtils.toJSONResult(true, complaintInfo);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -145,6 +145,7 @@ public class SupervisionAction extends ActionSupport{
 	public String addComplaintReact(){
 		try {
 			complaintReact.setAnswerTime(new Date()); 		 //回复时间
+			complaintInfo = supervisionService.findObjectById(complaintId);
 			complaintReact.setComplaintInfo(complaintInfo);  //回复的投诉内容
 			supervisionService.addComplaintReact(complaintReact);
 			ComplaintReactSave = JsonUtils.toJSONResult(true);

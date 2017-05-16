@@ -121,7 +121,7 @@ public class UserAction extends ActionSupport{
 		public String processCompanySave(){
 			if(userService.findProcessCompanyById(processCompany.getCompanyId())==null){  //未添加过企业详细信息，save
 				try {
-					processCompany.setUserId(user.getId());
+				//	processCompany.setUserId(user.getId());
 					userService.saveProcessCompany(processCompany);  //储存养殖企业信息
 					processCompanySave = JsonUtils.toJSONResult(true);
 					return SUCCESS;
@@ -130,7 +130,7 @@ public class UserAction extends ActionSupport{
 					e.printStackTrace();
 					processCompanySave = JsonUtils.toJSONResult(false, "发生未知错误");
 					
-	    			return ERROR;				
+	    			return SUCCESS;				
 				}			
 			}	
 			//添加过的企业，update
@@ -163,7 +163,7 @@ public class UserAction extends ActionSupport{
 			
 		}
 		isLoginSuccess = JsonUtils.toJSONResult(false, "failed");  //login failed
-		return ERROR;
+		return SUCCESS;
 	}
 	
 	
