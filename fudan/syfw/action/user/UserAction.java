@@ -7,11 +7,6 @@ import javax.annotation.Resource;
 
 import net.sf.json.JSONObject;
 
-
-
-
-
-
 import org.wuxi.fudan.syfw.common.JsonUtils;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
@@ -154,9 +149,12 @@ public class UserAction extends ActionSupport{
 			if(username.trim().equals(u.getUsername()) && password.trim().equals(u.getPassword())){
 				isLoginSuccess = JsonUtils.toJSONResult(true);
 				isLoginSuccess.put("role", u.getRole());   //返回用户角色
-				if(u.getRole()=="养殖企业")
-					isLoginSuccess.put("companyId", userService.findBreedCompanyByUserId(u.getId()).getCompanyId());
-				if(u.getRole()=="加工企业")
+				if(u.getRole().equals("养殖企业")){
+					String cId = userService.findBreedCompanyByUserId(u.getId()).getCompanyId();
+					isLoginSuccess.put("companyId", cId);
+					}
+					
+				if(u.getRole().equals("加工企业"))
 					isLoginSuccess.put("companyId", userService.findProcessCompanyByUserId(u.getId()).getCompanyId());
 				return SUCCESS;
 			}				

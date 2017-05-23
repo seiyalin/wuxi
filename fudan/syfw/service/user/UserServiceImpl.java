@@ -15,6 +15,7 @@ import org.wuxi.fudan.syfw.dao.user.UserDao;
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
+import org.wuxi.fudan.syfw.model.hibernate.ProcessInfo;
 import org.wuxi.fudan.syfw.model.hibernate.User;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
 
@@ -70,11 +71,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	//find breedCompany by userId
 	public BreedCompany findBreedCompanyByUserId(String userId){
-		String hql = "FROM BreedCompany WHERE userId = ?";
-		List<Object> param = new ArrayList<Object>();
-		param.add(userId);
-		List<BreedCompany> list = breedCompanyDao.findObjects(hql, param);
-		return list.get(0);
+		QueryHelper queryHelper = new QueryHelper(BreedCompany.class, "breedCompany");
+		//add condition 要使用别名breedCompany
+		queryHelper.addCondition("breedCompany.userId = ?", userId);
+		return breedCompanyDao.findObjects(queryHelper).get(0);
 	}
 	
 	//find all processCompany
@@ -84,11 +84,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	
 	//find processCompany by userId
 	public ProcessCompany findProcessCompanyByUserId(String userId){
-		String hql = "FROM ProcessCompany WHERE userId = ?";
+		QueryHelper queryHelper = new QueryHelper(ProcessCompany.class, "processCompany");
+		//add condition
+		queryHelper.addCondition("processCompany.userId = ?", userId);
+		return processCompanyDao.findObjects(queryHelper).get(0);
+		/*String hql = "FROM ProcessCompany WHERE userId = ?";
 		List<Object> param = new ArrayList<Object>();
 		param.add(userId);
 		List<ProcessCompany> list = processCompanyDao.findObjects(hql, param);
-		return list.get(0);
+		return list.get(0);*/
 	}
 		
 	//update breedCompany information

@@ -66,9 +66,9 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 	public List<ProcessInfo> getCagesInSell(ProcessCompany processCompany){
 		QueryHelper queryHelper = new QueryHelper(ProcessInfo.class, "processInfo");
 				//add condition
-		queryHelper.addCondition("ProcessInfo.processCompany = ?", processCompany);
-		queryHelper.addCondition("ProcessInfo.orderInfo = ?",(Object)null );
-		queryHelper.addOrderByProperty("ProcessInfo.processTime", "DESC");  //降序排列
+		queryHelper.addCondition("processInfo.processCompany = ?", processCompany);
+		queryHelper.addCondition("processInfo.orderInfo = ?",(Object)null );
+		queryHelper.addOrderByProperty("processInfo.processTime", "DESC");  //降序排列
 		return processInfoDao.findObjects(queryHelper);
 			//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
 			//return pageResult.getItems();
@@ -78,9 +78,9 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 	public List<ProcessInfo> getCagesToTrans(ProcessCompany processCompany){
 		QueryHelper queryHelper = new QueryHelper(ProcessInfo.class, "processInfo");
 					//add condition
-		queryHelper.addCondition("ProcessInfo.processCompany = ?", processCompany);
-		queryHelper.addCondition("ProcessInfo.transportationInfo = ?",(Object)null );
-		queryHelper.addOrderByProperty("ProcessInfo.processTime", "DESC");  //降序排列
+		queryHelper.addCondition("processInfo.processCompany = ?", processCompany);
+		queryHelper.addCondition("processInfo.transportationInfo = ?",(Object)null );
+		queryHelper.addOrderByProperty("processInfo.processTime", "DESC");  //降序排列
 		return processInfoDao.findObjects(queryHelper);
 				//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
 				//return pageResult.getItems();

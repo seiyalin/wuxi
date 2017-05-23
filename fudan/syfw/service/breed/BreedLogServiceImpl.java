@@ -96,8 +96,8 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 	public List<BreedNo> getBreedNo(Integer start, Integer limit, BreedCompany breedCompany){
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
 		//add condition
-		queryHelper.addCondition("BreedNo.netCage.breedArea.breedCompany = ?", breedCompany);
-		queryHelper.addOrderByProperty("BreedNo.inPondTime", "DESC");  //降序排列
+		queryHelper.addCondition("breedNo.netCage.breedArea.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("breedNo.inPondTime", "DESC");  //降序排列
 		pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
 		return pageResult.getItems();
 	}
@@ -106,8 +106,8 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 	public List<BreedNo> getBreedNo(Integer start, Integer limit, BreedArea breedArea){
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
 			//add condition
-		queryHelper.addCondition("BreedNo.netCage.breedArea = ?", breedArea);
-		queryHelper.addOrderByProperty("BreedNo.inPondTime", "DESC");  //降序排列
+		queryHelper.addCondition("breedNo.netCage.breedArea = ?", breedArea);
+		queryHelper.addOrderByProperty("breedNo.inPondTime", "DESC");  //降序排列
 		pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
 		return pageResult.getItems();
 	}
@@ -116,8 +116,8 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 	public List<BreedNo> getBreedNoInPond(BreedCompany breedCompany){
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
 			//add condition
-		queryHelper.addCondition("BreedNo.netCage.breedArea.breedCompany = ?", breedCompany);
-		queryHelper.addCondition("BreedNo.outPond = ?",(Object)null );
+		queryHelper.addCondition("breedNo.netCage.breedArea.breedCompany = ?", breedCompany);
+		queryHelper.addCondition("breedNo.outPond = ?",(Object)null );
 		queryHelper.addOrderByProperty("BreedNo.inPondTime", "DESC");  //降序排列
 		return breedNoDao.findObjects(queryHelper);
 		//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
@@ -130,7 +130,7 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 			
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
 			//pageNo=start/limit + 1       起始页从第一页开始的
-		queryHelper.addOrderByProperty("BreedNo.inPondTime", "DESC");  //降序排列
+		queryHelper.addOrderByProperty("breedNo.inPondTime", "DESC");  //降序排列
 		pageResult = breedNoDao.getPageResult(queryHelper, start/limit + 1, limit);
 
 		return pageResult.getItems();

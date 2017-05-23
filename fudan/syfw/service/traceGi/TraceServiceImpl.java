@@ -44,7 +44,7 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 	//get crabGi by crab type 
 	public List<CrabGi> findCrabByType(String type){
 		QueryHelper queryHelper = new QueryHelper(CrabGi.class, "crab");
-		queryHelper.addCondition("CrabGi.type=?", type);
+		queryHelper.addCondition("crab.type=?", type);
 		return crabGiDao.findObjects(queryHelper);
 	}
 	
@@ -63,7 +63,7 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		List<String> params = new ArrayList<String>();
 		whereClause = "";
 		
-		String hql = "CrabGi.app=?";
+		String hql = "crab.app=?";
 		for(Map.Entry<String, String> entry:appear.entrySet()){
 			hql.replace("app", entry.getKey());
 			whereClause = addWhereClause(hql);
@@ -88,31 +88,31 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		}*/
 		
 		if(crust != null){
-			whereClause = addWhereClause("CrabGi.crust=?");
+			whereClause = addWhereClause("crab.crust=?");
 			params.add(crust);
 		}
 		if(belly != null){
-			whereClause = addWhereClause("CrabGi.belly=?");
+			whereClause = addWhereClause("crab.belly=?");
 			params.add(belly);
 		}
 		if(claw != null){
-			whereClause = addWhereClause("CrabGi.claw=?");
+			whereClause = addWhereClause("crab.claw=?");
 			params.add(claw);
 		}
 		if(fair != null){
-			whereClause = addWhereClause("CrabGi.fair=?");
+			whereClause = addWhereClause("crab.fair=?");
 			params.add(fair);
 		}
 		if(clamp != null){
-			whereClause = addWhereClause("CrabGi.clamp=?");
+			whereClause = addWhereClause("crab.clamp=?");
 			params.add(clamp);
 		}
 		if(back != null){
-			whereClause = addWhereClause("CrabGi.back=?");
+			whereClause = addWhereClause("crab.back=?");
 			params.add(back);
 		}
 		if(paw != null){
-			whereClause = addWhereClause("CrabGi.paw=?");
+			whereClause = addWhereClause("crab.paw=?");
 			params.add(paw);
 		}
 		
@@ -135,14 +135,14 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 	//get trepangGi by brand 
 	public List<TrepangGi> findTrepangByBrand(String brand){
 		QueryHelper queryHelper = new QueryHelper(TrepangGi.class, "trepang");
-		queryHelper.addCondition("TrepangGi.trepangBrand=?", brand);
+		queryHelper.addCondition("trepang.trepangBrand=?", brand);
 		return trepangGiDao.findObjects(queryHelper);
 	}
 	
 	//get trepangGi by type 
 	public List<TrepangGi> findTrepangByType(String type){
 		QueryHelper queryHelper = new QueryHelper(TrepangGi.class, "trepang");
-		queryHelper.addCondition("TrepangGi.trepangType=?", type);
+		queryHelper.addCondition("trepang.trepangType=?", type);
 		return trepangGiDao.findObjects(queryHelper);
 	}
 	
@@ -152,11 +152,11 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		List<String> params = new ArrayList<String>();
 		whereClause = "";
 		if(color != null){
-			whereClause = addWhereClause("TrepangGi.color=?");
+			whereClause = addWhereClause("trepang.color=?");
 			params.add(color);
 		}
 		if(shape != null){
-			whereClause = addWhereClause("TrepangGi.shape=?");
+			whereClause = addWhereClause("trepang.shape=?");
 			params.add(shape);
 		}
 		queryHelper.addCondition(whereClause, params);
