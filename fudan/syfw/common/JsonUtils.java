@@ -4,9 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.PageRequest;
@@ -40,7 +43,7 @@ public class JsonUtils {
 	}
 	
 
-
+	
 
 
 
@@ -59,10 +62,17 @@ public class JsonUtils {
 	 * @return
 	 */
 	public static JSONObject toJSONResult(long count, List data, int sEcho) {
+		//处理jsonObject 嵌套数据过滤的问题
+		JsonConfig jsonConfig = new JsonConfig();
+		//自动加载list中每一项包含的set，耗时耗资源
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+				//jsonConfig.registerJsonValueProcessor(Set.class, null);
+		JSONArray json = JSONArray.fromObject(data, jsonConfig);
+				//JSONObject json = JSONObject.fromObject(data,jsonConfig);
 		JSONObject result = new JSONObject();
 		result.put(DEFAULT_JSON_TOTAL_PROPERTY, count);
 		result.put(DEFAULT_JSON_RECORDSFILTERED, count);
-		result.put(DEFAULT_JSON_DATA, data);
+		result.put(DEFAULT_JSON_DATA, json);
 		result.put(DEFAULT_JSON_SECHO, sEcho);
 		result.put(DEFAULT_JSON_SUCCESS, true);
 		return result;
@@ -84,9 +94,17 @@ public class JsonUtils {
 	}
 
 	public static JSONObject toJSONResult(boolean success, Object data) {
+		//处理jsonObject 嵌套数据过滤的问题
+		JsonConfig jsonConfig = new JsonConfig();
+		//自动加载list中每一项包含的set
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+		jsonConfig.registerJsonValueProcessor(Set.class, null);
+		JSONArray json = JSONArray.fromObject(data, jsonConfig);
+		//JSONObject json = JSONObject.fromObject(data,jsonConfig);
+		
 		JSONObject result = new JSONObject();
 		result.put(DEFAULT_JSON_SUCCESS, success);
-		result.put(DEFAULT_JSON_DATA, data);
+		result.put(DEFAULT_JSON_DATA, json);
 		return result;
 	}
 

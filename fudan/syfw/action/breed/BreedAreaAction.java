@@ -122,7 +122,7 @@ public class BreedAreaAction extends ActionSupport{
     		 for(String net:netcage){
     			 NetCage nc = new NetCage();
     			 nc.setNetcageId(net);
-    			 //nc.setBreedArea(breedArea);
+    			 nc.setBreedArea(breedArea);
     			 set.add(nc);
     			 //breedArea.getNetCages().add(nc);
     		 }
@@ -145,7 +145,17 @@ public class BreedAreaAction extends ActionSupport{
 			 list.addAll(sets);
 			 int count = list.size();
 			 sEcho = count;
-			 setBreedAreaDisplay(JsonUtils.toJSONResult(count, list, sEcho));
+			/* JSONArray areas = new JSONArray();
+			 JSONObject area = new JSONObject();
+			 for(BreedArea bArea: list){
+				 area.put("areaId", bArea.getAreaId());
+				 area.put("areaName", bArea.getAreaName());
+				 area.put("breedScale", bArea.getBreedScale());
+				 area.put("breedEnvironment", bArea.getBreedEnvironment());
+				 area.put("waterQuality", bArea.getWaterQuality());
+				 areas.add(area);			 
+				}*/
+			 setBreedAreaDisplay(JsonUtils.toJSONResult(true, list));
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

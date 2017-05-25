@@ -45,7 +45,7 @@
                 <comment>用户id</comment>
             </column>
         </property>
-        <set name="processInfos" inverse="true">
+        <set name="processInfos" inverse="true" lazy="false">
             <key>
                 <column name="companyId" length="30" not-null="true">
                     <comment>企业编码</comment>
@@ -53,7 +53,7 @@
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.ProcessInfo" />
         </set>
-        <set name="orderInfos" inverse="true">
+        <set name="orderInfos" inverse="true" lazy="false">
             <key>
                 <column name="companyId" length="30" not-null="true">
                     <comment>企业编码</comment>
@@ -61,7 +61,7 @@
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.OrderInfo" />
         </set>
-        <set name="transportationInfos" inverse="true">
+        <set name="transportationInfos" inverse="true" lazy="false">
             <key>
                 <column name="companyId" length="30" not-null="true">
                     <comment>企业编码</comment>
@@ -69,7 +69,7 @@
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.TransportationInfo" />
         </set>
-        <set name="processStaffs" inverse="true" cascade="delete">
+        <set name="processStaffs" inverse="true" cascade="delete" lazy="false">
             <key>
                 <column name="companyId" length="30" not-null="true">
                     <comment>企业编码</comment>

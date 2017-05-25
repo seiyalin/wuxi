@@ -70,7 +70,7 @@
                 <comment>原料名称</comment>
             </column>
         </property>
-        <set name="breedLogs" inverse="true">
+        <set name="breedLogs" inverse="true" lazy="false">
             <key>
                 <column name="feedId" length="20" not-null="true">
                     <comment>原料编号</comment>

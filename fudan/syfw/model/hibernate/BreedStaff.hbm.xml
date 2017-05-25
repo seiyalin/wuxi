@@ -40,7 +40,7 @@
                 <comment>相关资质和养殖经历</comment>
             </column>
         </property>
-        <set name="breedLogs" inverse="true">
+        <set name="breedLogs" inverse="true" lazy="false">
             <key>
                 <column name="IDcard" length="20">
                     <comment>身份证号</comment>

@@ -70,7 +70,7 @@
                 <comment>联系方式</comment>
             </column>
         </property>
-        <set name="traces" inverse="true">
+        <set name="traces" inverse="true" lazy="false">
             <key>
                 <column name="transId" length="20" not-null="true">
                     <comment>运输编号</comment>
@@ -78,7 +78,7 @@
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.Trace" />
         </set>
-        <set name="processInfos" inverse="true" cascade="save-update">
+        <set name="processInfos" inverse="true" cascade="save-update" lazy="false">
             <key>
                 <column name="transId" length="20">
                     <comment>运输编号</comment>
