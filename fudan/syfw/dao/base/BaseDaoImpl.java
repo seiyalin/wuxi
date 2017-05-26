@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.ejb.criteria.expression.function.AggregationFunction.MIN;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
@@ -94,6 +95,16 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		}
 		long totalCount = (Long)queryCount.uniqueResult();
 		
+		return new PageResult(totalCount, pageNo, pageSize, items);
+	}
+	
+
+	public PageResult getPageResult(List list, int pageNo, int pageSize){
+		int totalCount = list.size();
+		int start = (pageNo-1)*pageSize;
+		int end = Math.min(pageNo*pageSize, totalCount);
+		//subList取从start开始，到end终止（不包含end）的list
+		List items = list.subList(start, end);
 		return new PageResult(totalCount, pageNo, pageSize, items);
 	}
 

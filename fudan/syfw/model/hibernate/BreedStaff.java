@@ -9,7 +9,7 @@ import java.util.Set;
  * 养殖人员管理
  */
 
-public class BreedStaff  implements java.io.Serializable {
+public class BreedStaff  implements java.io.Serializable, Comparable<BreedStaff> {
 
 
     // Fields    
@@ -46,7 +46,11 @@ public class BreedStaff  implements java.io.Serializable {
         this.experience = experience;
         this.breedLogs = breedLogs;
     }
-
+    
+    //排序
+    public int compareTo(BreedStaff staff){
+    	return idcard.compareTo(staff.getIdcard());
+    }
    
     // Property accessors
 

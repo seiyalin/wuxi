@@ -27,6 +27,9 @@ public interface BreedAreaService extends BaseService<BreedArea> {
 	//get breedArea list
 	public List<BreedArea> getList(Integer start, Integer limit);
 	
+	//get breedArea list 分页
+	public List<BreedArea> getList(List<BreedArea> list, Integer start, Integer limit);
+	
 	//get total number of breedArea
 	public int getCount();
 	

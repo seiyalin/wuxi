@@ -37,6 +37,13 @@ public class BreedStaffServiceImpl extends BaseServiceImpl<BreedStaff> implement
 
 		return pageResult.getItems();
 	}
+	
+	//get breed staff list 分页
+	public List<BreedStaff> getList(List<BreedStaff> list, Integer start, Integer limit){
+		pageResult = breedStaffDao.getPageResult(list, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
 		
 	//get total number of breedStaff
 	public int getCount() {

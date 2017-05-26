@@ -9,7 +9,7 @@ import java.util.Set;
  * 养殖区域
  */
 
-public class BreedArea  implements java.io.Serializable {
+public class BreedArea  implements java.io.Serializable, Comparable<BreedArea> {
 
 
     // Fields    
@@ -46,6 +46,10 @@ public class BreedArea  implements java.io.Serializable {
         this.netCages = netCages;
     }
 
+    //排序
+    public int compareTo(BreedArea area){
+    	return this.getAreaId().compareTo(area.getAreaId());
+    }
    
     // Property accessors
 

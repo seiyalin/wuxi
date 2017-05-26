@@ -63,6 +63,13 @@ public class BreedAreaServiceImpl extends BaseServiceImpl<BreedArea> implements 
 
 		return pageResult.getItems();
 	}
+	
+	//get breedArea list 分页
+	public List<BreedArea> getList(List<BreedArea> list, Integer start, Integer limit){
+		pageResult = breedAreaDao.getPageResult(list, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
 		
 	//get total number of breedArea
 	public int getCount() {

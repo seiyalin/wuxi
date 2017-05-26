@@ -459,11 +459,11 @@ public class TraceAction extends ActionSupport{
 		this.iDisplayLength = iDisplayLength;
 	}
 
-	public Integer getsEcho() {
+	public Integer getSEcho() {
 		return sEcho;
 	}
 
-	public void setsEcho(Integer sEcho) {
+	public void setSEcho(Integer sEcho) {
 		this.sEcho = sEcho;
 	}
 

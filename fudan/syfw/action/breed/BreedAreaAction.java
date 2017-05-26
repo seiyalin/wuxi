@@ -1,6 +1,8 @@
 package org.wuxi.fudan.syfw.action.breed;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -143,8 +145,15 @@ public class BreedAreaAction extends ActionSupport{
 			 sets = breedCompany.getBreedAreas();
 			 List<BreedArea> list = new ArrayList<BreedArea>();
 			 list.addAll(sets);
-			 int count = list.size();
-			 sEcho = count;
+			/* Collections.sort(list,new comparator<BreedArea>(){
+				 public int compare(BreedArea a, BreedArea b){
+					 return a.hashCode().compareTo(b.hashCode());
+				 }
+			 });*/
+			 Collections.sort(list);
+			 List<BreedArea> areaList = breedAreaService.getList(list, iDisplayStart, iDisplayLength);
+			 int count = breedAreaService.getCount();
+			// sEcho = count;
 			/* JSONArray areas = new JSONArray();
 			 JSONObject area = new JSONObject();
 			 for(BreedArea bArea: list){
@@ -155,7 +164,7 @@ public class BreedAreaAction extends ActionSupport{
 				 area.put("waterQuality", bArea.getWaterQuality());
 				 areas.add(area);			 
 				}*/
-			 setBreedAreaDisplay(JsonUtils.toJSONResult(true, list));
+			 setBreedAreaDisplay(JsonUtils.toJSONResult(count, areaList, sEcho));
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -243,9 +252,13 @@ public class BreedAreaAction extends ActionSupport{
  			sets = breedCompany.getBreedStaffs();
  			List<BreedStaff> list = new ArrayList<BreedStaff>();
  			list.addAll(sets);
- 			int count = list.size();
+ 			
+ 			Collections.sort(list);
+			List<BreedStaff> staffList = breedStaffService.getList(list, iDisplayStart, iDisplayLength);
+			int count = breedStaffService.getCount();
+			 
  			sEcho = count;
- 			setBreedStaffDisplay(JsonUtils.toJSONResult(count, list, sEcho));
+ 			setBreedStaffDisplay(JsonUtils.toJSONResult(count, staffList, sEcho));
  			return SUCCESS;
  		} catch (Exception e) {
  			// TODO Auto-generated catch block
@@ -406,11 +419,11 @@ public class BreedAreaAction extends ActionSupport{
 		this.iDisplayLength = iDisplayLength;
 	}
 
-	public Integer getsEcho() {
+	public Integer getSEcho() {
 		return sEcho;
 	}
 
-	public void setsEcho(Integer sEcho) {
+	public void setSEcho(Integer sEcho) {
 		this.sEcho = sEcho;
 	}
 

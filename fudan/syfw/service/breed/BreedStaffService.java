@@ -14,6 +14,9 @@ public interface BreedStaffService extends BaseService<BreedStaff> {
 	//get breedStaff list
 	public List<BreedStaff> getList(Integer start, Integer limit);
 	
+	//get breed staff list 分页
+	public List<BreedStaff> getList(List<BreedStaff> list, Integer start, Integer limit);
+	
 	//get total number of breedStaff
 	public int getCount();
 	
