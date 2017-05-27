@@ -47,11 +47,17 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<OrderInfo> implements 
 		restaurantCompanyDao.delete(id);
 	}
 	
-	
 	//get order info list
-	public List<OrderInfo> getList(Integer start, Integer limit) {
+	public List<OrderInfo> getList(List<OrderInfo> list, Integer start, Integer limit){
+		pageResult = orderInfoDao.getPageResult(list, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
+	//get restaurant list
+	public List<RestaurantCompany> getList(Integer start, Integer limit) {
 			
-		QueryHelper queryHelper = new QueryHelper(OrderInfo.class, "orderInfo");
+		QueryHelper queryHelper = new QueryHelper(RestaurantCompany.class, "restaurant");
 			//pageNo=start/limit + 1       起始页从第一页开始的
 		pageResult = orderInfoDao.getPageResult(queryHelper, start/limit + 1, limit);
 

@@ -1,6 +1,7 @@
 package org.wuxi.fudan.syfw.action.sale;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -132,9 +133,9 @@ public class OrderInfoAction extends ActionSupport{
 	public String getListRestaurant(){
     	 try {
 			
-			 List<RestaurantCompany> list = orderInfoService.findAllRestaurant();
-			 int count = list.size();
-			 sEcho = count;
+			 List<RestaurantCompany> list = orderInfoService.getList(iDisplayStart, iDisplayLength);
+			 int count = orderInfoService.getCount();
+			 //sEcho = count;
 			 RestaurantDisplay= JsonUtils.toJSONResult(count, list, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -227,9 +228,11 @@ public class OrderInfoAction extends ActionSupport{
 			 sets = processCompany.getOrderInfos();
 			 List<OrderInfo> list = new ArrayList<OrderInfo>();
 			 list.addAll(sets);
-			 int count = list.size();
-			 sEcho = count;
-			 OrderInfoDisplay= JsonUtils.toJSONResult(count, list, sEcho);
+			 Collections.sort(list);
+			 List<OrderInfo> orderList = orderInfoService.getList(list, iDisplayStart, iDisplayLength);
+			 int count = orderInfoService.getCount();
+			 
+			 OrderInfoDisplay= JsonUtils.toJSONResult(count, orderList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

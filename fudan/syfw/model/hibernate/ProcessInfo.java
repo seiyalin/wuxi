@@ -9,7 +9,7 @@ import java.util.Set;
  * ProcessInfo entity. @author MyEclipse Persistence Tools
  */
 
-public class ProcessInfo  implements java.io.Serializable {
+public class ProcessInfo  implements java.io.Serializable, Comparable<ProcessInfo> {
 
 
     // Fields    
@@ -47,6 +47,10 @@ public class ProcessInfo  implements java.io.Serializable {
         this.traces = traces;
     }
 
+    //分页
+    public int compareTo(ProcessInfo process){
+    	return cageId.compareTo(process.getCageId());
+    }
    
     // Property accessors
 

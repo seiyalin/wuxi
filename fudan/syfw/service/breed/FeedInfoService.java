@@ -15,6 +15,9 @@ public interface FeedInfoService extends BaseService<FeedInfo> {
 	//get material list
 	public List<FeedInfo> getList(Integer start, Integer limit);
 	
+	//get feedInfo list
+	public List<FeedInfo> getList(List<FeedInfo> list, Integer start, Integer limit);
+	
 	//get total number of feedInfo
 	public int getCount();
 	

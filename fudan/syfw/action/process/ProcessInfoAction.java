@@ -1,6 +1,7 @@
 package org.wuxi.fudan.syfw.action.process;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -129,8 +130,10 @@ public class ProcessInfoAction extends ActionSupport{
 			 sets = processCompany.getProcessStaffs();
 			 List<ProcessStaff> list = new ArrayList<ProcessStaff>();
 			 list.addAll(sets);
-			 int count = list.size();
-			 sEcho = count;
+			 Collections.sort(list);
+			 List<ProcessStaff> staffList = processInfoService.getList(list, iDisplayStart,iDisplayLength);
+			 int count = processInfoService.getCount();
+			
 			 ProcessStaffDisplay= JsonUtils.toJSONResult(count, list, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -207,9 +210,11 @@ public class ProcessInfoAction extends ActionSupport{
 			 sets = processCompany.getProcessInfos();
 			 List<ProcessInfo> list = new ArrayList<ProcessInfo>();
 			 list.addAll(sets);
-			 int count = list.size();
+			 Collections.sort(list);
+			 List<ProcessInfo> infoList = processInfoService.getInfoList(list, iDisplayStart, iDisplayLength);
+			 int count = processInfoService.getCount();
 			 sEcho = count;
-			 ProcessInfoDisplay= JsonUtils.toJSONResult(count, list, sEcho);
+			 ProcessInfoDisplay= JsonUtils.toJSONResult(count, infoList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

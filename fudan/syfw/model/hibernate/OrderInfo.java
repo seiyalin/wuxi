@@ -10,7 +10,7 @@ import java.util.Set;
  * 销售订单信息管理
  */
 
-public class OrderInfo  implements java.io.Serializable {
+public class OrderInfo  implements java.io.Serializable, Comparable<OrderInfo> {
 
 
     // Fields    
@@ -55,6 +55,10 @@ public class OrderInfo  implements java.io.Serializable {
         this.processInfos = processInfos;
     }
 
+    //分页
+    public int compareTo(OrderInfo order){
+    	return orderId.compareTo(order.getOrderId());
+    }
    
     // Property accessors
 

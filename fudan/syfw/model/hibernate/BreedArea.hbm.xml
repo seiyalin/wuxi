@@ -35,8 +35,8 @@
                 <comment>养殖环境评价报告</comment>
             </column>
         </property>
-       <!--  级联保存，删除网箱，inverse="false" setNetCages（）保存 -->
-        <set name="netCages" cascade="all" lazy = "false">
+       <!--  级联保存，删除网箱  setNetCages（）保存 -->
+        <set name="netCages" cascade="all" lazy = "false" inverse="true">
             <key>
                 <column name="areaId" length="30" not-null="true">
                     <comment>养殖区域编号</comment>

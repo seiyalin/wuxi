@@ -21,6 +21,12 @@ public interface ProcessInfoService extends BaseService<ProcessInfo> {
 	//delete process staff
 	public void deleteProcessStaff(String id);
 	
+	//get process staff list
+	public List<ProcessStaff> getList(List<ProcessStaff> list, Integer start, Integer limit);
+	
+	//get process INFO list
+	public List<ProcessInfo> getInfoList(List<ProcessInfo> list, Integer start, Integer limit);
+	
 	//获取公司下未出售的成品箱
 	public List<ProcessInfo> getCagesInSell(ProcessCompany processCompany);
 	

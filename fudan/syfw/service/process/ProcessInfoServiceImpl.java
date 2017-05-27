@@ -51,7 +51,19 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 		processStaffDao.delete(id);
 	}
 	
+	//get process staff list
+	public List<ProcessStaff> getList(List<ProcessStaff> list, Integer start, Integer limit){
+		pageResult = processStaffDao.getPageResult(list, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
 	
+	//get process INFO list
+	public List<ProcessInfo> getInfoList(List<ProcessInfo> list, Integer start, Integer limit){
+			pageResult = processInfoDao.getPageResult(list, start/limit + 1, limit);
+
+			return pageResult.getItems();
+		}
 	//get process info list
 	public List<ProcessInfo> getList(Integer start, Integer limit) {
 			

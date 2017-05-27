@@ -1,6 +1,7 @@
 package org.wuxi.fudan.syfw.action.breed;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -109,9 +110,11 @@ public class FeedInfoAction extends ActionSupport{
 			 sets = breedCompany.getFeedInfos();
 			 List<FeedInfo> list = new ArrayList<FeedInfo>();
 			 list.addAll(sets);
-			 int count = list.size();
-			 sEcho = count;
-			 MaterialDisplay= JsonUtils.toJSONResult(count, list, sEcho);
+			 Collections.sort(list);
+			 List<FeedInfo> feedList = feedInfoService.getList(list, iDisplayStart, iDisplayLength);
+			 int count = feedInfoService.getCount();
+			// sEcho = count;
+			 MaterialDisplay= JsonUtils.toJSONResult(count, feedList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

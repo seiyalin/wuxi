@@ -1,6 +1,7 @@
 package org.wuxi.fudan.syfw.action.breed;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -185,7 +186,7 @@ public class BreedLogAction extends ActionSupport{
     	 breedCompany = userService.findBreedCompanyById(companyId);
     	 List<BreedNo> list = breedLogService.getBreedNo(iDisplayStart, iDisplayLength, breedCompany);
     	 int count = breedLogService.getCount();
-    	 sEcho = count;
+    	
     	 BreedNoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
     	 return SUCCESS;
     	 
@@ -196,7 +197,7 @@ public class BreedLogAction extends ActionSupport{
     	 breedArea = breedAreaService.findObjectById(areaId);
     	 List<BreedNo> list = breedLogService.getBreedNo(iDisplayStart, iDisplayLength, breedArea);
     	 int count = breedLogService.getCount();
-    	 sEcho = count;
+    	// sEcho = count;
     	 BreedNoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
     	 return SUCCESS;
     	 
@@ -287,10 +288,13 @@ public class BreedLogAction extends ActionSupport{
 			Set<BreedLog> sets = new HashSet<BreedLog>();
 			breedBatch = breedLogService.findObjectById(breedNo);
 			sets = breedBatch.getBreedLogs();
-			 
-			 //int count = sets.size();
+			List<BreedLog> list = new ArrayList<BreedLog>(); 
+			list.addAll(sets);
+			Collections.sort(list);
+			List<BreedLog> logList = breedLogService.getList(list, iDisplayStart, iDisplayLength);
+			int count = breedLogService.getCount();
 			// sEcho = count;
-			 BreedLogDisplay= JsonUtils.toJSONResult(true, sets);
+			 BreedLogDisplay= JsonUtils.toJSONResult(count, logList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

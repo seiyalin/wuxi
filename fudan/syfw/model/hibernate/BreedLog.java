@@ -8,7 +8,7 @@ import java.util.Date;
  * 成长记录表（饲料喂养、用药）
  */
 
-public class BreedLog  implements java.io.Serializable {
+public class BreedLog  implements java.io.Serializable, Comparable<BreedLog> {
 
 
     /**
@@ -55,6 +55,11 @@ public class BreedLog  implements java.io.Serializable {
         this.breedPerson = breedPerson;
         this.breedSpecies = breedSpecies;
         this.logNote = logNote;
+    }
+    
+    //分页
+    public int compareTo(BreedLog log){
+    	return logId.compareTo(log.getLogId());
     }
 
    

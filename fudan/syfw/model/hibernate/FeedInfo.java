@@ -10,7 +10,7 @@ import java.util.Set;
  * 原料管理（购买饲料，药物，种苗时录入信息）
  */
 
-public class FeedInfo  implements java.io.Serializable {
+public class FeedInfo  implements java.io.Serializable, Comparable<FeedInfo> {
 
 
     // Fields    
@@ -68,6 +68,10 @@ public class FeedInfo  implements java.io.Serializable {
         this.breedLogs = breedLogs;
     }
 
+    //分页
+    public int compareTo(FeedInfo feed){
+    	return feedId.compareTo(feed.getFeedId());
+    }
    
     // Property accessors
 

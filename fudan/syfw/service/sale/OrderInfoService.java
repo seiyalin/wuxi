@@ -20,9 +20,11 @@ public interface OrderInfoService extends BaseService<OrderInfo> {
 		//delete restaurant
 	public void deleteRestaurant(String id);
 	
-	
 	//get order info list
-	public List<OrderInfo> getList(Integer start, Integer limit);
+	public List<OrderInfo> getList(List<OrderInfo> list, Integer start, Integer limit);
+		
+	//get restaurant list
+	public List<RestaurantCompany> getList(Integer start, Integer limit);
 	
 	//get total number of breedArea
 	public int getCount();

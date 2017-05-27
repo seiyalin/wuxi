@@ -42,12 +42,19 @@ public class FeedInfoServiceImpl extends BaseServiceImpl<FeedInfo> implements Fe
 	}
 	
 	
-	//get breedStaff list
+	//get feedInfo list
 	public List<FeedInfo> getList(Integer start, Integer limit) {
 			
 		QueryHelper queryHelper = new QueryHelper(BreedStaff.class, "breedStaff");
 			//pageNo=start/limit + 1       起始页从第一页开始的
 		pageResult = feedInfoDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
+	//get feedInfo list
+	public List<FeedInfo> getList(List<FeedInfo> list, Integer start, Integer limit) {
+		pageResult = feedInfoDao.getPageResult(list, start/limit + 1, limit);
 
 		return pageResult.getItems();
 	}

@@ -28,9 +28,14 @@ public class TransportationInfoServiceImpl extends BaseServiceImpl<Transportatio
 		
 	}
 	
+	//get trans info list
+	public List<TransportationInfo> getList(List<TransportationInfo> list, Integer start, Integer limit){
+		pageResult = transportationInfoDao.getPageResult(list, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
 	
-	
-	//get order info list
+	//get trans info list
 	public List<TransportationInfo> getList(Integer start, Integer limit) {
 			
 		QueryHelper queryHelper = new QueryHelper(TransportationInfo.class, "transportationInfo");

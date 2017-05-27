@@ -7,7 +7,7 @@ package org.wuxi.fudan.syfw.model.hibernate;
  * 加工人员管理
  */
 
-public class ProcessStaff  implements java.io.Serializable {
+public class ProcessStaff  implements java.io.Serializable, Comparable<ProcessStaff> {
 
 
     // Fields    
@@ -41,6 +41,9 @@ public class ProcessStaff  implements java.io.Serializable {
         this.experience = experience;
     }
 
+    public int compareTo(ProcessStaff staff){
+    	return idcard.compareTo(staff.getIdcard());
+    }
    
     // Property accessors
 

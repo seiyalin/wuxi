@@ -10,7 +10,7 @@ import java.util.Set;
  * 运输信息管理
  */
 
-public class TransportationInfo  implements java.io.Serializable {
+public class TransportationInfo  implements java.io.Serializable, Comparable<TransportationInfo> {
 
 
     // Fields    
@@ -61,6 +61,9 @@ public class TransportationInfo  implements java.io.Serializable {
         this.processInfos = processInfos;
     }
 
+    public int compareTo(TransportationInfo transportation){
+    	return transId.compareTo(transportation.getTransId());
+    }
    
     // Property accessors
 

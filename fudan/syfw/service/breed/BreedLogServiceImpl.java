@@ -136,6 +136,12 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 		return pageResult.getItems();
 	}
 		
+	//get breedLog list
+	public List<BreedLog> getList(List<BreedLog> list, Integer start, Integer limit){
+		pageResult = breedLogDao.getPageResult(list, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
 	//get total number of breedNo
 	public int getCount() {
 		// TODO Auto-generated method stub

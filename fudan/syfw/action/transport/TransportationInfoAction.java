@@ -1,6 +1,7 @@
 package org.wuxi.fudan.syfw.action.transport;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -160,7 +161,7 @@ public class TransportationInfoAction extends ActionSupport{
      }
 	
      //获取本企业下的所有运输记录，加工企业调用
-     @SuppressWarnings("unused")
+    
 	public String getListTransInfo(){
     	 try {
 			Set<TransportationInfo> sets = new HashSet<TransportationInfo>();
@@ -168,9 +169,10 @@ public class TransportationInfoAction extends ActionSupport{
 			 sets = processCompany.getTransportationInfos();
 			 List<TransportationInfo> list = new ArrayList<TransportationInfo>();
 			 list.addAll(sets);
-			 int count = list.size();
-			 sEcho = count;
-			 TransInfoDisplay= JsonUtils.toJSONResult(count, list, sEcho);
+			 Collections.sort(list);
+			 List<TransportationInfo> transList = transInfoService.getList(list, iDisplayStart, iDisplayLength);
+			 int count = transInfoService.getCount();
+			 TransInfoDisplay= JsonUtils.toJSONResult(count, transList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
