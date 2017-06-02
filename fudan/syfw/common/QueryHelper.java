@@ -27,6 +27,15 @@ public class QueryHelper {
 	}
 	
 	/**
+	 * 构造from 子句
+	 * @param fromClause from子句
+	 * @param alias 实体类对应的别名
+	 */
+	public QueryHelper(String fromClause, String alias){
+		fromClause = "FROM " + fromClause + " " + alias;
+	}
+	
+	/**
 	 * 构造from 子句+addition
 	 * @param clazz 实体类
 	 * @param alias 实体类对应的别名

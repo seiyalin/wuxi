@@ -184,10 +184,27 @@ public class BreedLogAction extends ActionSupport{
      //获取本企业的所有产品批次
      public String getListBreedNo(){
     	 breedCompany = userService.findBreedCompanyById(companyId);
-    	 List<BreedNo> list = breedLogService.getBreedNo(iDisplayStart, iDisplayLength, breedCompany);
+    	 /*Set<BreedArea> sets = new HashSet<BreedArea>();
+		 sets = breedCompany.getBreedAreas();
+		 List<NetCage> list = new ArrayList<NetCage>();
+		
+    	 for(BreedArea area:sets){
+    		 Set<NetCage> netcages = area.getNetCages();
+    		 list.addAll(netcages);
+    	 }
+    	 
+    	 List<BreedNo> breeds = new ArrayList<BreedNo>();
+    	 for(NetCage netcage: list){
+    		 Set<BreedNo> set = netcage.getBreedNos();
+    		 breeds.addAll(set);
+    		 
+    	 }
+    	 Collections.sort(breeds);
+    	 List<BreedNo> breedList = breedLogService.getNoList(breeds, iDisplayStart, iDisplayLength);*/
+    	 List<BreedNo> breedList = breedLogService.getBreedNo(iDisplayStart, iDisplayLength, breedCompany);
     	 int count = breedLogService.getCount();
     	
-    	 BreedNoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+    	 BreedNoDisplay = JsonUtils.toJSONResult(count, breedList, sEcho);
     	 return SUCCESS;
     	 
      }
@@ -281,9 +298,17 @@ public class BreedLogAction extends ActionSupport{
     	 
      }
      
-     //获取某批产品的喂养记录
-     @SuppressWarnings("unused")
-	public String getListBreedLog(){
+     //获取企业所有养殖记录
+     public String getListBreedLog(){
+    	 breedCompany = userService.findBreedCompanyById(companyId);
+    	 List<BreedLog> log = breedLogService.getBreedLog(iDisplayStart, iDisplayLength, breedCompany);
+    	 int count = breedLogService.getCount();
+		 BreedLogDisplay= JsonUtils.toJSONResult(count, log, sEcho);
+		 return SUCCESS;
+     }
+     
+     //获取某批产品的喂养记录 
+	public String getListBreedLogByNo(){
     	 try {
 			Set<BreedLog> sets = new HashSet<BreedLog>();
 			breedBatch = breedLogService.findObjectById(breedNo);

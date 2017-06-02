@@ -56,8 +56,14 @@ public interface BreedLogService extends BaseService<BreedNo> {
 	//get breedNo list
 	public List<BreedNo> getList(Integer start, Integer limit);
 	
+	//get breedNo list
+	public List<BreedNo> getNoList(List<BreedNo> list, Integer start, Integer limit);
+		
 	//get breedLog list
 	public List<BreedLog> getList(List<BreedLog> list, Integer start, Integer limit);
+	
+	//获取公司下的所有喂养记录
+	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedCompany breedCompany);
 	
 	//get total number of breedNo
 	public int getCount();

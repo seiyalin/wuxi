@@ -241,8 +241,17 @@
 	
 		</action>
 		
-		<!-- 显示该批产品所有喂养记录-->
+		<!-- 显示该企业所有喂养记录-->
 		<action name="BreedLog_List" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListBreedLog">
+		
+			<result type="json" >
+				<param name="root">BreedLogDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示该批产品所有喂养记录-->
+		<action name="BreedLog_ListByNo" class="org.wuxi.fudan.syfw.action.breed.BreedLogAction" method="getListBreedLogByNo">
 		
 			<result type="json" >
 				<param name="root">BreedLogDisplay</param>

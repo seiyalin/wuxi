@@ -47,7 +47,7 @@ public class FeedInfoAction extends ActionSupport{
 	private String contactNumber;	//联系电话
 	private String address;		//地址
 	private String amount;			//购买数量
-	private String handler;		//经手人
+	private String handle;		//经手人
 	private String storehouse;		//存放库房位置
 	private Date stockTime;		//存放日期
 	private String stockInfo;		//入库时验收信息
@@ -132,7 +132,7 @@ public class FeedInfoAction extends ActionSupport{
  			{
  				String[] delete_id = feedIds.split(",");
  				for(String id: delete_id){
- 					feedInfoService.delete(id);  //delete complaint
+ 					feedInfoService.delete(id);  
  				}
  			}
  			MaterialDelete = JsonUtils.toJSONResult(true);
@@ -254,12 +254,12 @@ public class FeedInfoAction extends ActionSupport{
 		this.amount = amount;
 	}
 
-	public String getHandler() {
-		return handler;
+	public String getHandle() {
+		return handle;
 	}
 
-	public void setHandler(String handler) {
-		this.handler = handler;
+	public void setHandle(String handler) {
+		this.handle = handler;
 	}
 
 	public String getStorehouse() {

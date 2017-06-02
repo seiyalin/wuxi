@@ -10,7 +10,7 @@ import java.util.Set;
  * 养殖批次管理（投入种苗时录入）
  */
 
-public class BreedNo  implements java.io.Serializable {
+public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
 
 
     // Fields    
@@ -61,6 +61,9 @@ public class BreedNo  implements java.io.Serializable {
     }
 
    
+    public int compareTo(BreedNo breed){
+    	return breedNo.compareTo(breed.getBreedNo());
+    }
     // Property accessors
 
     public String getBreedNo() {

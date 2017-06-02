@@ -10,7 +10,7 @@
             <column name="netcageId" length="15" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="breedArea" class="org.wuxi.fudan.syfw.model.hibernate.BreedArea" fetch="select" cascade="save-update">
+        <many-to-one name="breedArea" class="org.wuxi.fudan.syfw.model.hibernate.BreedArea" fetch="select" lazy="false" cascade="save-update">
             <column name="areaId" length="30" not-null="true">
                 <comment>养殖区域编号</comment>
             </column>

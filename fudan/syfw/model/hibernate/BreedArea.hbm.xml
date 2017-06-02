@@ -10,7 +10,7 @@
             <column name="areaId" length="30" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="breedCompany" class="org.wuxi.fudan.syfw.model.hibernate.BreedCompany" fetch="select" cascade="save-update">
+        <many-to-one name="breedCompany" class="org.wuxi.fudan.syfw.model.hibernate.BreedCompany" fetch="select" lazy="false" cascade="save-update">
             <column name="companyId" length="30" not-null="true">
                 <comment>养殖企业编码</comment>
             </column>

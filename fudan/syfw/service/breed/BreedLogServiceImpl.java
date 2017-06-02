@@ -95,7 +95,11 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 	//获取公司下的所有投苗记录
 	public List<BreedNo> getBreedNo(Integer start, Integer limit, BreedCompany breedCompany){
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
+		/*QueryHelper queryHelper = new QueryHelper("BreedNo breedNo left join fetch breedNo.netCage netcage left join fetch "
+				+ "netcage.breedArea breedArea left join fetch breedArea.breedCompany" , "breedCompany");*/
 		//add condition
+		/*queryHelper.addCondition("breedCompany.companyId = ?", companyId);*/
+		//隐藏内连接，需要再配置文件多方设置lazy=false
 		queryHelper.addCondition("breedNo.netCage.breedArea.breedCompany = ?", breedCompany);
 		queryHelper.addOrderByProperty("breedNo.inPondTime", "DESC");  //降序排列
 		pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
@@ -124,6 +128,16 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 		//return pageResult.getItems();
 	}
 	
+	//获取公司下的所有喂养记录
+	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(BreedLog.class, "breedLog");
+			
+		//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("breedLog.breedNo.netCage.breedArea.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("breedLog.breedTime", "DESC");  //降序排列
+		pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+		}
 	
 	//get breedNo list
 	public List<BreedNo> getList(Integer start, Integer limit) {
@@ -134,6 +148,13 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 		pageResult = breedNoDao.getPageResult(queryHelper, start/limit + 1, limit);
 
 		return pageResult.getItems();
+	}
+		
+	//get breedNo list
+	public List<BreedNo> getNoList(List<BreedNo> list, Integer start, Integer limit){
+			pageResult = breedNoDao.getPageResult(list, start/limit + 1, limit);
+
+			return pageResult.getItems();
 	}
 		
 	//get breedLog list
