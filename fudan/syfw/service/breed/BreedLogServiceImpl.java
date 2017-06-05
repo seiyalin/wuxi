@@ -121,8 +121,9 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
 			//add condition
 		queryHelper.addCondition("breedNo.netCage.breedArea.breedCompany = ?", breedCompany);
-		queryHelper.addCondition("breedNo.outPond = ?",(Object)null );
-		queryHelper.addOrderByProperty("BreedNo.inPondTime", "DESC");  //降序排列
+		/*queryHelper.addCondition("breedNo.outPond = ?",(Object)null );*/
+		queryHelper.addCondition("breedNo.outPond is null");
+		queryHelper.addOrderByProperty("breedNo.inPondTime", "DESC");  //降序排列
 		return breedNoDao.findObjects(queryHelper);
 		//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
 		//return pageResult.getItems();

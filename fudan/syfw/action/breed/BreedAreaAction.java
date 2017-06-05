@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -305,6 +306,8 @@ public class BreedAreaAction extends ActionSupport{
     		 if(water.getTestTime()==null){
     			 water.setTestTime(new Date());
     		 }
+    		 /*waterId = UUID.randomUUID().toString();
+    		 water.setWaterId(waterId);*/
     		 breedAreaService.saveWaterQuality(water);
 			
     		 WaterQualitySave = JsonUtils.toJSONResult(true);
