@@ -10,7 +10,7 @@
             <column name="IDcard" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="processCompany" class="org.wuxi.fudan.syfw.model.hibernate.ProcessCompany" fetch="select" cascade="save-update">
+        <many-to-one name="processCompany" class="org.wuxi.fudan.syfw.model.hibernate.ProcessCompany" fetch="select" lazy="false" cascade="save-update">
             <column name="companyId" length="30" not-null="true">
                 <comment>企业编码</comment>
             </column>
