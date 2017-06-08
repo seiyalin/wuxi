@@ -79,7 +79,7 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 		QueryHelper queryHelper = new QueryHelper(ProcessInfo.class, "processInfo");
 				//add condition
 		queryHelper.addCondition("processInfo.processCompany = ?", processCompany);
-		queryHelper.addCondition("processInfo.orderInfo = ?",(Object)null );
+		queryHelper.addCondition("processInfo.orderInfo is null");
 		queryHelper.addOrderByProperty("processInfo.processTime", "DESC");  //降序排列
 		return processInfoDao.findObjects(queryHelper);
 			//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
@@ -91,7 +91,7 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 		QueryHelper queryHelper = new QueryHelper(ProcessInfo.class, "processInfo");
 					//add condition
 		queryHelper.addCondition("processInfo.processCompany = ?", processCompany);
-		queryHelper.addCondition("processInfo.transportationInfo = ?",(Object)null );
+		queryHelper.addCondition("processInfo.transportationInfo is null");
 		queryHelper.addOrderByProperty("processInfo.processTime", "DESC");  //降序排列
 		return processInfoDao.findObjects(queryHelper);
 				//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);

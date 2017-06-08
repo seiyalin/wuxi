@@ -11,7 +11,7 @@
             <generator class="assigned" />
         </id>
         <many-to-one name="outPond" class="org.wuxi.fudan.syfw.model.hibernate.OutPond" fetch="select">
-            <column name="outPondId" length="30">
+            <column name="outPondId" length="40">
                 <comment>出塘编号</comment>
             </column>
         </many-to-one>
