@@ -481,25 +481,41 @@ public class BreedLogAction extends ActionSupport{
      }
      
      //保存出塘记录
-     public String saveOutPond(){
-    	 outPond.setBreedCompany(userService.findBreedCompanyById(companyId));
-    	 if(outPond.getOutTime()==null){
-    		 outPond.setOutTime(new Date());
-    	 }
-    	 Set<BreedNo> breed = new HashSet<BreedNo>();
-    	 BreedNo br = new BreedNo();
-    	 if(outPondNos != null){
-    		 String[] nos = outPondNos.split(",");
-    		 for(String no:nos){
-    			 br = breedLogService.findObjectById(no);
-    			 br.setOutPond(outPond);
-    			 breed.add(br);
-    		 }
-    	 }
-    	 outPond.setBreedNos(breed);
-    	 breedLogService.saveOutPond(outPond);
-    	 OutPondSave = JsonUtils.toJSONResult(true);
-    	 return SUCCESS;
+     @SuppressWarnings("unchecked")
+	public String saveOutPond(){
+    	 //breedCompany = userService.findBreedCompanyById(companyId);
+    	 try {
+			outPond.setBreedCompany(userService.findBreedCompanyById(companyId));
+			 if(outPond.getOutTime()==null){
+				 outPond.setOutTime(new Date());
+			 }
+			/* Set<BreedNo> breed = new HashSet<BreedNo>();
+			 
+			 if(outPondNos != null){
+				 String[] nos = outPondNos.split(",");
+				 for(String no:nos){
+					 BreedNo br = new BreedNo();
+					 br = breedLogService.findObjectById(no);
+					// outPond.getBreedNos().add(br);
+					// br.setOutPond(outPond);
+					 //breedLogService.deletePersist(br);
+					 //breedLogService.update(br);
+					 breed.add(br);
+				 
+				 }
+			 }
+			 outPond.setBreedNos(breed);*/
+			 //breedLogService.saveOutPond(outPond);
+			 breedLogService.saveOutPondAndNo(outPond, outPondNos);
+			 
+			 OutPondSave = JsonUtils.toJSONResult(true);
+			 return SUCCESS;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			 OutPondSave = JsonUtils.toJSONResult(false,"保存失败");
+			 return SUCCESS;
+		}
     	 
      }
      

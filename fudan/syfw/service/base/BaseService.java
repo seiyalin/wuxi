@@ -13,6 +13,8 @@ public interface BaseService<T> {
 	public void update(T entity);
 	//根据id删除
 	public void delete(String id);
+/*	session缓存中逐出该对象
+	public void deletePersist(T entity);*/
 	//根据id查找
 	public T findObjectById(String id);
 	//查找列表

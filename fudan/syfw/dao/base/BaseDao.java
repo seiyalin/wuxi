@@ -2,6 +2,7 @@ package org.wuxi.fudan.syfw.dao.base;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
@@ -9,7 +10,7 @@ import org.wuxi.fudan.syfw.common.QueryHelper;
 
 public interface BaseDao<T> {
 	//新增
-	public void save(T entity);
+	public Serializable save(T entity);
 	//更新
 	public void update(T entity);
 	//根据id删除

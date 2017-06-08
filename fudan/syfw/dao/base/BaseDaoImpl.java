@@ -3,9 +3,9 @@ package org.wuxi.fudan.syfw.dao.base;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
-import org.hibernate.ejb.criteria.expression.function.AggregationFunction.MIN;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
@@ -23,20 +23,36 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 	
 
 	@Override
-	public void save(T entity) {
-		getHibernateTemplate().save(entity);
+	public Serializable save(T entity) {
+		//getHibernateTemplate().getSessionFactory().getCurrentSession().merge(entity);
+		return getHibernateTemplate().save(entity);
+	/*	getHibernateTemplate().flush();
+		getHibernateTemplate().clear();*/
 	}
+	
 
 	@Override
 	public void update(T entity) {
+		//Session session=getHibernateTemplate().getSessionFactory().getCurrentSession();
+		//session.clear();
 		getHibernateTemplate().update(entity);
+		/*getHibernateTemplate().flush();
+		getHibernateTemplate().clear();*/
+		//session.flush();
 	}
 
+	
 	@Override
 	public void delete(Serializable id) {
 		getHibernateTemplate().delete(findObjectById(id));
 	}
 
+	/*session缓存中逐出该对象
+	public void deletePersist(T entity){
+		Session session=getHibernateTemplate().getSessionFactory().getCurrentSession();
+		session.evict(entity);
+	}*/
+	
 	@Override
 	public T findObjectById(Serializable id) {
 		return getHibernateTemplate().get(clazz, id);

@@ -64,9 +64,10 @@ public class JsonUtils {
 	public static JSONObject toJSONResult(long count, List data, int sEcho) {
 		//处理jsonObject 嵌套数据过滤的问题
 		JsonConfig jsonConfig = new JsonConfig();
+		//jsonConfig.registerJsonValueProcessor(Set.class, null);
 		//自动加载list中每一项包含的set，耗时耗资源
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-				//jsonConfig.registerJsonValueProcessor(Set.class, null);
+		
 		JSONArray json = JSONArray.fromObject(data, jsonConfig);
 				//JSONObject json = JSONObject.fromObject(data,jsonConfig);
 		JSONObject result = new JSONObject();

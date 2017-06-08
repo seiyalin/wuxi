@@ -2,8 +2,6 @@ package org.wuxi.fudan.syfw.service.base;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
 import org.wuxi.fudan.syfw.dao.base.BaseDao;
@@ -44,6 +42,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		// TODO Auto-generated method stub
 		baseDao.delete(id);
 	}
+	
+	/*session缓存中逐出该对象
+	public void deletePersist(T entity){
+		baseDao.deletePersist(entity);
+	}*/
 
 	@Override
 	public T findObjectById(String id) {

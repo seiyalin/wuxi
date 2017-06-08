@@ -1,6 +1,8 @@
 package org.wuxi.fudan.syfw.service.breed;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -76,12 +78,34 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 	public void saveOutPond(OutPond outPond){
 		outPondDao.save(outPond);
 	}
+	
+	//save outPond info
+	public void saveOutPondAndNo(OutPond outPond, String outPondNos){
+		Serializable outPondId = outPondDao.save(outPond);
+		OutPond outpond = outPondDao.findObjectById(outPondId);
+		if(outPondNos != null){
+			 String[] nos = outPondNos.split(",");
+			 for(String no:nos){
+				 BreedNo br = new BreedNo();
+				 br = breedNoDao.findObjectById(no);
+				 br.setOutPond(outpond);
+				 breedNoDao.update(br);
+			 
+			 }
+		 }
+			
+	}
 			
 		//delete outPond info
 	public void deleteOutPond(String outPondId){
 		outPondDao.delete(outPondId);
 	}
 	
+	/*//session缓存中逐出该对象
+	public void deleteOutPondPersist(OutPond outPond){
+		outPondDao.deletePersist(outPond);
+	}
+	*/
 	//save qc info
 	public void saveQualityControl(QualityControl qualityControl){
 		qualityControlDao.save(qualityControl);

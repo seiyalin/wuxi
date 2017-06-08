@@ -1,6 +1,7 @@
 package org.wuxi.fudan.syfw.service.breed;
 
 import java.util.List;
+import java.util.Set;
 
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
@@ -35,8 +36,14 @@ public interface BreedLogService extends BaseService<BreedNo> {
 	//save outPond info
 	public void saveOutPond(OutPond outPond);
 	
+	//save outPond info
+	public void saveOutPondAndNo(OutPond outPond, String set);
+	
 	//delete outPond info
 	public void deleteOutPond(String outPondId);
+	
+/*	//session缓存中逐出该对象
+	public void deleteOutPondPersist(OutPond outPond);*/
 	
 	//save qc info
 	public void saveQualityControl(QualityControl qualityControl);
