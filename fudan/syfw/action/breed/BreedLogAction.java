@@ -526,10 +526,15 @@ public class BreedLogAction extends ActionSupport{
 			breedCompany = userService.findBreedCompanyById(companyId);
 			
 			sets = breedCompany.getOutPonds();
+			List<OutPond> list = new ArrayList<OutPond>(); 
+			list.addAll(sets);
+			Collections.sort(list);
+			List<OutPond> outList = breedLogService.getOutPondList(list, iDisplayStart, iDisplayLength);
+			int count = breedLogService.getCount();
 			 
 			 //int count = sets.size();
 			// sEcho = count;
-			 OutPondDisplay= JsonUtils.toJSONResult(true, sets);
+			 OutPondDisplay= JsonUtils.toJSONResult(count, outList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

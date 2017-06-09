@@ -10,7 +10,7 @@ import java.util.Set;
  * 出塘记录表
  */
 
-public class OutPond  implements java.io.Serializable {
+public class OutPond  implements java.io.Serializable,Comparable<OutPond> {
 
 
     // Fields    
@@ -39,7 +39,10 @@ public class OutPond  implements java.io.Serializable {
         this.breedNos = breedNos;
     }
 
-   
+   public int compareTo(OutPond out){
+	   return outPondId.compareTo(out.getOutPondId());
+			   
+   }
     // Property accessors
 
     public String getOutPondId() {

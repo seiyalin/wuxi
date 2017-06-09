@@ -10,7 +10,7 @@
             <column name="logId" length="40" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">
+        <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" lazy="false" cascade="save-update">
             <column name="breedNo" length="20" not-null="true">
                 <comment>产品批次</comment>
             </column>
@@ -20,7 +20,7 @@
                 <comment>身份证号</comment>
             </column>
         </many-to-one>
-        <many-to-one name="feedInfo" class="org.wuxi.fudan.syfw.model.hibernate.FeedInfo" fetch="select" cascade="save-update">
+        <many-to-one name="feedInfo" class="org.wuxi.fudan.syfw.model.hibernate.FeedInfo" fetch="select" lazy="false" cascade="save-update">
             <column name="feedId" length="20" not-null="true">
                 <comment>原料编号</comment>
             </column>

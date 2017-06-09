@@ -65,6 +65,7 @@ public class JsonUtils {
 		//处理jsonObject 嵌套数据过滤的问题
 		JsonConfig jsonConfig = new JsonConfig();
 		//jsonConfig.registerJsonValueProcessor(Set.class, null);
+		jsonConfig.setExcludes( new String[]{ "handler","hibernateLazyInitializer"} );
 		//自动加载list中每一项包含的set，耗时耗资源
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		
@@ -97,6 +98,7 @@ public class JsonUtils {
 	public static JSONObject toJSONResult(boolean success, Object data) {
 		//处理jsonObject 嵌套数据过滤的问题
 		JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.setExcludes( new String[]{ "handler","hibernateLazyInitializer" } );
 		//自动加载list中每一项包含的set
 		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 		jsonConfig.registerJsonValueProcessor(Set.class, null);
