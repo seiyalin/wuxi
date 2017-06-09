@@ -45,7 +45,7 @@
                 <comment>用户id</comment>
             </column>
         </property>
-        <set name="processInfos" inverse="true" lazy="false">
+        <set name="processInfos" inverse="true" lazy="false" cascade="delete">
             <key>
                 <column name="companyId" length="30" not-null="true">
                     <comment>企业编码</comment>

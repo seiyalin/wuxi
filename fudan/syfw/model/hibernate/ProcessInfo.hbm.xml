@@ -10,7 +10,7 @@
             <column name="cageId" length="30" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">
+        <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" lazy="false" cascade="save-update">
             <column name="breedNo" length="20" not-null="true">
                 <comment>产品批次</comment>
             </column>

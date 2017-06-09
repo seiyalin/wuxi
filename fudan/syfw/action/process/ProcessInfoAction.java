@@ -213,7 +213,7 @@ public class ProcessInfoAction extends ActionSupport{
 			 Collections.sort(list);
 			 List<ProcessInfo> infoList = processInfoService.getInfoList(list, iDisplayStart, iDisplayLength);
 			 int count = processInfoService.getCount();
-			 sEcho = count;
+			// sEcho = count;
 			 ProcessInfoDisplay= JsonUtils.toJSONResult(count, infoList, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
