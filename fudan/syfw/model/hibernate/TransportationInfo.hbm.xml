@@ -72,15 +72,15 @@
         </property>
         <set name="traces" inverse="true" lazy="false">
             <key>
-                <column name="transId" length="20" not-null="true">
+                <column name="transId" length="40" not-null="true">
                     <comment>运输编号</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.Trace" />
         </set>
-        <set name="processInfos" inverse="true" cascade="save-update" lazy="false">
+        <set name="processInfos" inverse="true" cascade="none" lazy="false">
             <key>
-                <column name="transId" length="20">
+                <column name="transId" length="40">
                     <comment>运输编号</comment>
                 </column>
             </key>

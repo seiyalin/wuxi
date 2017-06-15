@@ -8,6 +8,8 @@ import org.wuxi.fudan.syfw.service.base.BaseService;
 public interface TransportationInfoService extends BaseService<TransportationInfo> {
 	
 
+	//save transportation info
+	public void saveTrans(TransportationInfo trans, String cages);
 	//get trans info list
 	public List<TransportationInfo> getList(List<TransportationInfo> list, Integer start, Integer limit);
 	

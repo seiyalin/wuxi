@@ -7,6 +7,15 @@
 	<package name="supervision-action" namespace="/jsp/syfw/supervision" extends="base-default,json-default">
 	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
 	
+	<!-- 获取所有企业 -->
+		<action name="company_List" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="getAllCompany">
+		
+			<result type="json" >
+				<param name="root">companyList</param>
+			</result>
+	
+		</action>
+		
 		<!-- 用户提交投诉 -->
 		<action name="complaintInfo_Save" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="addComplaintInfo">
 		
@@ -54,6 +63,24 @@
 		
 		<!-- 显示投诉信息 -->
 		<action name="complaintInfo_GetList" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="getComplaintInfoList">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示发起的投诉信息 -->
+		<action name="launchComplaintInfo_List" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="complaintLaunch">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 显示投诉信息 -->
+		<action name="acceptComplaintInfo_List" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="complaintAccept">
 		
 			<result type="json" >
 				<param name="root">ComplaintInfoDisplay</param>

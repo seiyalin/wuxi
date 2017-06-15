@@ -1,5 +1,6 @@
 package org.wuxi.fudan.syfw.service.sale;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,9 +8,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
+import org.wuxi.fudan.syfw.dao.process.ProcessInfoDao;
 import org.wuxi.fudan.syfw.dao.sale.OrderInfoDao;
 import org.wuxi.fudan.syfw.dao.sale.RestaurantCompanyDao;
 import org.wuxi.fudan.syfw.model.hibernate.OrderInfo;
+import org.wuxi.fudan.syfw.model.hibernate.ProcessInfo;
 import org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
 
@@ -18,7 +21,7 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<OrderInfo> implements 
 	
 	private RestaurantCompanyDao restaurantCompanyDao;
 	private OrderInfoDao orderInfoDao;
-	
+	private ProcessInfoDao processInfoDao;
 	
 	PageResult pageResult;
 	
@@ -37,6 +40,18 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<OrderInfo> implements 
 		return restaurantCompanyDao.findObjects();
 	}
 	
+	public void saveOrder(OrderInfo order, String cages){
+		Serializable orderId = orderInfoDao.save(order);
+		OrderInfo orderInfo = orderInfoDao.findObjectById(orderId);
+		if(cages != null){
+			String[] sellCages = cages.split(",");
+			for(String sellCage: sellCages){
+				ProcessInfo process = processInfoDao.findObjectById(sellCage);
+				process.setOrderInfo(orderInfo);
+				processInfoDao.update(process);
+			}
+		}
+	}
 	//save restaurant
 	public void saveRestaurant(RestaurantCompany restaurant){
 		restaurantCompanyDao.save(restaurant);
@@ -92,6 +107,15 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<OrderInfo> implements 
 	public void setOrderInfoDao(OrderInfoDao orderInfoDao) {
 		super.setBaseDao(orderInfoDao);
 		this.orderInfoDao = orderInfoDao;
+	}
+
+	public ProcessInfoDao getProcessInfoDao() {
+		return processInfoDao;
+	}
+
+	@Resource
+	public void setProcessInfoDao(ProcessInfoDao processInfoDao) {
+		this.processInfoDao = processInfoDao;
 	}
 
 	

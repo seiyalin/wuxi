@@ -9,7 +9,9 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
 
 
 
@@ -49,6 +51,10 @@ public class SupervisionAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 
 	private SupervisionService supervisionService;
+	private UserService userService;
+	
+	private String companyId;
+	private String userId;
 	
 	/* 投诉信息*/
 	private String complaintId;				//投诉编号，自动生成
@@ -68,7 +74,7 @@ public class SupervisionAction extends ActionSupport{
 	private String answerPerson;			//回复人
 	private ComplaintReact complaintReact;  //封装投诉反馈信息
 	
-	
+	private JSONObject companyList;   //所有企业
 	private JSONObject ComplaintInfoSave;   //保存投诉信息响应
 	private JSONObject ComplaintInfoLoad;   //获取投诉信息响应
 	private JSONObject ComplaintReactSave;  //保存投诉反馈响应
@@ -87,11 +93,43 @@ public class SupervisionAction extends ActionSupport{
      private int 		iDisplayLength;
      private Integer 	sEcho;
 	
+     //获取所有企业
+     public String getAllCompany(){
+    	 JSONArray companies = new JSONArray();
+    	 JSONObject company = new JSONObject();
+    	 List<BreedCompany> breed = userService.findAllBreedCompany();
+    	 for(BreedCompany bc : breed){
+    		 company.put("companyId", bc.getCompanyId());
+    		 company.put("companyName", bc.getCompanyName());
+    		 companies.add(company);
+    	}
+    	 
+    	 List<ProcessCompany> process = userService.findAllProcessCompany();
+    	 for(ProcessCompany pc: process){
+    		 company.put("companyId", pc.getCompanyId());
+    		 company.put("companyName", pc.getCompanyName());
+    		 companies.add(company); 
+    	 }
+    	 
+    	 companyList = JsonUtils.toJSONResult(true, companies);
+    	 return SUCCESS;
+    	 
+     }
 
 	//提交投诉信息
 	public String addComplaintInfo(){		
 		try {
-			complaintInfo.setComplaintTime(new Date()); //获取时间
+			if(complaintInfo.getComplaintTime()==null)
+				complaintInfo.setComplaintTime(new Date()); //获取时间
+			if(companyId != null){
+				BreedCompany bc = userService.findBreedCompanyById(companyId);
+				if(bc != null)
+					complaintInfo.setUserId(bc.getUserId());
+				else{
+					ProcessCompany pc = userService.findProcessCompanyById(companyId);
+					complaintInfo.setUserId(pc.getUserId());
+				}
+			}
 			supervisionService.save(complaintInfo);  	//储存投诉信息 
 			ComplaintInfoSave = JsonUtils.toJSONResult(true);
 			return SUCCESS;
@@ -104,6 +142,46 @@ public class SupervisionAction extends ActionSupport{
 			}			
 			
 	}
+	
+	//查看本企业收到的投诉
+	public String complaintAccept(){
+		try {
+			List<ComplaintInfo> list = supervisionService.getList(iDisplayStart, iDisplayLength, companyId);
+			int count = supervisionService.getCount();
+			ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+			return SUCCESS;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ComplaintInfoDisplay = JsonUtils.toJSONResult(false, "发生未知错误");
+    		return ERROR;		
+		}
+	}
+	
+	//查看本用户发起的投诉
+		public String complaintLaunch(){
+			try {
+				if(userId==null){
+					BreedCompany bc = userService.findBreedCompanyById(companyId);
+					if(bc != null)
+						userId = bc.getUserId();
+					else{
+						ProcessCompany pc = userService.findProcessCompanyById(companyId);
+						userId = pc.getUserId();
+					}
+				}
+					
+				List<ComplaintInfo> list = supervisionService.getLaunchedComplaint(iDisplayStart, iDisplayLength, userId);
+				int count = supervisionService.getCount();
+				ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+				return SUCCESS;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				ComplaintInfoDisplay = JsonUtils.toJSONResult(false, "发生未知错误");
+	    		return ERROR;		
+			}
+		}
 	
 	//回复投诉前获取要回复的投诉
 	public String loadForComplaint(){
@@ -127,9 +205,9 @@ public class SupervisionAction extends ActionSupport{
 			Set<ComplaintReact> set = complaintInfo.getComplaintReacts();
 			List<ComplaintReact> list = new ArrayList<ComplaintReact>();
 			list.addAll(set);
-			int count = list.size();
-			sEcho = count;
-			ComplaintReactDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+			//int count = list.size();
+			//sEcho = count;
+			ComplaintReactDisplay = JsonUtils.toJSONResult(true, list);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -144,7 +222,8 @@ public class SupervisionAction extends ActionSupport{
 	//提交投诉反馈
 	public String addComplaintReact(){
 		try {
-			complaintReact.setAnswerTime(new Date()); 		 //回复时间
+			if(complaintReact.getAnswerTime()==null)
+				complaintReact.setAnswerTime(new Date()); 		 //回复时间
 			complaintInfo = supervisionService.findObjectById(complaintId);
 			complaintReact.setComplaintInfo(complaintInfo);  //回复的投诉内容
 			supervisionService.addComplaintReact(complaintReact);
@@ -225,6 +304,15 @@ public class SupervisionAction extends ActionSupport{
 		this.supervisionService = supervisionService;
 	}
 
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	@Resource
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 
 	public String getComplaintId() {
 		return complaintId;
@@ -433,6 +521,22 @@ public class SupervisionAction extends ActionSupport{
 		this.sEcho = sEcho;
 	}
 
+	public String getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public JSONObject getComplaintInfoDisplay() {
 		return ComplaintInfoDisplay;
 	}
@@ -463,6 +567,14 @@ public class SupervisionAction extends ActionSupport{
 
 	public void setReactIds(String reactIds) {
 		this.reactIds = reactIds;
+	}
+
+	public JSONObject getCompanyList() {
+		return companyList;
+	}
+
+	public void setCompanyList(JSONObject companyList) {
+		this.companyList = companyList;
 	}
 	
 	

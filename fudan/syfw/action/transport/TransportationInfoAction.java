@@ -135,19 +135,19 @@ public class TransportationInfoAction extends ActionSupport{
 			}
 			
 			Set<ProcessInfo> processInfos = new HashSet<ProcessInfo>();
-			//成品箱保存订单外键
+			//成品箱保存外键
 			if((cages = transInfo.getCages() )!= null){
 				String[] transCages = cages.split(",");
 				for(String transCage: transCages){
 					ProcessInfo process = processInfoService.findObjectById(transCage);
-					process.setTransportationInfo(transInfo);
-					processInfoService.update(process);
+					/*process.setTransportationInfo(transInfo);
+					processInfoService.update(process);*/
 					processInfos.add(process);
 				}
 				transInfo.setProcessInfos(processInfos);
 			}
 			
-			transInfoService.save(transInfo);
+			transInfoService.saveTrans(transInfo, cages);
 			
 			 TransInfoSave = JsonUtils.toJSONResult(true);
 			 return SUCCESS;

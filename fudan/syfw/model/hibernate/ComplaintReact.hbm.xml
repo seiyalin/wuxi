@@ -11,7 +11,7 @@
             <generator class="uuid" />
         </id>
         <many-to-one name="complaintInfo" class="org.wuxi.fudan.syfw.model.hibernate.ComplaintInfo" fetch="select" cascade="save-update">
-            <column name="complaintId" length="20" not-null="true">
+            <column name="complaintId" length="40" not-null="true">
                 <comment>投诉编号</comment>
             </column>
         </many-to-one>

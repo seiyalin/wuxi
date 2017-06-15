@@ -15,6 +15,11 @@
                 <comment>投诉公司</comment>
             </column>
         </property>
+        <property name="complaintCompanyId" type="java.lang.String">
+            <column name="complaintCompanyId" length="30">
+                <comment>投诉公司编号</comment>
+            </column>
+        </property>
         <property name="complaintContent" type="java.lang.String">
             <column name="complaintContent" length="300">
                 <comment>投诉内容</comment>
@@ -28,6 +33,11 @@
         <property name="complaintant" type="java.lang.String">
             <column name="complaintant" length="15">
                 <comment>投诉人</comment>
+            </column>
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="userId" length="15">
+                <comment>投诉人编号</comment>
             </column>
         </property>
         <property name="complaintPhone" type="java.lang.String">
@@ -47,7 +57,7 @@
         </property>
         <set name="complaintReacts" inverse="true" cascade="delete" lazy="false">
             <key>
-                <column name="complaintId" length="20" not-null="true">
+                <column name="complaintId" length="40" not-null="true">
                     <comment>投诉编号</comment>
                 </column>
             </key>

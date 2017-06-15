@@ -14,6 +14,7 @@ public interface OrderInfoService extends BaseService<OrderInfo> {
 	//find all restaurant
 	public List<RestaurantCompany> findAllRestaurant();
 	
+	public void saveOrder(OrderInfo order, String cages);
 		//save restaurant
 	public void saveRestaurant(RestaurantCompany restaurant);
 

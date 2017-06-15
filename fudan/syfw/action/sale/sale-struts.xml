@@ -4,7 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<package name="sale-action" namespace="/jsp/syfw/sale" extends="base-default,json-default">
+	<package name="sale-action" namespace="/jsp/syfw/process" extends="base-default,json-default">
 	<!--package提供了将多个Action组织为一个模块的方式, action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
 	
 	<!--加工管理：SaleInfoAction  -->

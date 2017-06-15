@@ -199,14 +199,14 @@ public class OrderInfoAction extends ActionSupport{
 				String[] sellCages = cages.split(",");
 				for(String sellCage: sellCages){
 					ProcessInfo process = processInfoService.findObjectById(sellCage);
-					process.setOrderInfo(orderInfo);
-					processInfoService.update(process);
+					/*process.setOrderInfo(orderInfo);
+					processInfoService.update(process);*/
 					processInfos.add(process);
 				}
 				orderInfo.setProcessInfos(processInfos);
 			}
 			
-			orderInfoService.save(orderInfo);
+			orderInfoService.saveOrder(orderInfo, cages);
 			
 			 OrderInfoSave = JsonUtils.toJSONResult(true);
 			 return SUCCESS;
@@ -250,6 +250,11 @@ public class OrderInfoAction extends ActionSupport{
  			{
  				String[] delete_id = orderIds.split(",");
  				for(String id: delete_id){
+ 					/*orderInfo = orderInfoService.findObjectById(id);
+ 					Set<ProcessInfo> set = orderInfo.getProcessInfos();
+ 					for(ProcessInfo pro: set){
+ 						pro.setOrderInfo(null);
+ 					}*/
  					orderInfoService.delete(id);
  				}
  			}

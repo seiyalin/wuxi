@@ -14,6 +14,12 @@ public interface SupervisionService extends BaseService<ComplaintInfo> {
 	//delete complaint reaction
 	public void deleteComplaintReact(String reactId);
 	
+	//get accepted complaintInfo list
+	public List<ComplaintInfo> getList(Integer start, Integer limit, String companyId);
+	
+	//get launched complaintInfo list
+	public List<ComplaintInfo> getLaunchedComplaint(Integer start, Integer limit, String userId);
+		
 	//get complaintInfo list
 	public List<ComplaintInfo> getList(Integer start, Integer limit);
 	

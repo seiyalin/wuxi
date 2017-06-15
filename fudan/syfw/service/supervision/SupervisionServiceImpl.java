@@ -46,6 +46,30 @@ public class SupervisionServiceImpl extends BaseServiceImpl<ComplaintInfo> imple
 		return pageResult.getItems();
 	}
 	
+	//get accepted complaintInfo list
+	public List<ComplaintInfo> getList(Integer start, Integer limit, String companyId) {
+			
+			QueryHelper queryHelper = new QueryHelper(ComplaintInfo.class, "complaintInfo");
+			//pageNo=start/limit + 1       起始页从第一页开始的
+			queryHelper.addCondition("complaintInfo.complaintCompanyId = ?", companyId);
+			queryHelper.addOrderByProperty("complaintInfo.complaintTime", "DESC");
+			pageResult = complaintInfoDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+			return pageResult.getItems();
+		}
+	
+	//get launched complaintInfo list
+	public List<ComplaintInfo> getLaunchedComplaint(Integer start, Integer limit, String userId) {
+				
+			QueryHelper queryHelper = new QueryHelper(ComplaintInfo.class, "complaintInfo");
+				//pageNo=start/limit + 1       起始页从第一页开始的
+			queryHelper.addCondition("complaintInfo.userId = ?", userId);
+			queryHelper.addOrderByProperty("complaintInfo.complaintTime", "DESC");
+			pageResult = complaintInfoDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+			return pageResult.getItems();
+			}
+	
 	//get total number of complaintInfo
 	public int getCount() {
 		// TODO Auto-generated method stub

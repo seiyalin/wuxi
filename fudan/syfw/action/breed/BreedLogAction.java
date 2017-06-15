@@ -354,7 +354,7 @@ public class BreedLogAction extends ActionSupport{
      //添加疾病记录
      public String saveIllnessInfo(){
     	 try {
-			illnessInfo.setBreedNo(breedLogService.findObjectById(breedId));
+			illnessInfo.setBreedNo(breedLogService.findObjectById(breedNo));
 			if(illnessInfo.getIllTime()==null){
 				illnessInfo.setIllTime(new Date());
 			}

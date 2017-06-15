@@ -21,9 +21,11 @@ public class ComplaintInfo  implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	 private String complaintId;		//投诉编号，自动生成
      private String complaintCompany;	//投诉公司
+     private String complaintCompanyId;	//投诉公司编号
      private String complaintContent;	//投诉内容 
      private Date complaintTime;		//投诉时间，自动生成
      private String complaintant;		//投诉人
+     private String userId;		//投诉人编号
      private String complaintPhone;		//投诉人电话
      private String complaintStatus;	//投诉状态
      private String complaintRole;		//投诉人角色
@@ -38,8 +40,9 @@ public class ComplaintInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public ComplaintInfo(String complaintCompany, String complaintContent, Date complaintTime, String complaintant, String complaintPhone, String complaintStatus, String complaintRole, Set complaintReacts) {
+    public ComplaintInfo(String complaintCompany, String complaintCompanyId, String complaintContent, Date complaintTime, String complaintant, String complaintPhone, String complaintStatus, String complaintRole, Set complaintReacts) {
         this.complaintCompany = complaintCompany;
+        this.complaintCompanyId = complaintCompanyId;
         this.complaintContent = complaintContent;
         this.complaintTime = complaintTime;
         this.complaintant = complaintant;
@@ -68,7 +71,17 @@ public class ComplaintInfo  implements java.io.Serializable {
         this.complaintCompany = complaintCompany;
     }
 
-    public String getComplaintContent() {
+    public String getComplaintCompanyId() {
+		return complaintCompanyId;
+	}
+
+
+	public void setComplaintCompanyId(String complaintCompanyId) {
+		this.complaintCompanyId = complaintCompanyId;
+	}
+
+
+	public String getComplaintContent() {
         return this.complaintContent;
     }
     
@@ -92,7 +105,17 @@ public class ComplaintInfo  implements java.io.Serializable {
         this.complaintant = complaintant;
     }
 
-    public String getComplaintPhone() {
+    public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+	public String getComplaintPhone() {
         return this.complaintPhone;
     }
     

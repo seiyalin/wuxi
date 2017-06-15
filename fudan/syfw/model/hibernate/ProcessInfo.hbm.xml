@@ -21,12 +21,12 @@
             </column>
         </many-to-one>
         <many-to-one name="transportationInfo" class="org.wuxi.fudan.syfw.model.hibernate.TransportationInfo" fetch="select" lazy="false">
-            <column name="transId" length="20">
+            <column name="transId" length="40">
                 <comment>运输编号</comment>
             </column>
         </many-to-one>
         <many-to-one name="orderInfo" class="org.wuxi.fudan.syfw.model.hibernate.OrderInfo" fetch="select" lazy="false">
-            <column name="orderId" length="20">
+            <column name="orderId" length="40">
                 <comment>订单编号</comment>
             </column>
         </many-to-one>
