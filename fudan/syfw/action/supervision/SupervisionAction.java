@@ -2,8 +2,6 @@ package org.wuxi.fudan.syfw.action.supervision;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -13,31 +11,11 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.wuxi.fudan.syfw.common.JsonUtils;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ComplaintInfo;
 import org.wuxi.fudan.syfw.model.hibernate.ComplaintReact;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
-import org.wuxi.fudan.syfw.model.hibernate.User;
 import org.wuxi.fudan.syfw.service.supervision.SupervisionService;
 import org.wuxi.fudan.syfw.service.user.UserService;
 

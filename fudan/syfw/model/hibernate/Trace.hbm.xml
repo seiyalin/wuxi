@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="org.wuxi.fudan.syfw.model.hibernate.Trace" table="trace" catalog="syfw11">
         <id name="epcis" type="java.lang.String">
-            <column name="epcis" length="20" />
+            <column name="epcis" length="40" />
             <generator class="uuid" />
         </id>
         <many-to-one name="breedNo" class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" fetch="select" cascade="save-update">
