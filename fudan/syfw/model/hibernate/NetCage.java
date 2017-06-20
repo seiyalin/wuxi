@@ -79,11 +79,11 @@ public class NetCage  implements java.io.Serializable {
         this.breedNos = breedNos;
     }
 
-    public Set<WaterQuality> getWaterQuilities() {
+    public Set<WaterQuality> getWaterQualities() {
         return this.waterQualities;
     }
     
-    public void setWaterQuilities(Set<WaterQuality> waterQuilities) {
+    public void setWaterQualities(Set<WaterQuality> waterQuilities) {
         this.waterQualities = waterQuilities;
     }
    

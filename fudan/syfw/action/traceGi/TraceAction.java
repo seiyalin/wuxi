@@ -44,6 +44,7 @@ public class TraceAction extends ActionSupport{
 	
 	private TraceService traceService;
 	
+	private String[] json_exclude;
 	
 	//追溯信息
 	private String epcis;			//追溯码
@@ -63,7 +64,7 @@ public class TraceAction extends ActionSupport{
 	private Date outPondTime;			//出塘时间
 	private String restaurant;			//餐饮企业
 	private String breedSpecies;		//品种
-	private Trace  trace;
+	private Trace  trace = new Trace();
 	
 	//crab信息
 	private String crabId;		//蟹编号（自动生成）
@@ -155,7 +156,8 @@ public class TraceAction extends ActionSupport{
      public String findCrabByType(){
     	 try {
 			List<CrabGi> list = traceService.findCrabByType(type);
-			 CrabInfoDisplay = JsonUtils.toJSONResult(true, list);
+			json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+			 CrabInfoDisplay = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -193,6 +195,7 @@ public class TraceAction extends ActionSupport{
 			 }
 			 
 			 List<CrabGi> list = traceService.findCrabByAppearance(map);
+			// json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 			 CrabInfoDisplay = JsonUtils.toJSONResult(true, list);
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -312,7 +315,9 @@ public class TraceAction extends ActionSupport{
      public String getOptionalBreedNo(){
     	 List<BreedNo> list = breedLogService.findObjects();
     	
-    	 OptionalBreedList = JsonUtils.toJSONResult(true, list);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","illnessInfos","netCage","outPond"
+    			 ,"processInfos","qualityControls","vaccineInfos","inPondTime","traces"};
+    	 OptionalBreedList = JsonUtils.toJSONResult(true, list, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -323,7 +328,9 @@ public class TraceAction extends ActionSupport{
     	 try {
 			
 			 List<ProcessInfo> list = processInfoService.findObjects();
-			 OptionalCagesList = JsonUtils.toJSONResult(true, list);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedNo","orderInfo","processCompany","transportationInfo"
+			 ,"traces"};
+			 OptionalCagesList = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -338,11 +345,13 @@ public class TraceAction extends ActionSupport{
     	 try {
 			
 			 List<TransportationInfo> list = transInfoService.findObjects();
-			 OptionalTransInfoList = JsonUtils.toJSONResult(true, list);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processInfos","restaurantCompany","processCompany","traces"};
+			 OptionalTransInfoList = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			//json_exclude = new String[]{"handler","hibernateLazyInitializer","processInfos","restaurantCompany","processCompany"};
 			OptionalTransInfoList = JsonUtils.toJSONResult(false, "发生未知错误");
      		return ERROR;		
 		}
@@ -353,7 +362,8 @@ public class TraceAction extends ActionSupport{
     	 try {
 			
 			 List<OrderInfo> list = orderInfoService.findObjects();
-			 OptionalOrderList = JsonUtils.toJSONResult(true, list);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processInfos","restaurantCompany","processCompany","traces"};
+			 OptionalOrderList = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -364,10 +374,27 @@ public class TraceAction extends ActionSupport{
      }
     
      
-   //保存追溯记录信息,前端传4个ID：breedId, cageId, transId, orderId,组成追溯码
+   //保存追溯记录信息,前端传2个ID：breedId, cageId,组成追溯码
      public String saveTraceInfo(){
-    	 try {
-    		 breedNo = breedLogService.findObjectById(breedId);    		//养殖批次 
+    	 try {		
+    		 
+    		 processInfo = processInfoService.findObjectById(cageId);   //成品箱
+    		 processCompany = processInfo.getProcessCompany().getCompanyName();
+    		 
+    		 trace.setProcessInfo(processInfo);
+    		 trace.setProcessCompany(processCompany);
+    		/* 
+    		 if(breedId.equals(processInfo.getBreedNo().getBreedNo())){
+    			 breedNo = processInfo.getBreedNo();
+    		 }
+    		 else{
+    			 breedNo = breedLogService.findObjectById(breedId);    		//养殖批次 
+    		 }  */  
+    		 breedNo = processInfo.getBreedNo();
+    		 if(breedNo.getBreedNo().equals(breedId)==false){
+    			 TraceInfoSave = JsonUtils.toJSONResult(false, "养殖批次不对！");
+    			 return SUCCESS;
+    		 }
     		 breedSpecies = breedNo.getBreedSpecies();  		    //品种
     		 outPondTime = breedNo.getOutPond().getOutTime(); 		 //出塘时间
     		 breedCompany = breedNo.getNetCage().getBreedArea().getBreedCompany().getCompanyName();
@@ -377,14 +404,10 @@ public class TraceAction extends ActionSupport{
     		 trace.setOutPondTime(outPondTime);
     		 trace.setBreedCompany(breedCompany);
     		 
-    		 processInfo = processInfoService.findObjectById(cageId);   //成品箱
-    		 processCompany = processInfo.getProcessCompany().getCompanyName();
-    		 
-    		 trace.setProcessInfo(processInfo);
-    		 trace.setProcessCompany(processCompany);
-    		 
-    		 transportationInfo = transInfoService.findObjectById(transId);  //运输信息
+    		/* transportationInfo = transInfoService.findObjectById(transId);  //运输信息
     		 orderInfo = orderInfoService.findObjectById(orderId);		//销售信息
+*/    		 transportationInfo = processInfo.getTransportationInfo();
+			 orderInfo = processInfo.getOrderInfo();
     		 restaurantCompany = orderInfo.getRestaurantCompany();
     		 restaurant = restaurantCompany.getRestaurantName();     //餐厅
     		 
@@ -392,7 +415,7 @@ public class TraceAction extends ActionSupport{
     		 trace.setOrderInfo(orderInfo);
     		 trace.setRestaurant(restaurant);  		 
 			
-			traceService.save(trace);
+			 traceService.save(trace);
 	
 			 TraceInfoSave = JsonUtils.toJSONResult(true);
 			 return SUCCESS;
@@ -406,7 +429,7 @@ public class TraceAction extends ActionSupport{
      }
 	
      //产品溯源
-     @SuppressWarnings("unused")
+   
 	public String searchByEpcis(){
     	 try {
     		 trace = traceService.findObjectById(epcis);

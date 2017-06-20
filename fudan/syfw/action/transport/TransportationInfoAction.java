@@ -49,6 +49,7 @@ public class TransportationInfoAction extends ActionSupport{
 	private ProcessInfoService processInfoService;
 	
 
+	private String[] json_exclude;
 	//用户信息
 	private String	userId;
 	private String	companyId;
@@ -102,7 +103,8 @@ public class TransportationInfoAction extends ActionSupport{
     		 restaurants.add(restaurant);
     	
     	 }
-    	 OptionalRestaurantList = JsonUtils.toJSONResult(true, restaurants);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	 OptionalRestaurantList = JsonUtils.toJSONResult(true, restaurants, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -114,7 +116,8 @@ public class TransportationInfoAction extends ActionSupport{
     	 try {
 			processCompany = userService.findProcessCompanyById(companyId);
 			 List<ProcessInfo> list = processInfoService.getCagesToTrans(processCompany);
-			 OptionalCagesList = JsonUtils.toJSONResult(true, list);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedNo","processCompany","transportationInfo","orderInfo","traces"};
+			 OptionalCagesList = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -172,7 +175,8 @@ public class TransportationInfoAction extends ActionSupport{
 			 Collections.sort(list);
 			 List<TransportationInfo> transList = transInfoService.getList(list, iDisplayStart, iDisplayLength);
 			 int count = transInfoService.getCount();
-			 TransInfoDisplay= JsonUtils.toJSONResult(count, transList, sEcho);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processCompany","transportationInfos","orderInfos","traces"};
+			 TransInfoDisplay= JsonUtils.toJSONResult(count, transList, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

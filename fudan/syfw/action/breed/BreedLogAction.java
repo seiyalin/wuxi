@@ -45,6 +45,7 @@ public class BreedLogAction extends ActionSupport{
 
 	private UserService		 userService;
 	
+	private String[] json_exclude ;
 
 	//用户信息
 	private String	userId;
@@ -164,7 +165,8 @@ public class BreedLogAction extends ActionSupport{
     		 list.addAll(netcages);
     	 }
     	 
-    	 OptionalNetCageList = JsonUtils.toJSONResult(true,list);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedArea","breedNos","waterQualities" };
+    	 OptionalNetCageList = JsonUtils.toJSONResult(true,list,json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -201,10 +203,11 @@ public class BreedLogAction extends ActionSupport{
     	 }
     	 Collections.sort(breeds);
     	 List<BreedNo> breedList = breedLogService.getNoList(breeds, iDisplayStart, iDisplayLength);*/
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","Netcage","illnessInfos","outPond","processInfos","qualityControls","vaccineInfos","traces" };
     	 List<BreedNo> breedList = breedLogService.getBreedNo(iDisplayStart, iDisplayLength, breedCompany);
     	 int count = breedLogService.getCount();
     	
-    	 BreedNoDisplay = JsonUtils.toJSONResult(count, breedList, sEcho);
+    	 BreedNoDisplay = JsonUtils.toJSONResult(count, breedList, sEcho, json_exclude);
     	 return SUCCESS;
     	 
      }
@@ -215,7 +218,8 @@ public class BreedLogAction extends ActionSupport{
     	 List<BreedNo> list = breedLogService.getBreedNo(iDisplayStart, iDisplayLength, breedArea);
     	 int count = breedLogService.getCount();
     	// sEcho = count;
-    	 BreedNoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","Netcage","illnessInfos","outPond","processInfos","qualityControls","vaccineInfos","traces" };
+    	 BreedNoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
     	 return SUCCESS;
     	 
      }
@@ -259,7 +263,9 @@ public class BreedLogAction extends ActionSupport{
     		 breeds.addAll(set);
     		 
     	 }
-    	 OptionalBreedNoList = JsonUtils.toJSONResult(true,breeds);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","Netcage","illnessInfos",
+    			 "netCage", "inPondTime", "inPondNumber", "outPond","processInfos","qualityControls","vaccineInfos","traces" };
+    	 OptionalBreedNoList = JsonUtils.toJSONResult(true,breeds,json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -271,7 +277,8 @@ public class BreedLogAction extends ActionSupport{
     	 Set<FeedInfo> sets = new HashSet<FeedInfo>();
 		 sets = breedCompany.getFeedInfos();
 		
-    	 OptionalMaterialList = JsonUtils.toJSONResult(true, sets);
+		 json_exclude = new String[]{"breedCompany", "contactNumber", "address", "amount", "breedLogs"};
+    	 OptionalMaterialList = JsonUtils.toJSONResult(true, sets, json_exclude);
     	 
     	 return SUCCESS;
      }
@@ -303,7 +310,8 @@ public class BreedLogAction extends ActionSupport{
     	 breedCompany = userService.findBreedCompanyById(companyId);
     	 List<BreedLog> log = breedLogService.getBreedLog(iDisplayStart, iDisplayLength, breedCompany);
     	 int count = breedLogService.getCount();
-		 BreedLogDisplay= JsonUtils.toJSONResult(count, log, sEcho);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedLogs","breedStaff"};
+		 BreedLogDisplay= JsonUtils.toJSONResult(count, log, sEcho, json_exclude);
 		 return SUCCESS;
      }
      
@@ -319,7 +327,8 @@ public class BreedLogAction extends ActionSupport{
 			List<BreedLog> logList = breedLogService.getList(list, iDisplayStart, iDisplayLength);
 			int count = breedLogService.getCount();
 			// sEcho = count;
-			 BreedLogDisplay= JsonUtils.toJSONResult(count, logList, sEcho);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedLogs","breedStaff"};
+			 BreedLogDisplay= JsonUtils.toJSONResult(count, logList, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -379,7 +388,8 @@ public class BreedLogAction extends ActionSupport{
 			 
 			 //int count = sets.size();
 			// sEcho = count;
-			 IllnessInfoDisplay= JsonUtils.toJSONResult(true, sets);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
+			 IllnessInfoDisplay= JsonUtils.toJSONResult(true, sets, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -439,7 +449,8 @@ public class BreedLogAction extends ActionSupport{
 			 
 			 //int count = sets.size();
 			// sEcho = count;
-			 VaccineInfoDisplay= JsonUtils.toJSONResult(true, sets);
+			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
+			 VaccineInfoDisplay= JsonUtils.toJSONResult(true, sets, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -475,7 +486,10 @@ public class BreedLogAction extends ActionSupport{
      public String getOptionalInPondNos(){
     	 breedCompany = userService.findBreedCompanyById(companyId);
     	 List<BreedNo> list = breedLogService.getBreedNoInPond(breedCompany);
-    	 OptionalInPondNoList = JsonUtils.toJSONResult(true, list);
+    	 
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","Netcage","illnessInfos",
+    			 "netCage", "inPondTime", "inPondNumber", "outPond","processInfos","qualityControls","vaccineInfos","traces" };
+    	 OptionalInPondNoList = JsonUtils.toJSONResult(true, list, json_exclude);
     	 return SUCCESS;
     	 
      }
@@ -534,8 +548,9 @@ public class BreedLogAction extends ActionSupport{
 			 
 			 //int count = sets.size();
 			// sEcho = count;
-			 OutPondDisplay= JsonUtils.toJSONResult(count, outList, sEcho);
-			 return SUCCESS;
+			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedCompany"};
+			OutPondDisplay= JsonUtils.toJSONResult(count, outList, sEcho);
+			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -594,7 +609,8 @@ public class BreedLogAction extends ActionSupport{
 			 
 			 //int count = sets.size();
 			// sEcho = count;
-			QualityControlDisplay= JsonUtils.toJSONResult(true, sets);
+			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
+			QualityControlDisplay= JsonUtils.toJSONResult(true, sets, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

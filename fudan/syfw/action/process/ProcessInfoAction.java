@@ -42,6 +42,7 @@ public class ProcessInfoAction extends ActionSupport{
 	private UserService		 userService;
 	private BreedLogService  breedLogService;
 	
+	private String[] json_exclude;
 
 	//用户信息
 	private String	userId;
@@ -97,7 +98,8 @@ public class ProcessInfoAction extends ActionSupport{
     		 company.put("name", processCompany.getCompanyName());
     		 processCompanies.add(company);
     	 }
-    	 OptionalCompanyList = JsonUtils.toJSONResult(true,processCompanies);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	 OptionalCompanyList = JsonUtils.toJSONResult(true,processCompanies, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -134,7 +136,8 @@ public class ProcessInfoAction extends ActionSupport{
 			 List<ProcessStaff> staffList = processInfoService.getList(list, iDisplayStart,iDisplayLength);
 			 int count = processInfoService.getCount();
 			
-			 ProcessStaffDisplay= JsonUtils.toJSONResult(count, list, sEcho);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processCompany"};
+			 ProcessStaffDisplay= JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -170,7 +173,9 @@ public class ProcessInfoAction extends ActionSupport{
      public String getOptionalBreed(){
     	 try {
 			List<BreedNo> list = breedLogService.findObjects();
-			 OptionalBreedNoList = JsonUtils.toJSONResult(true, list);
+			json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","Netcage","illnessInfos",
+	    			 "netCage", "inPondTime", "inPondNumber", "outPond","processInfos","qualityControls","vaccineInfos","traces" };
+			 OptionalBreedNoList = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -214,7 +219,8 @@ public class ProcessInfoAction extends ActionSupport{
 			 List<ProcessInfo> infoList = processInfoService.getInfoList(list, iDisplayStart, iDisplayLength);
 			 int count = processInfoService.getCount();
 			// sEcho = count;
-			 ProcessInfoDisplay= JsonUtils.toJSONResult(count, infoList, sEcho);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","orderInfo","processCompany","transportationInfo" };
+			 ProcessInfoDisplay= JsonUtils.toJSONResult(count, infoList, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

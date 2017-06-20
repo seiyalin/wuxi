@@ -26,7 +26,7 @@ public class BreedLog  implements java.io.Serializable, Comparable<BreedLog> {
      private String breedNumber;	//投喂数量
      private String breedMethod;	//投喂方法
      private String breedPerson;	//投喂人
-     private String breedSpecies;	//投喂品种（什么饲料/药物）
+     private String breedSpecies;	//投喂品种（什么动物）
      private String logNote;		//结果或其他记录
 
 

@@ -39,6 +39,7 @@ public class FeedInfoAction extends ActionSupport{
 	//用户信息
 	private String	userId;
 	private String	companyId;
+	private String[] json_exclude;
 	
 	//原料管理
 	private String feedId;			//原料编号
@@ -82,7 +83,8 @@ public class FeedInfoAction extends ActionSupport{
     		 company.put("name", breedCompany.getCompanyName());
     		 breedCompanies.add(company);
     	 }
-    	 OptionalCompanyList = JsonUtils.toJSONResult(true,breedCompanies);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	 OptionalCompanyList = JsonUtils.toJSONResult(true,breedCompanies, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -114,7 +116,8 @@ public class FeedInfoAction extends ActionSupport{
 			 List<FeedInfo> feedList = feedInfoService.getList(list, iDisplayStart, iDisplayLength);
 			 int count = feedInfoService.getCount();
 			// sEcho = count;
-			 MaterialDisplay= JsonUtils.toJSONResult(count, feedList, sEcho);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany"};
+			 MaterialDisplay= JsonUtils.toJSONResult(count, feedList, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

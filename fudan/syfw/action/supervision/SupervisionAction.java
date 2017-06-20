@@ -11,6 +11,9 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
+
+
+
 import org.wuxi.fudan.syfw.common.JsonUtils;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ComplaintInfo;
@@ -34,6 +37,7 @@ public class SupervisionAction extends ActionSupport{
 	private String companyId;
 	private String userId;
 	
+	private String[] json_exclude;
 	/* 投诉信息*/
 	private String complaintId;				//投诉编号，自动生成
 	private String complaintCompany; 	    //投诉公司
@@ -88,8 +92,8 @@ public class SupervisionAction extends ActionSupport{
     		 company.put("companyName", pc.getCompanyName());
     		 companies.add(company); 
     	 }
-    	 
-    	 companyList = JsonUtils.toJSONResult(true, companies);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	 companyList = JsonUtils.toJSONResult(true, companies, json_exclude);
     	 return SUCCESS;
     	 
      }
@@ -165,7 +169,8 @@ public class SupervisionAction extends ActionSupport{
 	public String loadForComplaint(){
 		try {
 			complaintInfo = supervisionService.findObjectById(complaintId);
-			ComplaintInfoLoad = JsonUtils.toJSONResult(true, complaintInfo);
+			json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+			ComplaintInfoLoad = JsonUtils.toJSONResult(true, complaintInfo, json_exclude);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -185,7 +190,8 @@ public class SupervisionAction extends ActionSupport{
 			list.addAll(set);
 			//int count = list.size();
 			//sEcho = count;
-			ComplaintReactDisplay = JsonUtils.toJSONResult(true, list);
+			json_exclude = new String[]{"handler","hibernateLazyInitializer","complaintInfo"};
+			ComplaintReactDisplay = JsonUtils.toJSONResult(true, list, json_exclude);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -46,6 +46,7 @@ public class OrderInfoAction extends ActionSupport{
 	private ProcessInfoService processInfoService;
 	
 
+	String[] json_exclude;
 	//用户信息
 	private String	userId;
 	private String	companyId;
@@ -106,7 +107,8 @@ public class OrderInfoAction extends ActionSupport{
     		 restaurants.add(restaurant);
     	
     	 }
-    	 OptionalRestaurantList = JsonUtils.toJSONResult(true, restaurants);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	 OptionalRestaurantList = JsonUtils.toJSONResult(true, restaurants, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -136,6 +138,7 @@ public class OrderInfoAction extends ActionSupport{
 			 List<RestaurantCompany> list = orderInfoService.getList(iDisplayStart, iDisplayLength);
 			 int count = orderInfoService.getCount();
 			 //sEcho = count;
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","orderInfos","transportationInfos"};
 			 RestaurantDisplay= JsonUtils.toJSONResult(count, list, sEcho);
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -173,7 +176,8 @@ public class OrderInfoAction extends ActionSupport{
     	 try {
 			processCompany = userService.findProcessCompanyById(companyId);
 			 List<ProcessInfo> list = processInfoService.getCagesInSell(processCompany);
-			 OptionalCagesList = JsonUtils.toJSONResult(true, list);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedNo","processCompany","transportationInfo","orderInfo","traces"};
+			 OptionalCagesList = JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -232,7 +236,8 @@ public class OrderInfoAction extends ActionSupport{
 			 List<OrderInfo> orderList = orderInfoService.getList(list, iDisplayStart, iDisplayLength);
 			 int count = orderInfoService.getCount();
 			 
-			 OrderInfoDisplay= JsonUtils.toJSONResult(count, orderList, sEcho);
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processCompany","transportationInfos","orderInfos","traces"};
+			 OrderInfoDisplay= JsonUtils.toJSONResult(count, orderList, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

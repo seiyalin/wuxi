@@ -39,6 +39,7 @@ public class BreedAreaAction extends ActionSupport{
 
 	//用户信息
 	private String	userId;
+	private String[] json_exclude;
 	
 	//养殖区域
 	private String areaId;					//养殖区域编号 （填写e.g. breed1）
@@ -110,7 +111,8 @@ public class BreedAreaAction extends ActionSupport{
     		 company.put("name", breedCompany.getCompanyName());
     		 breedCompanies.add(company);
     	 }
-    	 OptionalCompanyList = JsonUtils.toJSONResult(true,breedCompanies);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	 OptionalCompanyList = JsonUtils.toJSONResult(true,breedCompanies, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -165,6 +167,7 @@ public class BreedAreaAction extends ActionSupport{
 				 area.put("waterQuality", bArea.getWaterQuality());
 				 areas.add(area);			 
 				}*/
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany"};
 			 setBreedAreaDisplay(JsonUtils.toJSONResult(count, areaList, sEcho));
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -201,7 +204,8 @@ public class BreedAreaAction extends ActionSupport{
      public String loadForUpdate(){
     	 try {
  			breedArea = breedAreaService.findObjectById(areaId);
- 			BreedAreaLoad = JsonUtils.toJSONResult(true, breedArea);
+ 			json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany"};
+ 			BreedAreaLoad = JsonUtils.toJSONResult(true, breedArea, json_exclude);
  			return SUCCESS;
  		} catch (Exception e) {
  			// TODO Auto-generated catch block
@@ -258,8 +262,9 @@ public class BreedAreaAction extends ActionSupport{
 			List<BreedStaff> staffList = breedStaffService.getList(list, iDisplayStart, iDisplayLength);
 			int count = breedStaffService.getCount();
 			 
- 			sEcho = count;
- 			setBreedStaffDisplay(JsonUtils.toJSONResult(count, staffList, sEcho));
+ 			//sEcho = count;
+			json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany","breedLogs"};
+ 			setBreedStaffDisplay(JsonUtils.toJSONResult(count, staffList, sEcho, json_exclude));
  			return SUCCESS;
  		} catch (Exception e) {
  			// TODO Auto-generated catch block
@@ -294,7 +299,8 @@ public class BreedAreaAction extends ActionSupport{
      public String getOptionalNetCageByArea(){
     	 breedArea = breedAreaService.findObjectById(areaId);
     	 Set<NetCage> set = breedArea.getNetCages();
-    	 OptionalNetCageList = JsonUtils.toJSONResult(true,set);
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedArea","breedNos","waterQualities"};
+    	 OptionalNetCageList = JsonUtils.toJSONResult(true,set, json_exclude);
     	 return SUCCESS;
      
      }
@@ -327,8 +333,9 @@ public class BreedAreaAction extends ActionSupport{
  			Set<WaterQuality> sets = new HashSet<WaterQuality>();
  			netCage = breedAreaService.findNetCageById(netcageId);
  			
- 			sets = netCage.getWaterQuilities();
- 			WaterQualityDisplay = JsonUtils.toJSONResult(true,sets);
+ 			sets = netCage.getWaterQualities();
+ 			json_exclude = new String[]{"handler","hibernateLazyInitializer","netCage"};
+ 			WaterQualityDisplay = JsonUtils.toJSONResult(true,sets, json_exclude);
  			
  			return SUCCESS;
  		} catch (Exception e) {
@@ -348,11 +355,11 @@ public class BreedAreaAction extends ActionSupport{
  			Set<NetCage> sets = breedArea.getNetCages();
  			List<WaterQuality> wq = new ArrayList<WaterQuality>();
  			for(NetCage net:sets){
- 				Set<WaterQuality> set = net.getWaterQuilities();
+ 				Set<WaterQuality> set = net.getWaterQualities();
  				wq.addAll(set);
  			}
- 			
- 			WaterQualityDisplay = JsonUtils.toJSONResult(true, wq);
+ 			json_exclude = new String[]{"handler","hibernateLazyInitializer","netCage"};
+ 			WaterQualityDisplay = JsonUtils.toJSONResult(true, wq, json_exclude);
  			
  			return SUCCESS;
  		} catch (Exception e) {
