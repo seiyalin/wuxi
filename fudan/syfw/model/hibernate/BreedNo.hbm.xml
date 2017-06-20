@@ -77,21 +77,21 @@
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.BreedLog" />
         </set>
-        <set name="traces" inverse="true" lazy="false">
+       <!--  <set name="traces" inverse="true" cascade="none">
             <key>
                 <column name="breedNo" length="20" not-null="true">
                     <comment>产品批次</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.Trace" />
-        </set>
-        <set name="processInfos" inverse="true" lazy="false">
+        </set> -->
+       <!--  <set name="processInfos" inverse="true" lazy="false">
             <key>
                 <column name="breedNo" length="20" not-null="true">
                     <comment>产品批次</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.ProcessInfo" />
-        </set>
+        </set> -->
     </class>
 </hibernate-mapping>

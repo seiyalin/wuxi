@@ -55,7 +55,7 @@
                 <comment>投诉人角色</comment>
             </column>
         </property>
-        <set name="complaintReacts" inverse="true" cascade="delete" lazy="false">
+        <set name="complaintReacts" inverse="true" cascade="delete">
             <key>
                 <column name="complaintId" length="40" not-null="true">
                     <comment>投诉编号</comment>

@@ -8,7 +8,7 @@ import java.util.Date;
  * 产品质检管理
  */
 
-public class QualityControl  implements java.io.Serializable {
+public class QualityControl  implements java.io.Serializable,Comparable<QualityControl> {
 
 
     // Fields    
@@ -45,6 +45,9 @@ public class QualityControl  implements java.io.Serializable {
         this.qcInstitution = qcInstitution;
     }
 
+    public int compareTo(QualityControl q){
+    	return qcTime.compareTo(q.getQcTime());
+    }
    
     // Property accessors
 

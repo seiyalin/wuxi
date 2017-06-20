@@ -8,7 +8,7 @@ import java.util.Date;
  * 防疫与检疫管理
  */
 
-public class VaccineInfo  implements java.io.Serializable {
+public class VaccineInfo  implements java.io.Serializable,Comparable<VaccineInfo> {
 
 
     // Fields    
@@ -43,6 +43,9 @@ public class VaccineInfo  implements java.io.Serializable {
         this.note = note;
     }
 
+    public int compareTo(VaccineInfo vac){
+    	return vaccineTime.compareTo(vac.getVaccineTime());
+    }
    
     // Property accessors
 

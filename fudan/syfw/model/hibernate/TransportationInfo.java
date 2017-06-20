@@ -28,7 +28,7 @@ public class TransportationInfo  implements java.io.Serializable, Comparable<Tra
      private String receiver;		//收货人
      private String toAddress;		//运送地址
      private String receiverPhone;  //联系方式
-     private Set traces = new HashSet(0);
+     //private Set traces = new HashSet(0);
      private Set processInfos = new HashSet(0);
 
 
@@ -44,7 +44,7 @@ public class TransportationInfo  implements java.io.Serializable, Comparable<Tra
     }
     
     /** full constructor */
-    public TransportationInfo(RestaurantCompany restaurantCompany, ProcessCompany processCompany,String cages, String product, Double number, String transPerson, String transVehicle, Date transTime, String transMethod, String receiver, String toAddress, String receiverPhone, Set traces, Set processInfos) {
+    public TransportationInfo(RestaurantCompany restaurantCompany, ProcessCompany processCompany,String cages, String product, Double number, String transPerson, String transVehicle, Date transTime, String transMethod, String receiver, String toAddress, String receiverPhone, Set processInfos) {
         this.restaurantCompany = restaurantCompany;
         this.processCompany = processCompany;
         this.cages = cages;
@@ -57,7 +57,7 @@ public class TransportationInfo  implements java.io.Serializable, Comparable<Tra
         this.receiver = receiver;
         this.toAddress = toAddress;
         this.receiverPhone = receiverPhone;
-        this.traces = traces;
+        //this.traces = traces;
         this.processInfos = processInfos;
     }
 
@@ -171,13 +171,13 @@ public class TransportationInfo  implements java.io.Serializable, Comparable<Tra
         this.receiverPhone = receiverPhone;
     }
 
-    public Set getTraces() {
+  /*  public Set getTraces() {
         return this.traces;
     }
     
     public void setTraces(Set traces) {
         this.traces = traces;
-    }
+    }*/
 
     public Set getProcessInfos() {
         return this.processInfos;

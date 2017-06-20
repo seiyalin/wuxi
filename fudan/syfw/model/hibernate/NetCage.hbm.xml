@@ -16,14 +16,14 @@
             </column>
         </many-to-one>
       
-        <set name="breedNos" inverse="true" cascade="delete" lazy="false">
+        <!-- <set name="breedNos" inverse="true" cascade="delete" lazy="false">
             <key>
                 <column name="netcageId" length="15" not-null="true">
                     <comment>网箱</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.BreedNo" />
-        </set>
+        </set> -->
         <set name="waterQualities" inverse="true" cascade="delete" lazy="false">
             <key>
                 <column name="netcageId" length="15" not-null="true">

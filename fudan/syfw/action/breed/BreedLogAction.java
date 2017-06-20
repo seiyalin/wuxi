@@ -386,10 +386,13 @@ public class BreedLogAction extends ActionSupport{
 			breedBatch = breedLogService.findObjectById(breedNo);
 			sets = breedBatch.getIllnessInfos();
 			 
+			List<IllnessInfo> list = new ArrayList<IllnessInfo>();
+			list.addAll(sets);
+			Collections.sort(list);
 			 //int count = sets.size();
 			// sEcho = count;
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
-			 IllnessInfoDisplay= JsonUtils.toJSONResult(true, sets, json_exclude);
+			 IllnessInfoDisplay= JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -447,10 +450,13 @@ public class BreedLogAction extends ActionSupport{
 			breedBatch = breedLogService.findObjectById(breedNo);
 			sets = breedBatch.getVaccineInfos();
 			 
+			List<VaccineInfo> list = new ArrayList<VaccineInfo>();
+			list.addAll(sets);
+			Collections.sort(list);
 			 //int count = sets.size();
 			// sEcho = count;
 			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
-			 VaccineInfoDisplay= JsonUtils.toJSONResult(true, sets, json_exclude);
+			 VaccineInfoDisplay= JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -607,10 +613,13 @@ public class BreedLogAction extends ActionSupport{
 			breedBatch = breedLogService.findObjectById(breedNo);
 			sets = breedBatch.getQualityControls();
 			 
+			List<QualityControl> list = new ArrayList<QualityControl>();
+			list.addAll(sets);
+			Collections.sort(list);
 			 //int count = sets.size();
 			// sEcho = count;
 			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
-			QualityControlDisplay= JsonUtils.toJSONResult(true, sets, json_exclude);
+			QualityControlDisplay= JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

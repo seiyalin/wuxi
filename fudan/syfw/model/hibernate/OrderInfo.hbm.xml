@@ -55,14 +55,14 @@
                 <comment>餐饮企业</comment>
             </column>
         </property>
-        <set name="traces" inverse="true" lazy="false">
+        <!-- <set name="traces" inverse="true" cascade="none" lazy="false">
             <key>
                 <column name="orderId" length="40" not-null="true">
                     <comment>订单编号</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.Trace" />
-        </set>
+        </set> -->
         <set name="processInfos" inverse="true" cascade="none" lazy="false">
             <key>
                 <column name="orderId" length="40">

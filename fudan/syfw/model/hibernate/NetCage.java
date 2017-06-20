@@ -21,8 +21,8 @@ public class NetCage  implements java.io.Serializable {
 	private String netcageId;					//网箱编号
      private BreedArea breedArea;				//属于的养殖区域
 
-     private Set<BreedNo> breedNos = new HashSet<BreedNo>(0);		//水产品批次
-     private Set<WaterQuality> waterQualities = new HashSet<WaterQuality>(0);	//水质监测记录
+     /*private Set<BreedNo> breedNos = new HashSet<BreedNo>(0);		//水产品批次
+*/     private Set<WaterQuality> waterQualities = new HashSet<WaterQuality>(0);	//水质监测记录
 
 
     // Constructors
@@ -43,10 +43,10 @@ public class NetCage  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public NetCage(BreedArea breedArea,  Set<BreedNo> breedNos, Set<WaterQuality> waterQuilities) {
+    public NetCage(BreedArea breedArea,  Set<WaterQuality> waterQuilities) {
         this.breedArea = breedArea;
   
-        this.breedNos = breedNos;
+       // this.breedNos = breedNos;
         this.waterQualities = waterQuilities;
     }
 
@@ -71,13 +71,13 @@ public class NetCage  implements java.io.Serializable {
 
    
 
-    public Set<BreedNo> getBreedNos() {
+   /* public Set<BreedNo> getBreedNos() {
         return this.breedNos;
     }
     
     public void setBreedNos(Set<BreedNo> breedNos) {
         this.breedNos = breedNos;
-    }
+    }*/
 
     public Set<WaterQuality> getWaterQualities() {
         return this.waterQualities;

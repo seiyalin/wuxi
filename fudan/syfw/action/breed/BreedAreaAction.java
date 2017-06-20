@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.hibernate.mapping.Array;
 import org.wuxi.fudan.syfw.common.JsonUtils;
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
@@ -334,8 +335,11 @@ public class BreedAreaAction extends ActionSupport{
  			netCage = breedAreaService.findNetCageById(netcageId);
  			
  			sets = netCage.getWaterQualities();
+ 			List<WaterQuality> list = new ArrayList<WaterQuality>();
+ 			list.addAll(sets);
+ 			Collections.sort(list);
  			json_exclude = new String[]{"handler","hibernateLazyInitializer","netCage"};
- 			WaterQualityDisplay = JsonUtils.toJSONResult(true,sets, json_exclude);
+ 			WaterQualityDisplay = JsonUtils.toJSONResult(true,list, json_exclude);
  			
  			return SUCCESS;
  		} catch (Exception e) {
@@ -358,6 +362,7 @@ public class BreedAreaAction extends ActionSupport{
  				Set<WaterQuality> set = net.getWaterQualities();
  				wq.addAll(set);
  			}
+ 			Collections.sort(wq);
  			json_exclude = new String[]{"handler","hibernateLazyInitializer","netCage"};
  			WaterQualityDisplay = JsonUtils.toJSONResult(true, wq, json_exclude);
  			

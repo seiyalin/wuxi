@@ -27,8 +27,8 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
      private Set illnessInfos = new HashSet(0);
      private Set qualityControls = new HashSet(0);
      private Set breedLogs = new HashSet(0);
-     private Set traces = new HashSet(0);
-     private Set processInfos = new HashSet(0);
+     /*private Set traces = new HashSet(0);*/
+     //private Set processInfos = new HashSet(0);
 
 
     // Constructors
@@ -44,7 +44,7 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
     }
     
     /** full constructor */
-    public BreedNo(OutPond outPond, NetCage netCage, Date inPondTime, String inPondNumber, String inPondMethod, String breedPerson, String breedSpecies, Set vaccineInfos, Set illnessInfos, Set qualityControls, Set breedLogs, Set traces, Set processInfos) {
+    public BreedNo(OutPond outPond, NetCage netCage, Date inPondTime, String inPondNumber, String inPondMethod, String breedPerson, String breedSpecies, Set vaccineInfos, Set illnessInfos, Set qualityControls, Set breedLogs) {
         this.outPond = outPond;
         this.netCage = netCage;
         this.inPondTime = inPondTime;
@@ -56,8 +56,8 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
         this.illnessInfos = illnessInfos;
         this.qualityControls = qualityControls;
         this.breedLogs = breedLogs;
-        this.traces = traces;
-        this.processInfos = processInfos;
+        //this.traces = traces;
+       // this.processInfos = processInfos;
     }
 
    
@@ -162,22 +162,22 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
         this.breedLogs = breedLogs;
     }
 
-    public Set getTraces() {
+   /* public Set getTraces() {
         return this.traces;
     }
     
     public void setTraces(Set traces) {
         this.traces = traces;
-    }
+    }*/
 
-    public Set getProcessInfos() {
+   /* public Set getProcessInfos() {
         return this.processInfos;
     }
     
     public void setProcessInfos(Set processInfos) {
         this.processInfos = processInfos;
     }
-   
+   */
 
 
 

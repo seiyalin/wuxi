@@ -32,7 +32,7 @@ public class FeedInfo  implements java.io.Serializable, Comparable<FeedInfo> {
      private String personInCharge;	//负责人
      private String materialType;	//原料类别
      private String materialName;	//原料名
-     private Set breedLogs = new HashSet(0);
+    /* private Set breedLogs = new HashSet(0);*/
 
 
     // Constructors
@@ -52,7 +52,7 @@ public class FeedInfo  implements java.io.Serializable, Comparable<FeedInfo> {
     }
     
     /** full constructor */
-    public FeedInfo(BreedCompany breedCompany, String feedCompany, String contactNumber, String address, String amount, String handler, String storehouse, Date stockTime, String stockInfo, String personInCharge, String materialType, String materialName, Set breedLogs) {
+    public FeedInfo(BreedCompany breedCompany, String feedCompany, String contactNumber, String address, String amount, String handler, String storehouse, Date stockTime, String stockInfo, String personInCharge, String materialType, String materialName) {
         this.breedCompany = breedCompany;
     	this.feedCompany = feedCompany;
         this.contactNumber = contactNumber;
@@ -65,7 +65,7 @@ public class FeedInfo  implements java.io.Serializable, Comparable<FeedInfo> {
         this.personInCharge = personInCharge;
         this.materialType = materialType;
         this.materialName = materialName;
-        this.breedLogs = breedLogs;
+       // this.breedLogs = breedLogs;
     }
 
     //分页
@@ -179,14 +179,14 @@ public class FeedInfo  implements java.io.Serializable, Comparable<FeedInfo> {
         this.materialName = materialName;
     }
 
-    public Set getBreedLogs() {
+   /* public Set getBreedLogs() {
         return this.breedLogs;
     }
     
     public void setBreedLogs(Set breedLogs) {
         this.breedLogs = breedLogs;
     }
-   
+   */
 
 
 

@@ -20,8 +20,8 @@ public class RestaurantCompany  implements java.io.Serializable {
      private String restaurantAddress;//餐厅地址
      private String contactNumber;	//联系电话
      private String environment;	//餐厅环境
-     private Set transportationInfos = new HashSet(0);
-     private Set orderInfos = new HashSet(0);
+     /*private Set transportationInfos = new HashSet(0);
+     private Set orderInfos = new HashSet(0);*/
 
 
     // Constructors
@@ -39,14 +39,14 @@ public class RestaurantCompany  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public RestaurantCompany(String restaurantName, String legalPerson, String restaurantAddress, String contactNumber, String environment, Set transportationInfos, Set orderInfos) {
+    public RestaurantCompany(String restaurantName, String legalPerson, String restaurantAddress, String contactNumber, String environment) {
         this.restaurantName = restaurantName;
         this.legalPerson = legalPerson;
         this.restaurantAddress = restaurantAddress;
         this.contactNumber = contactNumber;
         this.environment = environment;
-        this.transportationInfos = transportationInfos;
-        this.orderInfos = orderInfos;
+       /* this.transportationInfos = transportationInfos;
+        this.orderInfos = orderInfos;*/
     }
 
    
@@ -100,7 +100,7 @@ public class RestaurantCompany  implements java.io.Serializable {
         this.environment = environment;
     }
 
-    public Set getTransportationInfos() {
+   /* public Set getTransportationInfos() {
         return this.transportationInfos;
     }
     
@@ -115,7 +115,7 @@ public class RestaurantCompany  implements java.io.Serializable {
     public void setOrderInfos(Set orderInfos) {
         this.orderInfos = orderInfos;
     }
-   
+   */
 
 
 

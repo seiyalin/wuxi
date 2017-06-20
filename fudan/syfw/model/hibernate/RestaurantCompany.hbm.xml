@@ -35,7 +35,7 @@
                 <comment>环境</comment>
             </column>
         </property>
-        <set name="transportationInfos" inverse="true" lazy="false">
+        <!-- <set name="transportationInfos" inverse="true" lazy="false">
             <key>
                 <column name="restaurantId" length="30" not-null="true">
                     <comment>餐饮企业编码</comment>
@@ -50,6 +50,6 @@
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.OrderInfo" />
-        </set>
+        </set> -->
     </class>
 </hibernate-mapping>

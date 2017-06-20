@@ -8,7 +8,7 @@ import java.util.Date;
  * 水质管理
  */
 
-public class WaterQuality  implements java.io.Serializable {
+public class WaterQuality  implements java.io.Serializable,Comparable<WaterQuality> {
 
 
     // Fields    
@@ -23,6 +23,9 @@ public class WaterQuality  implements java.io.Serializable {
      private String personInCharge; //负责人
 
 
+     public int compareTo(WaterQuality w){
+    	 return testTime.compareTo(w.getTestTime());
+     }
     // Constructors
 
     /** default constructor */

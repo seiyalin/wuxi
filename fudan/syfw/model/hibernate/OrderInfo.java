@@ -25,7 +25,7 @@ public class OrderInfo  implements java.io.Serializable, Comparable<OrderInfo> {
      private Date orderTime;		//订单时间
      private String buyerPhone;		//买家电话
      private String buyer;			//买家
-     private Set traces = new HashSet(0);
+     //private Set traces = new HashSet(0);
      private Set processInfos = new HashSet(0);
 
 
@@ -41,7 +41,7 @@ public class OrderInfo  implements java.io.Serializable, Comparable<OrderInfo> {
     }
     
     /** full constructor */
-    public OrderInfo(RestaurantCompany restaurantCompany, ProcessCompany processCompany, String cages, String product, Double number, String handler, Date orderTime, String buyerPhone, String buyer, Set traces, Set processInfos) {
+    public OrderInfo(RestaurantCompany restaurantCompany, ProcessCompany processCompany, String cages, String product, Double number, String handler, Date orderTime, String buyerPhone, String buyer, Set processInfos) {
         this.restaurantCompany = restaurantCompany;
         this.processCompany = processCompany;
         this.cages = cages;
@@ -51,7 +51,7 @@ public class OrderInfo  implements java.io.Serializable, Comparable<OrderInfo> {
         this.orderTime = orderTime;
         this.buyerPhone = buyerPhone;
         this.buyer = buyer;
-        this.traces = traces;
+        //this.traces = traces;
         this.processInfos = processInfos;
     }
 
@@ -142,13 +142,13 @@ public class OrderInfo  implements java.io.Serializable, Comparable<OrderInfo> {
         this.buyer = buyer;
     }
 
-    public Set getTraces() {
+   /* public Set getTraces() {
         return this.traces;
     }
     
     public void setTraces(Set traces) {
         this.traces = traces;
-    }
+    }*/
 
     public Set getProcessInfos() {
         return this.processInfos;

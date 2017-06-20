@@ -8,7 +8,7 @@ import java.util.Date;
  * 疾病管理（进行疾病检查时录入信息）
  */
 
-public class IllnessInfo  implements java.io.Serializable {
+public class IllnessInfo  implements java.io.Serializable,Comparable<IllnessInfo> {
 
 
     // Fields    
@@ -22,6 +22,9 @@ public class IllnessInfo  implements java.io.Serializable {
      private String note;		//记录及结果
 
 
+     public int compareTo(IllnessInfo ill){
+    	 return illTime.compareTo(ill.getIllTime());
+     }
     // Constructors
 
     /** default constructor */

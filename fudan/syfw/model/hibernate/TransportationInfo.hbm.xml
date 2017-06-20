@@ -10,7 +10,7 @@
             <column name="transId" length="40" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="restaurantCompany" class="org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany" fetch="select" cascade="save-update">
+        <many-to-one name="restaurantCompany" class="org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany" lazy="false" fetch="select" cascade="save-update">
             <column name="restaurantId" length="30" not-null="true">
                 <comment>餐饮企业编码</comment>
             </column>
@@ -70,14 +70,14 @@
                 <comment>联系方式</comment>
             </column>
         </property>
-        <set name="traces" inverse="true" lazy="false">
+        <!-- <set name="traces" inverse="true" cascade="none" lazy="false">
             <key>
                 <column name="transId" length="40" not-null="true">
                     <comment>运输编号</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.Trace" />
-        </set>
+        </set> -->
         <set name="processInfos" inverse="true" cascade="none" lazy="false">
             <key>
                 <column name="transId" length="40">
