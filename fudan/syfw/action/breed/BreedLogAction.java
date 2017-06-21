@@ -156,11 +156,12 @@ public class BreedLogAction extends ActionSupport{
      //获取可选的网箱（单选框的选项）
      public String getOptionalNetCage(){
     	 breedCompany = userService.findBreedCompanyById(companyId);
-    	 Set<BreedArea> sets = new HashSet<BreedArea>();
-		 sets = breedCompany.getBreedAreas();
+    	/* Set<BreedArea> sets = new HashSet<BreedArea>();
+		 sets = breedCompany.getBreedAreas();*/
+		 List<BreedArea> areas = breedAreaService.getBreedArea(breedCompany);
 		 List<NetCage> list = new ArrayList<NetCage>();
 		
-    	 for(BreedArea area:sets){
+    	 for(BreedArea area:areas){
     		 Set<NetCage> netcages = area.getNetCages();
     		 list.addAll(netcages);
     	 }
@@ -248,7 +249,8 @@ public class BreedLogAction extends ActionSupport{
     //获取可选的养殖批次（单选框的选项）
      public String getOptionalBreedNo(){
     	 breedCompany = userService.findBreedCompanyById(companyId);
-    	 Set<BreedArea> sets = new HashSet<BreedArea>();
+    	 List<BreedNo> list = breedLogService.getBreedNo(breedCompany);
+    	 /*Set<BreedArea> sets = new HashSet<BreedArea>();
 		 sets = breedCompany.getBreedAreas();
 		 List<NetCage> list = new ArrayList<NetCage>();
 		
@@ -262,10 +264,10 @@ public class BreedLogAction extends ActionSupport{
     		 Set<BreedNo> set = netcage.getBreedNos();
     		 breeds.addAll(set);
     		 
-    	 }
+    	 }*/
     	 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedLogs","Netcage","illnessInfos",
     			 "netCage", "inPondTime", "inPondNumber", "outPond","processInfos","qualityControls","vaccineInfos","traces" };
-    	 OptionalBreedNoList = JsonUtils.toJSONResult(true,breeds,json_exclude);
+    	 OptionalBreedNoList = JsonUtils.toJSONResult(true, list, json_exclude);
     	 //OptionalCompanyList = JsonUtils.toJSONResult(true,list);
     	 
     	 return SUCCESS;
@@ -274,11 +276,12 @@ public class BreedLogAction extends ActionSupport{
      //获取可选的原料（单选框的选项）
      public String getOptionalMaterial(){
     	 breedCompany = userService.findBreedCompanyById(companyId);
-    	 Set<FeedInfo> sets = new HashSet<FeedInfo>();
-		 sets = breedCompany.getFeedInfos();
+    	 List<FeedInfo> list = feedInfoService.getFeed(breedCompany);
+    	/* Set<FeedInfo> sets = new HashSet<FeedInfo>();
+		 sets = breedCompany.getFeedInfos();*/
 		
 		 json_exclude = new String[]{"breedCompany", "contactNumber", "address", "amount", "breedLogs"};
-    	 OptionalMaterialList = JsonUtils.toJSONResult(true, sets, json_exclude);
+    	 OptionalMaterialList = JsonUtils.toJSONResult(true, list, json_exclude);
     	 
     	 return SUCCESS;
      }
@@ -318,17 +321,18 @@ public class BreedLogAction extends ActionSupport{
      //获取某批产品的喂养记录 
 	public String getListBreedLogByNo(){
     	 try {
-			Set<BreedLog> sets = new HashSet<BreedLog>();
+			//Set<BreedLog> sets = new HashSet<BreedLog>();
 			breedBatch = breedLogService.findObjectById(breedNo);
-			sets = breedBatch.getBreedLogs();
+			List<BreedLog> list = breedLogService.getBreedLog(iDisplayStart, iDisplayLength, breedBatch);
+			/*sets = breedBatch.getBreedLogs();
 			List<BreedLog> list = new ArrayList<BreedLog>(); 
 			list.addAll(sets);
 			Collections.sort(list);
-			List<BreedLog> logList = breedLogService.getList(list, iDisplayStart, iDisplayLength);
+			List<BreedLog> logList = breedLogService.getList(list, iDisplayStart, iDisplayLength);*/
 			int count = breedLogService.getCount();
 			// sEcho = count;
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedLogs","breedStaff"};
-			 BreedLogDisplay= JsonUtils.toJSONResult(count, logList, sEcho, json_exclude);
+			 BreedLogDisplay= JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -382,16 +386,17 @@ public class BreedLogAction extends ActionSupport{
      //获得某批产品的疾病记录
      public String getListIllnessInfo(){
     	 try {
-			Set<IllnessInfo> sets = new HashSet<IllnessInfo>();
+			//Set<IllnessInfo> sets = new HashSet<IllnessInfo>();
 			breedBatch = breedLogService.findObjectById(breedNo);
-			sets = breedBatch.getIllnessInfos();
+			/*sets = breedBatch.getIllnessInfos();
 			 
 			List<IllnessInfo> list = new ArrayList<IllnessInfo>();
 			list.addAll(sets);
-			Collections.sort(list);
+			Collections.sort(list);*/
+			List<IllnessInfo> list = breedLogService.getIllness(breedBatch);
 			 //int count = sets.size();
 			// sEcho = count;
-			 json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
+			 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 			 IllnessInfoDisplay= JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -446,16 +451,17 @@ public class BreedLogAction extends ActionSupport{
      //获得某批产品的检疫防疫记录
      public String getListVaccineInfo(){
     	 try {
-			Set<VaccineInfo> sets = new HashSet<VaccineInfo>();
+			//Set<VaccineInfo> sets = new HashSet<VaccineInfo>();
 			breedBatch = breedLogService.findObjectById(breedNo);
-			sets = breedBatch.getVaccineInfos();
+			/*sets = breedBatch.getVaccineInfos();
 			 
 			List<VaccineInfo> list = new ArrayList<VaccineInfo>();
 			list.addAll(sets);
-			Collections.sort(list);
+			Collections.sort(list);*/
+			List<VaccineInfo> list = breedLogService.getVaccine(breedBatch);
 			 //int count = sets.size();
 			// sEcho = count;
-			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
+			json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 			 VaccineInfoDisplay= JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
@@ -542,20 +548,21 @@ public class BreedLogAction extends ActionSupport{
      //获得企业的所有出塘记录
      public String getListOutPond(){
     	 try {
-			Set<OutPond> sets = new HashSet<OutPond>();
+		//	Set<OutPond> sets = new HashSet<OutPond>();
 			breedCompany = userService.findBreedCompanyById(companyId);
-			
+			List<OutPond> outList = breedLogService.getOutPond(iDisplayStart, iDisplayLength, breedCompany);
+		/*	
 			sets = breedCompany.getOutPonds();
 			List<OutPond> list = new ArrayList<OutPond>(); 
 			list.addAll(sets);
 			Collections.sort(list);
-			List<OutPond> outList = breedLogService.getOutPondList(list, iDisplayStart, iDisplayLength);
+			List<OutPond> outList = breedLogService.getOutPondList(list, iDisplayStart, iDisplayLength);*/
 			int count = breedLogService.getCount();
 			 
 			 //int count = sets.size();
 			// sEcho = count;
 			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedCompany"};
-			OutPondDisplay= JsonUtils.toJSONResult(count, outList, sEcho);
+			OutPondDisplay= JsonUtils.toJSONResult(count, outList, sEcho, json_exclude);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -609,16 +616,17 @@ public class BreedLogAction extends ActionSupport{
      //获得某批产品的质检记录
      public String getListQualityControl(){
     	 try {
-			Set<QualityControl> sets = new HashSet<QualityControl>();
+			//Set<QualityControl> sets = new HashSet<QualityControl>();
 			breedBatch = breedLogService.findObjectById(breedNo);
-			sets = breedBatch.getQualityControls();
+			List<QualityControl> list = breedLogService.getQc(breedBatch);
+			/*sets = breedBatch.getQualityControls();
 			 
 			List<QualityControl> list = new ArrayList<QualityControl>();
 			list.addAll(sets);
-			Collections.sort(list);
+			Collections.sort(list);*/
 			 //int count = sets.size();
 			// sEcho = count;
-			json_exclude = new String[]{"handler","hibernateLazyInitializer", "breedNo"};
+			json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 			QualityControlDisplay= JsonUtils.toJSONResult(true, list, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {

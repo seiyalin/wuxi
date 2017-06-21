@@ -21,7 +21,7 @@ public class BreedStaff  implements java.io.Serializable, Comparable<BreedStaff>
      private String position;			//职位
      private String breedSpecies;		//负责养殖品种
      private String experience;			//相关资质和养殖经历
-     private Set breedLogs = new HashSet(0);
+   //  private Set breedLogs = new HashSet(0);
 
 
     // Constructors
@@ -37,14 +37,14 @@ public class BreedStaff  implements java.io.Serializable, Comparable<BreedStaff>
     }
     
     /** full constructor */
-    public BreedStaff(BreedCompany breedCompany, String staffName, String breedArea, String position, String breedSpecies, String experience, Set breedLogs) {
+    public BreedStaff(BreedCompany breedCompany, String staffName, String breedArea, String position, String breedSpecies, String experience) {
         this.breedCompany = breedCompany;
         this.staffName = staffName;
         this.breedAreas = breedArea;
         this.position = position;
         this.breedSpecies = breedSpecies;
         this.experience = experience;
-        this.breedLogs = breedLogs;
+        //this.breedLogs = breedLogs;
     }
     
     //排序
@@ -110,14 +110,14 @@ public class BreedStaff  implements java.io.Serializable, Comparable<BreedStaff>
         this.experience = experience;
     }
 
-    public Set getBreedLogs() {
+  /*  public Set getBreedLogs() {
         return this.breedLogs;
     }
     
     public void setBreedLogs(Set breedLogs) {
         this.breedLogs = breedLogs;
     }
-   
+   */
 
 
 

@@ -126,6 +126,7 @@ public class BreedAreaAction extends ActionSupport{
     	 if(netcages != null){
     		 String[] netcage = netcages.split(",");
     		 for(String net:netcage){
+    			 net.trim();
     			 NetCage nc = new NetCage();
     			 nc.setNetcageId(net);
     			 nc.setBreedArea(breedArea);
@@ -146,16 +147,17 @@ public class BreedAreaAction extends ActionSupport{
     	 try {
 			Set<BreedArea> sets = new HashSet<BreedArea>();
 			 breedCompany = userService.findBreedCompanyById(companyId);
-			 sets = breedCompany.getBreedAreas();
+			 List<BreedArea> list = breedAreaService.getBreedArea(iDisplayStart, iDisplayLength, breedCompany);
+			 /*sets = breedCompany.getBreedAreas();
 			 List<BreedArea> list = new ArrayList<BreedArea>();
 			 list.addAll(sets);
-			/* Collections.sort(list,new comparator<BreedArea>(){
+			 Collections.sort(list,new comparator<BreedArea>(){
 				 public int compare(BreedArea a, BreedArea b){
 					 return a.hashCode().compareTo(b.hashCode());
 				 }
-			 });*/
+			 });
 			 Collections.sort(list);
-			 List<BreedArea> areaList = breedAreaService.getList(list, iDisplayStart, iDisplayLength);
+			 List<BreedArea> areaList = breedAreaService.getList(list, iDisplayStart, iDisplayLength);*/
 			 int count = breedAreaService.getCount();
 			// sEcho = count;
 			/* JSONArray areas = new JSONArray();
@@ -169,7 +171,7 @@ public class BreedAreaAction extends ActionSupport{
 				 areas.add(area);			 
 				}*/
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany"};
-			 setBreedAreaDisplay(JsonUtils.toJSONResult(count, areaList, sEcho));
+			 setBreedAreaDisplay(JsonUtils.toJSONResult(count, list, sEcho, json_exclude));
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -255,17 +257,18 @@ public class BreedAreaAction extends ActionSupport{
     	 try {
  			Set<BreedStaff> sets = new HashSet<BreedStaff>();
  			breedCompany = userService.findBreedCompanyById(companyId);
- 			sets = breedCompany.getBreedStaffs();
+ 			List<BreedStaff> list = breedStaffService.getBreedStaff(iDisplayStart, iDisplayLength, breedCompany);
+ 			/*sets = breedCompany.getBreedStaffs();
  			List<BreedStaff> list = new ArrayList<BreedStaff>();
  			list.addAll(sets);
  			
  			Collections.sort(list);
-			List<BreedStaff> staffList = breedStaffService.getList(list, iDisplayStart, iDisplayLength);
+			List<BreedStaff> staffList = breedStaffService.getList(list, iDisplayStart, iDisplayLength);*/
 			int count = breedStaffService.getCount();
 			 
  			//sEcho = count;
 			json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany","breedLogs"};
- 			setBreedStaffDisplay(JsonUtils.toJSONResult(count, staffList, sEcho, json_exclude));
+ 			setBreedStaffDisplay(JsonUtils.toJSONResult(count, list, sEcho, json_exclude));
  			return SUCCESS;
  		} catch (Exception e) {
  			// TODO Auto-generated catch block

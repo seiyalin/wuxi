@@ -167,13 +167,14 @@ public class TransportationInfoAction extends ActionSupport{
     
 	public String getListTransInfo(){
     	 try {
-			Set<TransportationInfo> sets = new HashSet<TransportationInfo>();
+			//Set<TransportationInfo> sets = new HashSet<TransportationInfo>();
 			 processCompany = userService.findProcessCompanyById(companyId);
-			 sets = processCompany.getTransportationInfos();
+			 /*sets = processCompany.getTransportationInfos();
 			 List<TransportationInfo> list = new ArrayList<TransportationInfo>();
 			 list.addAll(sets);
 			 Collections.sort(list);
-			 List<TransportationInfo> transList = transInfoService.getList(list, iDisplayStart, iDisplayLength);
+			 List<TransportationInfo> transList = transInfoService.getList(list, iDisplayStart, iDisplayLength);*/
+			 List<TransportationInfo> transList = transInfoService.getTrans(iDisplayStart, iDisplayLength, processCompany);
 			 int count = transInfoService.getCount();
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processCompany","transportationInfos","orderInfos","traces"};
 			 TransInfoDisplay= JsonUtils.toJSONResult(count, transList, sEcho, json_exclude);

@@ -124,16 +124,17 @@ public class ProcessInfoAction extends ActionSupport{
      }
 	
      //获取本企业下的所有加工人员，加工企业调用
-     @SuppressWarnings("unused")
+   
 	public String getListProcessStaff(){
     	 try {
-			Set<ProcessStaff> sets = new HashSet<ProcessStaff>();
+			//Set<ProcessStaff> sets = new HashSet<ProcessStaff>();
 			 processCompany = userService.findProcessCompanyById(companyId);
-			 sets = processCompany.getProcessStaffs();
+			 /*sets = processCompany.getProcessStaffs();
 			 List<ProcessStaff> list = new ArrayList<ProcessStaff>();
 			 list.addAll(sets);
 			 Collections.sort(list);
-			 List<ProcessStaff> staffList = processInfoService.getList(list, iDisplayStart,iDisplayLength);
+			 List<ProcessStaff> staffList = processInfoService.getList(list, iDisplayStart,iDisplayLength);*/
+			 List<ProcessStaff> list = processInfoService.getProcessStaff(iDisplayStart, iDisplayLength, processCompany);
 			 int count = processInfoService.getCount();
 			
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processCompany"};
@@ -207,16 +208,17 @@ public class ProcessInfoAction extends ActionSupport{
      }
 	
      //获取本企业下的所有加工记录，加工企业调用
-     @SuppressWarnings("unused")
+ 
 	public String getListProcessInfo(){
     	 try {
-			Set<ProcessInfo> sets = new HashSet<ProcessInfo>();
+		//	Set<ProcessInfo> sets = new HashSet<ProcessInfo>();
 			 processCompany = userService.findProcessCompanyById(companyId);
-			 sets = processCompany.getProcessInfos();
+			/* sets = processCompany.getProcessInfos();
 			 List<ProcessInfo> list = new ArrayList<ProcessInfo>();
 			 list.addAll(sets);
 			 Collections.sort(list);
-			 List<ProcessInfo> infoList = processInfoService.getInfoList(list, iDisplayStart, iDisplayLength);
+			 List<ProcessInfo> infoList = processInfoService.getInfoList(list, iDisplayStart, iDisplayLength);*/
+    		 List<ProcessInfo> infoList = processInfoService.getProcessCage(iDisplayStart, iDisplayLength, processCompany);
 			 int count = processInfoService.getCount();
 			// sEcho = count;
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer","orderInfo","processCompany","transportationInfo" };

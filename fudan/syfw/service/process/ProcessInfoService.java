@@ -24,9 +24,15 @@ public interface ProcessInfoService extends BaseService<ProcessInfo> {
 	//get process staff list
 	public List<ProcessStaff> getList(List<ProcessStaff> list, Integer start, Integer limit);
 	
+	//获取公司下的所有加工人员
+	public List<ProcessStaff> getProcessStaff(Integer start, Integer limit, ProcessCompany processCompany);
+	
 	//get process INFO list
 	public List<ProcessInfo> getInfoList(List<ProcessInfo> list, Integer start, Integer limit);
 	
+	//获取公司下的所有加工成品箱，分页
+	public List<ProcessInfo> getProcessCage(Integer start, Integer limit, ProcessCompany processCompany);
+		
 	//获取公司下未出售的成品箱
 	public List<ProcessInfo> getCagesInSell(ProcessCompany processCompany);
 	

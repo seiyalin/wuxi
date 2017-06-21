@@ -70,6 +70,15 @@
 	
 		</action>
 		
+		<!-- 更改投诉状态 -->
+		<action name="complaintInfo_Update" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="changeStatus">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoUpdate</param>
+			</result>
+	
+		</action>
+		
 		<!-- 显示发起的投诉信息 -->
 		<action name="launchComplaintInfo_List" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="complaintLaunch">
 		

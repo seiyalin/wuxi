@@ -7,12 +7,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
 import org.wuxi.fudan.syfw.dao.traceGi.CrabGiDao;
 import org.wuxi.fudan.syfw.dao.traceGi.TraceDao;
 import org.wuxi.fudan.syfw.dao.traceGi.TrepangGiDao;
 import org.wuxi.fudan.syfw.model.hibernate.CrabGi;
 import org.wuxi.fudan.syfw.model.hibernate.Trace;
+import org.wuxi.fudan.syfw.model.hibernate.TransportationInfo;
 import org.wuxi.fudan.syfw.model.hibernate.TrepangGi;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
 
@@ -22,6 +24,8 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 	private TraceDao traceDao;
 	private CrabGiDao crabGiDao;
 	private TrepangGiDao trepangGiDao;
+	
+	PageResult pageResult;
 	
 	//where子句
 	private String whereClause = "";
@@ -36,6 +40,35 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		crabGiDao.save(crab);
 	}
 	
+	//find all crab
+	public List<CrabGi> getCrab(Integer start, Integer limit) {
+		
+		QueryHelper queryHelper = new QueryHelper(CrabGi.class, "crabGi");
+			//pageNo=start/limit + 1       起始页从第一页开始的
+		pageResult = crabGiDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
+	//find all trepang
+	public List<TrepangGi> getTrepang(Integer start, Integer limit) {
+			
+			QueryHelper queryHelper = new QueryHelper(TrepangGi.class, "trepangGi");
+				//pageNo=start/limit + 1       起始页从第一页开始的
+			pageResult = trepangGiDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+			return pageResult.getItems();
+	}
+	
+	//get total number
+	public int getCount() {
+			// TODO Auto-generated method stub
+		if(pageResult != null){
+			return (int) pageResult.getTotalCount();
+		}else{
+			return 0;
+		}
+	}
 	//delete crab gi
 	public void deleteCrabGi(String crabId){
 		crabGiDao.delete(crabId);

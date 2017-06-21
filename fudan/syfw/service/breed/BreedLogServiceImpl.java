@@ -20,6 +20,7 @@ import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.BreedLog;
 import org.wuxi.fudan.syfw.model.hibernate.BreedNo;
+import org.wuxi.fudan.syfw.model.hibernate.FeedInfo;
 import org.wuxi.fudan.syfw.model.hibernate.IllnessInfo;
 import org.wuxi.fudan.syfw.model.hibernate.OutPond;
 import org.wuxi.fudan.syfw.model.hibernate.QualityControl;
@@ -130,7 +131,52 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 		return pageResult.getItems();
 	}
 	
-	//获取养殖区域的所有投苗记录
+	//获取公司下的所有投苗记录,不分页
+	public List<BreedNo> getBreedNo(BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
+			
+			//隐藏内连接，需要再配置文件多方设置lazy=false
+		queryHelper.addCondition("breedNo.netCage.breedArea.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("breedNo.inPondTime", "DESC");  //降序排列
+			//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+		return breedNoDao.findObjects(queryHelper);
+	}
+		
+	//获取某批产品的所有疾病记录,不分页
+	public List<IllnessInfo> getIllness(BreedNo breedBatch){
+		QueryHelper queryHelper = new QueryHelper(IllnessInfo.class, "illnessInfo");
+				
+				//隐藏内连接，需要再配置文件多方设置lazy=false
+		queryHelper.addCondition("illnessInfo.breedNo = ?", breedBatch);
+		queryHelper.addOrderByProperty("illnessInfo.illTime", "DESC");  //降序排列
+				//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+		return illnessInfoDao.findObjects(queryHelper);
+	}
+	
+	//获取某批产品的所有检疫记录,不分页
+	public List<VaccineInfo> getVaccine(BreedNo breedBatch){
+		QueryHelper queryHelper = new QueryHelper(VaccineInfo.class, "vaccineInfo");
+					
+					//隐藏内连接，需要再配置文件多方设置lazy=false
+		queryHelper.addCondition("vaccineInfo.breedNo = ?", breedBatch);
+		queryHelper.addOrderByProperty("vaccineInfo.vaccineTime", "DESC");  //降序排列
+					//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+		return vaccineInfoDao.findObjects(queryHelper);
+	}
+	
+	//获取某批产品的所有质检记录,不分页
+	public List<QualityControl> getQc(BreedNo breedBatch){
+			QueryHelper queryHelper = new QueryHelper(QualityControl.class, "qualityControl");
+						
+						//隐藏内连接，需要再配置文件多方设置lazy=false
+			queryHelper.addCondition("qualityControl.breedNo = ?", breedBatch);
+			queryHelper.addOrderByProperty("qualityControl.qcTime", "DESC");  //降序排列
+						//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+			return qualityControlDao.findObjects(queryHelper);
+		}
+	
+	
+	//获取养殖区域的所有投苗记录，分页
 	public List<BreedNo> getBreedNo(Integer start, Integer limit, BreedArea breedArea){
 		QueryHelper queryHelper = new QueryHelper(BreedNo.class, "breedNo");
 			//add condition
@@ -164,6 +210,17 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 		return pageResult.getItems();
 		}
 	
+	//获取某批产品下的所有喂养记录
+	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedNo breedNo){
+		QueryHelper queryHelper = new QueryHelper(BreedLog.class, "breedLog");
+				
+			//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("breedLog.breedNo = ?", breedNo);
+		queryHelper.addOrderByProperty("breedLog.breedTime", "DESC");  //降序排列
+		pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+	}
+	
 	//get breedNo list
 	public List<BreedNo> getList(Integer start, Integer limit) {
 			
@@ -195,6 +252,17 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 
 			return pageResult.getItems();
 		}
+	
+	//获取公司下的所有出塘记录
+	public List<OutPond> getOutPond(Integer start, Integer limit, BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(OutPond.class, "outPond");
+				
+			//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("outPond.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("outPond.outTime", "DESC");  //降序排列
+		pageResult = outPondDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+	}
 		
 	//get total number of breedNo
 	public int getCount() {

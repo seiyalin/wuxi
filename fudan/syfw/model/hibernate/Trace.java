@@ -23,6 +23,7 @@ public class Trace  implements java.io.Serializable {
      private Date outPondTime;			//出塘时间
      private String restaurant;			//餐饮企业
      private String breedSpecies;		//品种
+     private String foodStatus;   //食品状态
 
 
     // Constructors
@@ -134,6 +135,14 @@ public class Trace  implements java.io.Serializable {
     public void setBreedSpecies(String breedSpecies) {
         this.breedSpecies = breedSpecies;
     }
+
+	public String getFoodStatus() {
+		return foodStatus;
+	}
+
+	public void setFoodStatus(String foodStatus) {
+		this.foodStatus = foodStatus;
+	}
    
 
 

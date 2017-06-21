@@ -58,6 +58,7 @@ public class SupervisionAction extends ActionSupport{
 	
 	private JSONObject companyList;   //所有企业
 	private JSONObject ComplaintInfoSave;   //保存投诉信息响应
+	private JSONObject ComplaintInfoUpdate;   //更新投诉信息响应
 	private JSONObject ComplaintInfoLoad;   //获取投诉信息响应
 	private JSONObject ComplaintReactSave;  //保存投诉反馈响应
 	
@@ -97,6 +98,15 @@ public class SupervisionAction extends ActionSupport{
     	 return SUCCESS;
     	 
      }
+     
+     public String changeStatus(){
+    	 complaintInfo = supervisionService.findObjectById(complaintId);
+    	 complaintInfo.setComplaintStatus(complaintStatus);
+    	 supervisionService.update(complaintInfo);
+    	 ComplaintInfoUpdate = JsonUtils.toJSONResult(true);
+		 return SUCCESS;
+    	 
+     }
 
 	//提交投诉信息
 	public String addComplaintInfo(){		
@@ -112,6 +122,7 @@ public class SupervisionAction extends ActionSupport{
 					complaintInfo.setUserId(pc.getUserId());
 				}
 			}
+			complaintInfo.setComplaintStatus("未处理");
 			supervisionService.save(complaintInfo);  	//储存投诉信息 
 			ComplaintInfoSave = JsonUtils.toJSONResult(true);
 			return SUCCESS;

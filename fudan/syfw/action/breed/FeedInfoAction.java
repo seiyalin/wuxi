@@ -107,17 +107,19 @@ public class FeedInfoAction extends ActionSupport{
      @SuppressWarnings("unused")
 	public String getListMaterial(){
     	 try {
-			Set<FeedInfo> sets = new HashSet<FeedInfo>();
+			//Set<FeedInfo> sets = new HashSet<FeedInfo>();
 			 breedCompany = userService.findBreedCompanyById(companyId);
-			 sets = breedCompany.getFeedInfos();
+			 List<FeedInfo> list = feedInfoService.getFeed(iDisplayStart, iDisplayLength, breedCompany);
+			 int count = feedInfoService.getCount();
+			 /*sets = breedCompany.getFeedInfos();
 			 List<FeedInfo> list = new ArrayList<FeedInfo>();
 			 list.addAll(sets);
 			 Collections.sort(list);
 			 List<FeedInfo> feedList = feedInfoService.getList(list, iDisplayStart, iDisplayLength);
-			 int count = feedInfoService.getCount();
+			 int count = feedInfoService.getCount();*/
 			// sEcho = count;
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer","breedCompany"};
-			 MaterialDisplay= JsonUtils.toJSONResult(count, feedList, sEcho, json_exclude);
+			 MaterialDisplay= JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
 			 return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

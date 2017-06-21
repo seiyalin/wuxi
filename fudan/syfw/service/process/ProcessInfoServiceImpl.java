@@ -14,6 +14,7 @@ import org.wuxi.fudan.syfw.dao.process.ProcessInfoDao;
 import org.wuxi.fudan.syfw.dao.process.ProcessStaffDao;
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
+import org.wuxi.fudan.syfw.model.hibernate.BreedLog;
 import org.wuxi.fudan.syfw.model.hibernate.BreedNo;
 import org.wuxi.fudan.syfw.model.hibernate.NetCage;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
@@ -58,6 +59,17 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 		return pageResult.getItems();
 	}
 	
+	//获取公司下的所有加工人员
+	public List<ProcessStaff> getProcessStaff(Integer start, Integer limit, ProcessCompany processCompany){
+		QueryHelper queryHelper = new QueryHelper(ProcessStaff.class, "processStaff");
+				
+		//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("processStaff.processCompany = ?", processCompany);
+		queryHelper.addOrderByProperty("processStaff.idcard", "DESC");  //降序排列
+		pageResult = processStaffDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+	}
+		
 	//get process INFO list
 	public List<ProcessInfo> getInfoList(List<ProcessInfo> list, Integer start, Integer limit){
 			pageResult = processInfoDao.getPageResult(list, start/limit + 1, limit);
@@ -71,6 +83,17 @@ public class ProcessInfoServiceImpl extends BaseServiceImpl<ProcessInfo> impleme
 			//pageNo=start/limit + 1       起始页从第一页开始的
 		pageResult = processInfoDao.getPageResult(queryHelper, start/limit + 1, limit);
 
+		return pageResult.getItems();
+	}
+	
+	//获取公司下的所有加工成品箱，分页
+	public List<ProcessInfo> getProcessCage(Integer start, Integer limit, ProcessCompany processCompany){
+		QueryHelper queryHelper = new QueryHelper(ProcessInfo.class, "processInfo");
+					
+			//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("processInfo.processCompany = ?", processCompany);
+		queryHelper.addOrderByProperty("processInfo.processTime", "DESC");  //降序排列
+		pageResult = processInfoDao.getPageResult(queryHelper, start/limit+1, limit);
 		return pageResult.getItems();
 	}
 	

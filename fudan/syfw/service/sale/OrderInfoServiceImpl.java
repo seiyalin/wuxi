@@ -12,6 +12,7 @@ import org.wuxi.fudan.syfw.dao.process.ProcessInfoDao;
 import org.wuxi.fudan.syfw.dao.sale.OrderInfoDao;
 import org.wuxi.fudan.syfw.dao.sale.RestaurantCompanyDao;
 import org.wuxi.fudan.syfw.model.hibernate.OrderInfo;
+import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessInfo;
 import org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
@@ -46,6 +47,7 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<OrderInfo> implements 
 		if(cages != null){
 			String[] sellCages = cages.split(",");
 			for(String sellCage: sellCages){
+				sellCage.trim();
 				ProcessInfo process = processInfoDao.findObjectById(sellCage);
 				process.setOrderInfo(orderInfo);
 				processInfoDao.update(process);
@@ -66,6 +68,17 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<OrderInfo> implements 
 	public List<OrderInfo> getList(List<OrderInfo> list, Integer start, Integer limit){
 		pageResult = orderInfoDao.getPageResult(list, start/limit + 1, limit);
 
+		return pageResult.getItems();
+	}
+	
+	//获取公司下的所有销售订单，分页
+	public List<OrderInfo> getOrder(Integer start, Integer limit, ProcessCompany processCompany){
+		QueryHelper queryHelper = new QueryHelper(OrderInfo.class, "orderInfo");
+						
+				//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("orderInfo.processCompany = ?", processCompany);
+		queryHelper.addOrderByProperty("orderInfo.orderTime", "DESC");  //降序排列
+		pageResult = orderInfoDao.getPageResult(queryHelper, start/limit+1, limit);
 		return pageResult.getItems();
 	}
 	

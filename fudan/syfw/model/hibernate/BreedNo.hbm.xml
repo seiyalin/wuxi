@@ -10,7 +10,7 @@
             <column name="breedNo" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="outPond" class="org.wuxi.fudan.syfw.model.hibernate.OutPond" fetch="select" cascade="none">
+        <many-to-one name="outPond" class="org.wuxi.fudan.syfw.model.hibernate.OutPond" fetch="select" lazy="false" cascade="none">
             <column name="outPondId" length="40">
                 <comment>出塘编号</comment>
             </column>
@@ -45,7 +45,7 @@
                 <comment>投苗品种</comment>
             </column>
         </property>
-        <set name="vaccineInfos" inverse="true" cascade="delete" lazy="false">
+       <!--  <set name="vaccineInfos" inverse="true" cascade="delete" lazy="false">
             <key>
                 <column name="breedNo" length="20" not-null="true">
                     <comment>产品批次</comment>
@@ -60,8 +60,8 @@
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.IllnessInfo" />
-        </set>
-        <set name="qualityControls" inverse="true" cascade="delete" lazy="false">
+        </set> -->
+       <!--  <set name="qualityControls" inverse="true" cascade="delete" lazy="false">
             <key>
                 <column name="breedNo" length="20" not-null="true">
                     <comment>产品批次</comment>
@@ -76,7 +76,7 @@
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.BreedLog" />
-        </set>
+        </set> -->
        <!--  <set name="traces" inverse="true" cascade="none">
             <key>
                 <column name="breedNo" length="20" not-null="true">

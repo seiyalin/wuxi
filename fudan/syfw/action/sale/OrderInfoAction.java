@@ -131,7 +131,7 @@ public class OrderInfoAction extends ActionSupport{
      }
 	
      //获取所有餐厅
-     @SuppressWarnings("unused")
+   
 	public String getListRestaurant(){
     	 try {
 			
@@ -224,16 +224,17 @@ public class OrderInfoAction extends ActionSupport{
      }
 	
      //获取本企业下的所有销售记录，加工企业调用
-     @SuppressWarnings("unused")
+ 
 	public String getListOrderInfo(){
     	 try {
-			Set<OrderInfo> sets = new HashSet<OrderInfo>();
+			//Set<OrderInfo> sets = new HashSet<OrderInfo>();
 			 processCompany = userService.findProcessCompanyById(companyId);
-			 sets = processCompany.getOrderInfos();
+			/* sets = processCompany.getOrderInfos();
 			 List<OrderInfo> list = new ArrayList<OrderInfo>();
 			 list.addAll(sets);
 			 Collections.sort(list);
-			 List<OrderInfo> orderList = orderInfoService.getList(list, iDisplayStart, iDisplayLength);
+			 List<OrderInfo> orderList = orderInfoService.getList(list, iDisplayStart, iDisplayLength);*/
+			 List<OrderInfo> orderList = orderInfoService.getOrder(iDisplayStart, iDisplayLength, processCompany);
 			 int count = orderInfoService.getCount();
 			 
 			 json_exclude = new String[]{"handler","hibernateLazyInitializer","processCompany","transportationInfos","orderInfos","traces"};

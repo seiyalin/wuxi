@@ -26,10 +26,10 @@ public class ProcessCompany  implements java.io.Serializable {
      private String processBatch;			//加工批次
      private String environment;			//加工环境
      private String userId;					//用户id，根据登录用户名可以找到企业信息
-     private Set processInfos = new HashSet(0);
-     private Set processStaffs = new HashSet(0);
-     private Set<OrderInfo> orderInfos = new HashSet<OrderInfo>(0);
-     private Set<TransportationInfo> transportationInfos = new HashSet<TransportationInfo>(0);
+ //    private Set processInfos = new HashSet(0);
+    // private Set processStaffs = new HashSet(0);
+   //  private Set<OrderInfo> orderInfos = new HashSet<OrderInfo>(0);
+  //   private Set<TransportationInfo> transportationInfos = new HashSet<TransportationInfo>(0);
 
 
     // Constructors
@@ -47,17 +47,17 @@ public class ProcessCompany  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public ProcessCompany(String companyName, String legalPerson, String companyAddress, String contactNumber, String processBatch, String environment, Set processInfos, Set processStaffs, Set<OrderInfo> orderInfos, Set<TransportationInfo> transInfos) {
+    public ProcessCompany(String companyName, String legalPerson, String companyAddress, String contactNumber, String processBatch, String environment) {
         this.companyName = companyName;
         this.legalPerson = legalPerson;
         this.companyAddress = companyAddress;
         this.contactNumber = contactNumber;
         this.processBatch = processBatch;
         this.environment = environment;
-        this.processInfos = processInfos;
-        this.processStaffs = processStaffs;
-        this.orderInfos = orderInfos;
-        this.transportationInfos = transInfos;
+      //  this.processInfos = processInfos;
+      //  this.processStaffs = processStaffs;
+     /*   this.orderInfos = orderInfos;
+        this.transportationInfos = transInfos;*/
     }
 
    
@@ -119,21 +119,21 @@ public class ProcessCompany  implements java.io.Serializable {
         this.environment = environment;
     }
 
-    public Set getProcessInfos() {
+  /*  public Set getProcessInfos() {
         return this.processInfos;
     }
     
     public void setProcessInfos(Set processInfos) {
         this.processInfos = processInfos;
     }
-
-    public Set getProcessStaffs() {
+*/
+    /*public Set getProcessStaffs() {
         return this.processStaffs;
     }
     
     public void setProcessStaffs(Set processStaffs) {
         this.processStaffs = processStaffs;
-    }
+    }*/
 
 	public String getUserId() {
 		return userId;
@@ -143,7 +143,7 @@ public class ProcessCompany  implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public Set<OrderInfo> getOrderInfos() {
+	/*public Set<OrderInfo> getOrderInfos() {
 		return orderInfos;
 	}
 
@@ -158,7 +158,7 @@ public class ProcessCompany  implements java.io.Serializable {
 
 	public void setTransportationInfos(Set<TransportationInfo> transportationInfos) {
 		this.transportationInfos = transportationInfos;
-	}
+	}*/
    
 
 

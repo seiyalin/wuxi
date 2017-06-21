@@ -11,6 +11,8 @@ import org.wuxi.fudan.syfw.dao.breed.BreedAreaDao;
 import org.wuxi.fudan.syfw.dao.breed.NetCageDao;
 import org.wuxi.fudan.syfw.dao.breed.WaterQualityDao;
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
+import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
+import org.wuxi.fudan.syfw.model.hibernate.BreedNo;
 import org.wuxi.fudan.syfw.model.hibernate.NetCage;
 import org.wuxi.fudan.syfw.model.hibernate.WaterQuality;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
@@ -63,6 +65,26 @@ public class BreedAreaServiceImpl extends BaseServiceImpl<BreedArea> implements 
 
 		return pageResult.getItems();
 	}
+	
+	//获取公司下的所有养殖区域
+	public List<BreedArea> getBreedArea(Integer start, Integer limit, BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(BreedArea.class, "breedArea");
+			
+		queryHelper.addCondition("breedArea.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("breedArea.areaId", "DESC");  //降序排列
+		pageResult = breedAreaDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+	}
+	
+	//获取公司下的所有养殖区域，不分页
+		public List<BreedArea> getBreedArea(BreedCompany breedCompany){
+			QueryHelper queryHelper = new QueryHelper(BreedArea.class, "breedArea");
+				
+			queryHelper.addCondition("breedArea.breedCompany = ?", breedCompany);
+			queryHelper.addOrderByProperty("breedArea.areaId", "DESC");  //降序排列
+		
+			return breedAreaDao.findObjects(queryHelper);
+		}
 	
 	//get breedArea list 分页
 	public List<BreedArea> getList(List<BreedArea> list, Integer start, Integer limit){

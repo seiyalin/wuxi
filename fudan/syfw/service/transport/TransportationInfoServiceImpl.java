@@ -15,6 +15,7 @@ import org.wuxi.fudan.syfw.dao.sale.OrderInfoDao;
 import org.wuxi.fudan.syfw.dao.sale.RestaurantCompanyDao;
 import org.wuxi.fudan.syfw.dao.transport.TransportationInfoDao;
 import org.wuxi.fudan.syfw.model.hibernate.OrderInfo;
+import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessInfo;
 import org.wuxi.fudan.syfw.model.hibernate.RestaurantCompany;
 import org.wuxi.fudan.syfw.model.hibernate.TransportationInfo;
@@ -52,6 +53,17 @@ public class TransportationInfoServiceImpl extends BaseServiceImpl<Transportatio
 	public List<TransportationInfo> getList(List<TransportationInfo> list, Integer start, Integer limit){
 		pageResult = transportationInfoDao.getPageResult(list, start/limit + 1, limit);
 
+		return pageResult.getItems();
+	}
+	
+	//获取公司下的所有运输信息，分页
+	public List<TransportationInfo> getTrans(Integer start, Integer limit, ProcessCompany processCompany){
+		QueryHelper queryHelper = new QueryHelper(TransportationInfo.class, "transInfo");
+							
+					//隐藏内连接，需要在配置文件多方设置lazy=false
+		queryHelper.addCondition("transInfo.processCompany = ?", processCompany);
+		queryHelper.addOrderByProperty("transInfo.transTime", "DESC");  //降序排列
+		pageResult = transportationInfoDao.getPageResult(queryHelper, start/limit+1, limit);
 		return pageResult.getItems();
 	}
 	

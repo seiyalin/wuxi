@@ -3,6 +3,7 @@ package org.wuxi.fudan.syfw.service.breed;
 import java.util.List;
 
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
+import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.NetCage;
 import org.wuxi.fudan.syfw.model.hibernate.WaterQuality;
 import org.wuxi.fudan.syfw.service.base.BaseService;
@@ -26,6 +27,12 @@ public interface BreedAreaService extends BaseService<BreedArea> {
 	
 	//get breedArea list
 	public List<BreedArea> getList(Integer start, Integer limit);
+	
+	//获取公司下的所有养殖区域
+	public List<BreedArea> getBreedArea(Integer start, Integer limit, BreedCompany breedCompany);
+	
+	//获取公司下的所有养殖区域，不分页
+	public List<BreedArea> getBreedArea(BreedCompany breedCompany);
 	
 	//get breedArea list 分页
 	public List<BreedArea> getList(List<BreedArea> list, Integer start, Integer limit);

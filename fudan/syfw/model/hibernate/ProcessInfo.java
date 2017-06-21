@@ -21,7 +21,7 @@ public class ProcessInfo  implements java.io.Serializable, Comparable<ProcessInf
      private OrderInfo orderInfo;	//订单信息
      private Date processTime;		//加工日期
      private String personInCharge; //负责人
-     private Set traces = new HashSet(0);
+//     private Set traces = new HashSet(0);
 
 
     // Constructors
@@ -37,14 +37,14 @@ public class ProcessInfo  implements java.io.Serializable, Comparable<ProcessInf
     }
     
     /** full constructor */
-    public ProcessInfo(BreedNo breedNo, ProcessCompany processCompany, TransportationInfo transportationInfo, OrderInfo orderInfo, Date processTime, String personInCharge, Set traces) {
+    public ProcessInfo(BreedNo breedNo, ProcessCompany processCompany, TransportationInfo transportationInfo, OrderInfo orderInfo, Date processTime, String personInCharge) {
         this.breedNo = breedNo;
         this.processCompany = processCompany;
         this.transportationInfo = transportationInfo;
         this.orderInfo = orderInfo;
         this.processTime = processTime;
         this.personInCharge = personInCharge;
-        this.traces = traces;
+ //       this.traces = traces;
     }
 
     //分页
@@ -110,13 +110,13 @@ public class ProcessInfo  implements java.io.Serializable, Comparable<ProcessInf
         this.personInCharge = personInCharge;
     }
 
-    public Set getTraces() {
+   /* public Set getTraces() {
         return this.traces;
     }
     
     public void setTraces(Set traces) {
         this.traces = traces;
-    }
+    }*/
    
 
 

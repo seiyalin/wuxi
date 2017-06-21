@@ -26,10 +26,10 @@ public class BreedCompany  implements java.io.Serializable {
     private String breedSpecies;			//企业养殖品种
     private String safeGrade;				//养殖品种安全等级
     private String userId;					//用户id，根据登录用户名可以找到企业信息
-    private Set breedStaffs = new HashSet(0);  //初始容量为0
-    private Set breedAreas = new HashSet(0);
-    private Set feedInfos = new HashSet(0);
-    private Set outPonds = new HashSet(0);
+    //private Set breedStaffs = new HashSet(0);  //初始容量为0
+  //  private Set breedAreas = new HashSet(0);
+    /*private Set feedInfos = new HashSet(0);*/
+   // private Set outPonds = new HashSet(0);
 
 
     // Constructors
@@ -48,17 +48,17 @@ public class BreedCompany  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public BreedCompany(String companyName, String legalPerson, String companyAddress, String contactNumber, String breedSpecies, String safeGrade, Set breedStaffs, Set breedAreas,  Set feedInfos, Set outPonds) {
+    public BreedCompany(String companyName, String legalPerson, String companyAddress, String contactNumber, String breedSpecies, String safeGrade) {
         this.companyName = companyName;
         this.legalPerson = legalPerson;
         this.companyAddress = companyAddress;
         this.contactNumber = contactNumber;
         this.breedSpecies = breedSpecies;
         this.safeGrade = safeGrade;
-        this.breedStaffs = breedStaffs;
-        this.breedAreas = breedAreas;
-        this.feedInfos = feedInfos;
-        this.outPonds = outPonds;
+       // this.breedStaffs = breedStaffs;
+      //  this.breedAreas = breedAreas;
+       // this.feedInfos = feedInfos;
+       // this.outPonds = outPonds;
     }
 
    
@@ -120,21 +120,21 @@ public class BreedCompany  implements java.io.Serializable {
         this.safeGrade = safeGrade;
     }
 
-    public Set getBreedStaffs() {
+   /* public Set getBreedStaffs() {
         return this.breedStaffs;
     }
     
     public void setBreedStaffs(Set breedStaffs) {
         this.breedStaffs = breedStaffs;
     }
-
-    public Set getBreedAreas() {
+*/
+  /*  public Set getBreedAreas() {
         return this.breedAreas;
     }
     
     public void setBreedAreas(Set breedAreas) {
         this.breedAreas = breedAreas;
-    }
+    }*/
 
 	public String getUserId() {
 		return userId;
@@ -144,21 +144,21 @@ public class BreedCompany  implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public Set getFeedInfos() {
+	/*public Set getFeedInfos() {
 		return feedInfos;
 	}
 
 	public void setFeedInfos(Set feedInfos) {
 		this.feedInfos = feedInfos;
-	}
+	}*/
 
-	public Set getOutPonds() {
+	/*public Set getOutPonds() {
 		return outPonds;
 	}
 
 	public void setOutPonds(Set outPonds) {
 		this.outPonds = outPonds;
-	}
+	}*/
    
 
 

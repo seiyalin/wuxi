@@ -23,10 +23,10 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
      private String inPondMethod;	//投苗方式
      private String breedPerson;	//投苗人
      private String breedSpecies;	//投苗品种
-     private Set vaccineInfos = new HashSet(0);
-     private Set illnessInfos = new HashSet(0);
-     private Set qualityControls = new HashSet(0);
-     private Set breedLogs = new HashSet(0);
+   //  private Set vaccineInfos = new HashSet(0);
+    // private Set illnessInfos = new HashSet(0);
+   //  private Set qualityControls = new HashSet(0);
+    // private Set breedLogs = new HashSet(0);
      /*private Set traces = new HashSet(0);*/
      //private Set processInfos = new HashSet(0);
 
@@ -44,7 +44,7 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
     }
     
     /** full constructor */
-    public BreedNo(OutPond outPond, NetCage netCage, Date inPondTime, String inPondNumber, String inPondMethod, String breedPerson, String breedSpecies, Set vaccineInfos, Set illnessInfos, Set qualityControls, Set breedLogs) {
+    public BreedNo(OutPond outPond, NetCage netCage, Date inPondTime, String inPondNumber, String inPondMethod, String breedPerson, String breedSpecies) {
         this.outPond = outPond;
         this.netCage = netCage;
         this.inPondTime = inPondTime;
@@ -52,10 +52,10 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
         this.inPondMethod = inPondMethod;
         this.breedPerson = breedPerson;
         this.breedSpecies = breedSpecies;
-        this.vaccineInfos = vaccineInfos;
-        this.illnessInfos = illnessInfos;
-        this.qualityControls = qualityControls;
-        this.breedLogs = breedLogs;
+      //  this.vaccineInfos = vaccineInfos;
+      //  this.illnessInfos = illnessInfos;
+       // this.qualityControls = qualityControls;
+        //this.breedLogs = breedLogs;
         //this.traces = traces;
        // this.processInfos = processInfos;
     }
@@ -130,7 +130,7 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
         this.breedSpecies = breedSpecies;
     }
 
-    public Set getVaccineInfos() {
+   /* public Set getVaccineInfos() {
         return this.vaccineInfos;
     }
     
@@ -144,23 +144,23 @@ public class BreedNo  implements java.io.Serializable, Comparable<BreedNo> {
     
     public void setIllnessInfos(Set illnessInfos) {
         this.illnessInfos = illnessInfos;
-    }
+    }*/
 
-    public Set getQualityControls() {
+   /* public Set getQualityControls() {
         return this.qualityControls;
     }
     
     public void setQualityControls(Set qualityControls) {
         this.qualityControls = qualityControls;
-    }
+    }*/
 
-    public Set getBreedLogs() {
+   /* public Set getBreedLogs() {
         return this.breedLogs;
     }
     
     public void setBreedLogs(Set breedLogs) {
         this.breedLogs = breedLogs;
-    }
+    }*/
 
    /* public Set getTraces() {
         return this.traces;

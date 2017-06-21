@@ -12,6 +12,7 @@ import org.wuxi.fudan.syfw.dao.breed.BreedStaffDao;
 import org.wuxi.fudan.syfw.dao.breed.FeedInfoDao;
 import org.wuxi.fudan.syfw.dao.breed.NetCageDao;
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
+import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.BreedStaff;
 import org.wuxi.fudan.syfw.model.hibernate.FeedInfo;
 import org.wuxi.fudan.syfw.model.hibernate.NetCage;
@@ -56,6 +57,29 @@ public class FeedInfoServiceImpl extends BaseServiceImpl<FeedInfo> implements Fe
 	public List<FeedInfo> getList(List<FeedInfo> list, Integer start, Integer limit) {
 		pageResult = feedInfoDao.getPageResult(list, start/limit + 1, limit);
 
+		return pageResult.getItems();
+	}
+	
+	//获取公司下的所有原料,不分页
+	public List<FeedInfo> getFeed(BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(FeedInfo.class, "feedInfo");
+				
+				//隐藏内连接，需要再配置文件多方设置lazy=false
+		queryHelper.addCondition("feedInfo.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("feedInfo.stockTime", "DESC");  //降序排列
+				//pageResult = breedNoDao.getPageResult(queryHelper, start/limit+1, limit);
+		return feedInfoDao.findObjects(queryHelper);
+	
+	}
+	
+	//获取公司下的所有原料,分页
+	public List<FeedInfo> getFeed( Integer start, Integer limit, BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(FeedInfo.class, "feedInfo");
+					
+					//隐藏内连接，需要再配置文件多方设置lazy=false
+		queryHelper.addCondition("feedInfo.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("feedInfo.stockTime", "DESC");  //降序排列
+		pageResult = feedInfoDao.getPageResult(queryHelper, start/limit+1, limit);
 		return pageResult.getItems();
 	}
 		

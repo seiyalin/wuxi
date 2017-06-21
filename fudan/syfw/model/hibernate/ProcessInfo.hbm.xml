@@ -40,13 +40,13 @@
                 <comment>负责人</comment>
             </column>
         </property>
-        <set name="traces" inverse="true" cascade="none" lazy="false">
+        <!-- <set name="traces" inverse="true" cascade="none" lazy="false">
             <key>
                 <column name="cageId" length="30" not-null="true">
                     <comment>成品箱编号</comment>
                 </column>
             </key>
             <one-to-many class="org.wuxi.fudan.syfw.model.hibernate.Trace" />
-        </set>
+        </set> -->
     </class>
 </hibernate-mapping>

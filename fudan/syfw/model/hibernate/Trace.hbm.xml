@@ -55,5 +55,10 @@
                 <comment>投苗品种</comment>
             </column>
         </property>
+         <property name="foodStatus" type="java.lang.String">
+            <column name="foodStatus" length="30">
+                <comment>食品状态</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

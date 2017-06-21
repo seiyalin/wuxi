@@ -11,6 +11,8 @@ import org.wuxi.fudan.syfw.dao.breed.BreedAreaDao;
 import org.wuxi.fudan.syfw.dao.breed.BreedStaffDao;
 import org.wuxi.fudan.syfw.dao.breed.NetCageDao;
 import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
+import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
+import org.wuxi.fudan.syfw.model.hibernate.BreedNo;
 import org.wuxi.fudan.syfw.model.hibernate.BreedStaff;
 import org.wuxi.fudan.syfw.model.hibernate.NetCage;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
@@ -44,6 +46,20 @@ public class BreedStaffServiceImpl extends BaseServiceImpl<BreedStaff> implement
 
 		return pageResult.getItems();
 	}
+	
+	//获取公司下的所有员工
+	public List<BreedStaff> getBreedStaff(Integer start, Integer limit, BreedCompany breedCompany){
+		QueryHelper queryHelper = new QueryHelper(BreedStaff.class, "breedStaff");
+			/*QueryHelper queryHelper = new QueryHelper("BreedNo breedNo left join fetch breedNo.netCage netcage left join fetch "
+					+ "netcage.breedArea breedArea left join fetch breedArea.breedCompany" , "breedCompany");*/
+			//add condition
+			/*queryHelper.addCondition("breedCompany.companyId = ?", companyId);*/
+			//隐藏内连接，需要再配置文件多方设置lazy=false
+		queryHelper.addCondition("breedStaff.breedCompany = ?", breedCompany);
+		queryHelper.addOrderByProperty("breedStaff.idcard", "DESC");  //降序排列
+		pageResult = breedStaffDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+		}
 		
 	//get total number of breedStaff
 	public int getCount() {

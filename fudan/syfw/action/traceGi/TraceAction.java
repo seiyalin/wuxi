@@ -151,6 +151,14 @@ public class TraceAction extends ActionSupport{
 		}
     	 
      }
+     //蟹地理标识数据库
+     public String getAllCrabGi(){
+    	 List<CrabGi> list = traceService.getCrab(iDisplayStart, iDisplayLength);
+    	 int count = traceService.getCount();
+    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+		 CrabInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+		 return SUCCESS;
+     }
      
      //根据type查询蟹地理标识
      public String findCrabByType(){
@@ -242,6 +250,22 @@ public class TraceAction extends ActionSupport{
 				e.printStackTrace();
 				TrepangInfoSave = JsonUtils.toJSONResult(false, "发生未知错误");
 	     		return ERROR;		
+		}
+    	 
+     }
+     
+   //根据type查询海参地理标识
+     public String findAllTrepang(){
+    	 try {
+			List<TrepangGi> list = traceService.getTrepang(iDisplayStart, iDisplayLength);
+			int count = traceService.getCount();
+			 TrepangInfoDisplay = JsonUtils.toJSONResult(count, list,  sEcho);
+			 return SUCCESS;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			TrepangInfoDisplay = JsonUtils.toJSONResult(false, "发生未知错误");
+     		return ERROR;	
 		}
     	 
      }
@@ -413,7 +437,8 @@ public class TraceAction extends ActionSupport{
     		 
     		 trace.setTransportationInfo(transportationInfo);
     		 trace.setOrderInfo(orderInfo);
-    		 trace.setRestaurant(restaurant);  		 
+    		 trace.setRestaurant(restaurant);  	
+    		 trace.setFoodStatus("正常");
 			
 			 traceService.save(trace);
 	
@@ -1035,21 +1060,7 @@ public class TraceAction extends ActionSupport{
 		TrepangInfoDelete = trepangInfoDelete;
 	}
 
-	public int getiDisplayStart() {
-		return iDisplayStart;
-	}
-
-	public void setiDisplayStart(int iDisplayStart) {
-		this.iDisplayStart = iDisplayStart;
-	}
-
-	public int getiDisplayLength() {
-		return iDisplayLength;
-	}
-
-	public void setiDisplayLength(int iDisplayLength) {
-		this.iDisplayLength = iDisplayLength;
-	}
+	
 
 
 

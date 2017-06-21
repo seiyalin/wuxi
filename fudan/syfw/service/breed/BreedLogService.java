@@ -54,6 +54,9 @@ public interface BreedLogService extends BaseService<BreedNo> {
 	//获取公司下的所有投苗记录
 	public List<BreedNo> getBreedNo(Integer start, Integer limit, BreedCompany breedCompany);
 	
+	//获取公司下的所有投苗记录,不分页
+	public List<BreedNo> getBreedNo(BreedCompany breedCompany);
+	
 	//获取养殖区域的所有投苗记录
 	public List<BreedNo> getBreedNo(Integer start, Integer limit, BreedArea breedArea);
 	
@@ -68,11 +71,25 @@ public interface BreedLogService extends BaseService<BreedNo> {
 		
 	//get breedLog list
 	public List<BreedLog> getList(List<BreedLog> list, Integer start, Integer limit);
+	//获取某批产品下的所有喂养记录
+	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedNo breedNo);
 	//get outpond list
 	public List<OutPond> getOutPondList(List<OutPond> list, Integer start, Integer limit);
 		
 	//获取公司下的所有喂养记录
 	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedCompany breedCompany);
+	
+	//获取某批产品的所有疾病记录,不分页
+	public List<IllnessInfo> getIllness(BreedNo breedBatch);
+	
+	//获取某批产品的所有检疫记录,不分页
+	public List<VaccineInfo> getVaccine(BreedNo breedBatch);
+	
+	//获取某批产品的所有质检记录,不分页
+	public List<QualityControl> getQc(BreedNo breedBatch);
+	
+	//获取公司下的所有出塘记录
+	public List<OutPond> getOutPond(Integer start, Integer limit, BreedCompany breedCompany);
 	
 	//get total number of breedNo
 	public int getCount();

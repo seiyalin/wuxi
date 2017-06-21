@@ -14,7 +14,11 @@ public class RestaurantCompany  implements java.io.Serializable {
 
     // Fields    
 
-     private String restaurantId; 	//餐厅工商号
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String restaurantId; 	//餐厅工商号
      private String restaurantName;	//餐厅名称
      private String legalPerson;	//法人
      private String restaurantAddress;//餐厅地址

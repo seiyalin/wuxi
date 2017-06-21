@@ -46,7 +46,7 @@
 	
 		</action>
 		
-		<!-- 保存运输记录 -->
+		<!-- 保存追溯码记录 -->
 		<action name="TraceInfo_Save" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="saveTraceInfo">
 		
 			<result type="json" >
@@ -55,7 +55,7 @@
 	
 		</action>
 		
-		<!-- 获取运输列表 -->
+		<!-- 获取溯源信息列表 -->
 		<action name="TraceInfo_List" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="searchByEpcis">
 		
 			<result type="json" >
@@ -64,7 +64,7 @@
 	
 		</action>
 		
-		<!-- 删除运输记录 -->
+		<!-- 删除溯源记录 -->
 		<action name="TraceInfo_Delete" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="deleteTraceInfo">
 		
 			<result type="json" >
@@ -78,6 +78,15 @@
 		
 			<result type="json" >
 				<param name="root">CrabInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 查询蟹地理标识数据库 -->
+		<action name="CrabInfo_List" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="getAllCrabGi">
+		
+			<result type="json" >
+				<param name="root">CrabInfoDisplay</param>
 			</result>
 	
 		</action>
@@ -114,6 +123,15 @@
 		
 			<result type="json" >
 				<param name="root">TrepangInfoSave</param>
+			</result>
+	
+		</action>
+		
+		<!-- 查询海参地理标识 -->
+		<action name="TrepangInfo_List" class="org.wuxi.fudan.syfw.action.traceGi.TraceAction" method="findAllTrepang">
+		
+			<result type="json" >
+				<param name="root">TrepangInfoDisplay</param>
 			</result>
 	
 		</action>

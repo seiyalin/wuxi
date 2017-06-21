@@ -23,6 +23,14 @@ public interface TraceService extends BaseService<Trace> {
 	public List<CrabGi> findCrabByAppearance(Map<String, String> appear);
 	public List<CrabGi> findCrabByAppearance( String crust, String belly, String claw, String fair, String clamp, String back, String paw);
 	
+	//find all crab
+	public List<CrabGi> getCrab(Integer start, Integer limit);
+	
+	//find all trepang
+	public List<TrepangGi> getTrepang(Integer start, Integer limit);
+	
+	//get total number
+	public int getCount();
 	
 	//save trepang gi
 	public void saveTrepangGi(TrepangGi trepang);
