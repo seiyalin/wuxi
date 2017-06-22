@@ -17,6 +17,9 @@ public interface SupervisionService extends BaseService<ComplaintInfo> {
 	//get accepted complaintInfo list
 	public List<ComplaintInfo> getList(Integer start, Integer limit, String companyId);
 	
+	//get unhandled complaintInfo list
+	public List<ComplaintInfo> getUnhandledComplaint(Integer start, Integer limit);
+	
 	//get launched complaintInfo list
 	public List<ComplaintInfo> getLaunchedComplaint(Integer start, Integer limit, String userId);
 		

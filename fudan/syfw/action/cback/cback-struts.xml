@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="callback-action" namespace="/jsp/syfw/callback" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+	<!-- 根据溯源码查看供应链-->
+		<action name="seachByEpc" class="org.wuxi.fudan.syfw.action.cback.CbackAction" method="searchByEpcis">
+		
+			<result type="json" >
+				<param name="root">TraceInfoDisplay</param>
+			</result>
+	
+		</action>
+				
+	<!-- 根据成品箱查看产品-->
+		<action name="traceByCage" class="org.wuxi.fudan.syfw.action.cback.CbackAction" method="traceByCage">
+		
+			<result type="json" >
+				<param name="root">TraceInfoDisplay</param>
+			</result>
+	
+		</action>
+					
+	<!-- 根据养殖批次查看产品-->
+		<action name="traceByBreed" class="org.wuxi.fudan.syfw.action.cback.CbackAction" method="traceByBreed">
+		
+			<result type="json" >
+				<param name="root">TraceInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 根据运输编号查看产品-->
+		<action name="traceByTrans" class="org.wuxi.fudan.syfw.action.cback.CbackAction" method="traceByTrans">
+		
+			<result type="json" >
+				<param name="root">TraceInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 根据餐饮企业查看产品-->
+		<action name="traceByRestaurant" class="org.wuxi.fudan.syfw.action.cback.CbackAction" method="traceByRestaurant">
+		
+			<result type="json" >
+				<param name="root">TraceInfoDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!--批量修改产品状态-->
+		<action name="changeFoodStatus" class="org.wuxi.fudan.syfw.action.cback.CbackAction" method="changeFoodStatus">
+		
+			<result type="json" >
+				<param name="root">TraceInfoUpdate</param>
+			</result>
+	
+		</action>
+		
+		
+	</package>
+
+</struts>

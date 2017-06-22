@@ -46,6 +46,17 @@ public class SupervisionServiceImpl extends BaseServiceImpl<ComplaintInfo> imple
 		return pageResult.getItems();
 	}
 	
+	//get unhandled complaintInfo list
+	public List<ComplaintInfo> getUnhandledComplaint(Integer start, Integer limit) {
+			
+		QueryHelper queryHelper = new QueryHelper(ComplaintInfo.class, "complaintInfo");
+			//pageNo=start/limit + 1       起始页从第一页开始的
+		queryHelper.addCondition("complaintInfo.complaintStatus", "未处理");
+		pageResult = complaintInfoDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
 	//get accepted complaintInfo list
 	public List<ComplaintInfo> getList(Integer start, Integer limit, String companyId) {
 			

@@ -29,6 +29,18 @@ public interface TraceService extends BaseService<Trace> {
 	//find all trepang
 	public List<TrepangGi> getTrepang(Integer start, Integer limit);
 	
+	//find epcis food by cageId
+	public List<Trace> traceByCage(Integer start, Integer limit, String cageId);
+		
+	//find epcis food by breedId
+	public List<Trace> traceByBreed(Integer start, Integer limit, String breedId);
+	
+	//find epcis food by transId
+	public List<Trace> traceByTrans(Integer start, Integer limit, String transId);
+	
+	//find epcis food by restaurant
+	public List<Trace> traceByRest(Integer start, Integer limit, String restaurant);
+		
 	//get total number
 	public int getCount();
 	

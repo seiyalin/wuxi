@@ -37,7 +37,7 @@ public class SupervisionAction extends ActionSupport{
 	private String companyId;
 	private String userId;
 	
-	private String[] json_exclude;
+	private String[] json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 	/* 投诉信息*/
 	private String complaintId;				//投诉编号，自动生成
 	private String complaintCompany; 	    //投诉公司
@@ -93,12 +93,13 @@ public class SupervisionAction extends ActionSupport{
     		 company.put("companyName", pc.getCompanyName());
     		 companies.add(company); 
     	 }
-    	 json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+    	// json_exclude = new String[]{"handler","hibernateLazyInitializer"};
     	 companyList = JsonUtils.toJSONResult(true, companies, json_exclude);
     	 return SUCCESS;
     	 
      }
      
+     //修改投诉状态
      public String changeStatus(){
     	 complaintInfo = supervisionService.findObjectById(complaintId);
     	 complaintInfo.setComplaintStatus(complaintStatus);
@@ -106,6 +107,20 @@ public class SupervisionAction extends ActionSupport{
     	 ComplaintInfoUpdate = JsonUtils.toJSONResult(true);
 		 return SUCCESS;
     	 
+     }
+     
+     public String getUnhandledComplaint(){
+    	 try {
+ 			List<ComplaintInfo> list = supervisionService.getUnhandledComplaint(iDisplayStart, iDisplayLength);
+ 			int count = supervisionService.getCount();
+ 			ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
+ 			return SUCCESS;
+ 		} catch (Exception e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 			ComplaintInfoDisplay = JsonUtils.toJSONResult(false, "发生未知错误");
+     		return ERROR;		
+ 		}
      }
 
 	//提交投诉信息
@@ -141,7 +156,7 @@ public class SupervisionAction extends ActionSupport{
 		try {
 			List<ComplaintInfo> list = supervisionService.getList(iDisplayStart, iDisplayLength, companyId);
 			int count = supervisionService.getCount();
-			ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+			ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -166,7 +181,7 @@ public class SupervisionAction extends ActionSupport{
 					
 				List<ComplaintInfo> list = supervisionService.getLaunchedComplaint(iDisplayStart, iDisplayLength, userId);
 				int count = supervisionService.getCount();
-				ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+				ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
 				return SUCCESS;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -180,7 +195,7 @@ public class SupervisionAction extends ActionSupport{
 	public String loadForComplaint(){
 		try {
 			complaintInfo = supervisionService.findObjectById(complaintId);
-			json_exclude = new String[]{"handler","hibernateLazyInitializer"};
+			//json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 			ComplaintInfoLoad = JsonUtils.toJSONResult(true, complaintInfo, json_exclude);
 			return SUCCESS;
 		} catch (Exception e) {
@@ -277,7 +292,7 @@ public class SupervisionAction extends ActionSupport{
 		try {
 			List<ComplaintInfo> list = supervisionService.getList(iDisplayStart, iDisplayLength);
 			int count = supervisionService.getCount();
-			ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho);
+			ComplaintInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
 			return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

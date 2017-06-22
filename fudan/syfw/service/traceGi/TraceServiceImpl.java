@@ -60,6 +60,46 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 			return pageResult.getItems();
 	}
 	
+	//find epcis food by cageId
+	public List<Trace> traceByCage(Integer start, Integer limit, String cageId){
+		QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+		queryHelper.addCondition("trace.processInfo.cageId=?", cageId);
+		queryHelper.addOrderByProperty("trace.epcis", "DESC");
+		pageResult = traceDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
+	//find epcis food by breedId
+	public List<Trace> traceByBreed(Integer start, Integer limit, String breedId){
+		QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+		queryHelper.addCondition("trace.breedNo.breedNo =?", breedId);
+		queryHelper.addOrderByProperty("trace.epcis", "DESC");
+		pageResult = traceDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
+	//find epcis food by transId
+	public List<Trace> traceByTrans(Integer start, Integer limit, String transId){
+		QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+		queryHelper.addCondition("trace.transportationInfo.transId =?", transId);
+		queryHelper.addOrderByProperty("trace.epcis", "DESC");
+		pageResult = traceDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+		
+	//find epcis food by restaurant
+	public List<Trace> traceByRest(Integer start, Integer limit, String restaurant){
+		QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+		queryHelper.addCondition("trace.restaurant =?", restaurant);
+		queryHelper.addOrderByProperty("trace.epcis", "DESC");
+		pageResult = traceDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+		return pageResult.getItems();
+	}
+	
 	//get total number
 	public int getCount() {
 			// TODO Auto-generated method stub

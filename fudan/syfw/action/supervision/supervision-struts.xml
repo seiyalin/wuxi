@@ -95,6 +95,15 @@
 				<param name="root">ComplaintInfoDisplay</param>
 			</result>
 	
+		</action>	
+		
+		<!-- 显示未处理的投诉信息 -->
+		<action name="unhandledComplaintInfo_List" class="org.wuxi.fudan.syfw.action.supervision.SupervisionAction" method="getUnhandledComplaint">
+		
+			<result type="json" >
+				<param name="root">ComplaintInfoDisplay</param>
+			</result>
+	
 		</action>
 		
 		<!-- 显示某个投诉的回复信息 -->
