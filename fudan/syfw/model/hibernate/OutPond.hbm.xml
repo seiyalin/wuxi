@@ -25,6 +25,11 @@
                 <comment>负责人</comment>
             </column>
         </property>
+        <property name="outPondNumber" type="java.lang.String">
+            <column name="outPondNumber" length="20">
+                <comment>出塘重量</comment>
+            </column>
+        </property>
         <!-- <property name="breedNos" type="java.lang.String">
             <column name="breedNos" length="30">
                 <comment>产品批次（多选）</comment>

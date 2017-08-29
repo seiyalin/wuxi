@@ -1,25 +1,23 @@
 package org.wuxi.fudan.syfw.service.user;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
-import org.hibernate.Query;
 import org.springframework.stereotype.Service;
 import org.wuxi.fudan.syfw.common.QueryHelper;
 import org.wuxi.fudan.syfw.dao.breed.BreedCompanyDao;
 import org.wuxi.fudan.syfw.dao.process.ProcessCompanyDao;
 import org.wuxi.fudan.syfw.dao.user.UserDao;
-import org.wuxi.fudan.syfw.model.hibernate.BreedArea;
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
-import org.wuxi.fudan.syfw.model.hibernate.ProcessInfo;
 import org.wuxi.fudan.syfw.model.hibernate.User;
 import org.wuxi.fudan.syfw.service.base.BaseServiceImpl;
 
 @Service("userService")
+@WebService(endpointInterface = "org.wuxi.fudan.syfw.service.user.UserService")
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService{
 	
 	private UserDao userDao;
@@ -130,6 +128,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	@Resource
 	public void setProcessCompanyDao(ProcessCompanyDao processCompanyDao) {
 		this.processCompanyDao = processCompanyDao;
+	}
+
+	@Override
+	@WebMethod
+	public String sayHello() {
+		// TODO Auto-generated method stub
+		return "hello world";
 	}
 
 }

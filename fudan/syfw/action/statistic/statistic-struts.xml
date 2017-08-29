@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="statistic-action" namespace="/jsp/syfw/statistic" extends="base-default,json-default">
+	<!--action 的name加namespace为请求路径，method为对应处理此请求的相应方法  -->
+	
+	<!-- 获取投诉数据 -->
+		<action name="complaint_Stat" class="org.wuxi.fudan.syfw.action.statistic.StatisticAction" method="getComplaintStat">
+		
+			<result type="json" >
+				<param name="root">ComplaintStatDisplay</param>
+			</result>
+	
+		</action>	
+		
+		<!-- 获取出塘数据 -->
+		<action name="outPond_Stat" class="org.wuxi.fudan.syfw.action.statistic.StatisticAction" method="getOutPondStat">
+		
+			<result type="json" >
+				<param name="root">OutPondStatDisplay</param>
+			</result>
+	
+		</action>
+		
+		<!-- 获取数据 -->
+		<action name="Stat" class="org.wuxi.fudan.syfw.action.statistic.StatisticAction" method="getStat">
+		
+			<result type="json" >
+				<param name="root">statDisplay</param>
+			</result>
+	
+		</action>		
+		
+		
+	</package>
+
+</struts>

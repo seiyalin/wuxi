@@ -13,6 +13,11 @@
         <property name="thumbnail" type="java.lang.String">
 			<column name="thumbnail" length="500" not-null="false" />
 		</property>
+		<property name="habitat" type="java.lang.String">
+            <column name="habitat" length="15">
+                <comment>产地</comment>
+            </column>
+        </property>
         <property name="trepangBrand" type="java.lang.String">
             <column name="trepangBrand" length="10">
                 <comment>海参品牌</comment>
@@ -28,23 +33,23 @@
                 <comment>感官特色</comment>
             </column>
         </property>
-        <property name="protein" type="java.lang.Float">
-            <column name="protein" precision="10" scale="2">
+        <property name="protein" type="java.lang.String">
+            <column name="protein" length="30">
                 <comment>蛋白质</comment>
             </column>
         </property>
-        <property name="water" type="java.lang.Float">
-            <column name="water" precision="10" scale="2">
+        <property name="water" type="java.lang.String">
+            <column name="water" length="30">
                 <comment>水分</comment>
             </column>
         </property>
-        <property name="salt" type="java.lang.Float">
-            <column name="salt" precision="10" scale="2">
+        <property name="salt" type="java.lang.String">
+            <column name="salt" length="30">
                 <comment>盐分</comment>
             </column>
         </property>
-        <property name="sand" type="java.lang.Float">
-            <column name="sand" precision="10" scale="2">
+        <property name="sand" type="java.lang.String">
+            <column name="sand" length="30">
                 <comment>含砂量</comment>
             </column>
         </property>

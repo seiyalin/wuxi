@@ -2,10 +2,13 @@ package org.wuxi.fudan.syfw.service.base;
 
 import java.util.List;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
 
-
+@WebService
 public interface BaseService<T> {
 	//新增
 	public void save(T entity);
@@ -19,10 +22,13 @@ public interface BaseService<T> {
 	public T findObjectById(String id);
 	//查找列表
 	public List<T> findObjects();
+	
 	//条件查询实体列表
 //	@Deprecated
+	@WebMethod(operationName="findObjectByHQL")
 	public List<T> findObjects(String hql, List<Object> parameters);
 //	条件查询实体列表--查询助手queryHelper
+	@WebMethod(operationName="findObjectByQueryHelper")
 	public List<T> findObjects(QueryHelper queryHelper);
 //	分页条件查询实体列表--查询助手queryHelper
 	public PageResult getPageResult(QueryHelper queryHelper, int pageNo, int pageSize);

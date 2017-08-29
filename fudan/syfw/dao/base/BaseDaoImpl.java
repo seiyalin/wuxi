@@ -63,7 +63,6 @@ public abstract class BaseDaoImpl<T> extends HibernateDaoSupport implements Base
 		Query query = getSession().createQuery("FROM " + clazz.getSimpleName());
 		return query.list();
 	}
-	
 
 	@Override
 	public List<T> findObjects(String hql, List<Object> parameters) {

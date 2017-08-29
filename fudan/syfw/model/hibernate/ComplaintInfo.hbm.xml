@@ -36,7 +36,7 @@
             </column>
         </property>
         <property name="userId" type="java.lang.String">
-            <column name="userId" length="15">
+            <column name="userId" length="20">
                 <comment>投诉人编号</comment>
             </column>
         </property>
@@ -55,7 +55,7 @@
                 <comment>投诉人角色</comment>
             </column>
         </property>
-        <set name="complaintReacts" inverse="true" cascade="delete">
+        <set name="complaintReacts" inverse="true" lazy="false" cascade="delete">
             <key>
                 <column name="complaintId" length="40" not-null="true">
                     <comment>投诉编号</comment>

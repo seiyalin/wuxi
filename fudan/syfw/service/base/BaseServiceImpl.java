@@ -2,11 +2,14 @@ package org.wuxi.fudan.syfw.service.base;
 
 import java.util.List;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
 import org.wuxi.fudan.syfw.dao.base.BaseDao;
 
-
+@WebService
 public class BaseServiceImpl<T> implements BaseService<T> {
 	
 	private BaseDao<T> baseDao;
@@ -62,11 +65,13 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@Override
+	@WebMethod(operationName="findObjectByHQL")
 	public List<T> findObjects(String hql, List<Object> parameters) {
 		return baseDao.findObjects(hql, parameters);
 	}
 
 	@Override
+	@WebMethod(operationName="findObjectByQueryHelper")
 	public List<T> findObjects(QueryHelper queryHelper) {
 		return baseDao.findObjects(queryHelper);
 	}

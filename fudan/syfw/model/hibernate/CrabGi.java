@@ -15,11 +15,12 @@ public class CrabGi  implements java.io.Serializable {
      private String crabId;		//蟹编号
      private String thumbnail;  //缩略图
      private String type;		//品种
+     private String habitat;		//产地
      private String sex;		//性别
      private String appearance;	//感官特色
      private String crabRoe;	//蟹黄
-     private Float crudeProtein;	//粗蛋白(百分比）
-     private Float crudeFat;		//粗脂肪(百分比）
+     private String crudeProtein;	//粗蛋白(百分比）
+     private String crudeFat;		//粗脂肪(百分比）
      private String otherDescr;	//其他
      private String crust;		//壳
      private String belly;		//肚（腹）
@@ -38,7 +39,7 @@ public class CrabGi  implements java.io.Serializable {
 
     
     /** full constructor */
-    public CrabGi(String type, String sex, String appearance, String crabRoe, Float crudeProtein, Float crudeFat, String otherDescr, String crust, String belly, String claw, String fair, String clamp, String back, String paw) {
+    public CrabGi(String type, String sex, String appearance, String crabRoe, String crudeProtein, String crudeFat, String otherDescr, String crust, String belly, String claw, String fair, String clamp, String back, String paw) {
         this.type = type;
         this.sex = sex;
         this.appearance = appearance;
@@ -84,7 +85,17 @@ public class CrabGi  implements java.io.Serializable {
         this.type = type;
     }
 
-    public String getSex() {
+    public String getHabitat() {
+		return habitat;
+	}
+
+
+	public void setHabitat(String habitat) {
+		this.habitat = habitat;
+	}
+
+
+	public String getSex() {
         return this.sex;
     }
     
@@ -108,19 +119,19 @@ public class CrabGi  implements java.io.Serializable {
         this.crabRoe = crabRoe;
     }
 
-    public Float getCrudeProtein() {
+    public String getCrudeProtein() {
         return this.crudeProtein;
     }
     
-    public void setCrudeProtein(Float crudeProtein) {
+    public void setCrudeProtein(String crudeProtein) {
         this.crudeProtein = crudeProtein;
     }
 
-    public Float getCrudeFat() {
+    public String getCrudeFat() {
         return this.crudeFat;
     }
     
-    public void setCrudeFat(Float crudeFat) {
+    public void setCrudeFat(String crudeFat) {
         this.crudeFat = crudeFat;
     }
 

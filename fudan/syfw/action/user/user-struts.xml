@@ -43,6 +43,15 @@
 	
 		</action>
 		
+		<!-- 用户更改密码-->
+		<action name="changePassword" class="org.wuxi.fudan.syfw.action.user.UserAction" method="changePassword">
+		
+			<result type="json" >
+				<param name="root">changePwd</param>
+			</result>
+	
+		</action>
+		
 		
 	</package>
 

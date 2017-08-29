@@ -19,6 +19,7 @@ public class OutPond  implements java.io.Serializable,Comparable<OutPond> {
      private BreedCompany breedCompany; //养殖企业
      private Date outTime;			//出塘时间
      private String personInCharge;	//负责人
+     private String outPondNumber; //出塘数量
      /*private String breedNos;*/ 
      private Set breedNos = new HashSet(0); //出塘批次
 
@@ -94,6 +95,16 @@ public class OutPond  implements java.io.Serializable,Comparable<OutPond> {
     public void setBreedNos(Set breedNos) {
         this.breedNos = breedNos;
     }
+
+
+	public String getOutPondNumber() {
+		return outPondNumber;
+	}
+
+
+	public void setOutPondNumber(String outPondNumber) {
+		this.outPondNumber = outPondNumber;
+	}
    
 
 

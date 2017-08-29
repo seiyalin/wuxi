@@ -14,13 +14,14 @@ public class TrepangGi  implements java.io.Serializable {
 
      private String trepangId;  //海参编号
      private String thumbnail;	//缩略图
+     private String habitat;	//产地
      private String trepangBrand;	//海参品牌（獐子岛，大连，烟台）
      private String trepangType;	//海参种类（淡干，盐渍，活，干，盐干）
      private String appearance;	//感官特色
-     private Float protein;		//蛋白质
-     private Float water;		//水分
-     private Float salt;			//盐分
-     private Float sand;			//含砂量
+     private String protein;		//蛋白质
+     private String water;		//水分
+     private String salt;			//盐分
+     private String sand;			//含砂量
      private String otherDescr;	//其他
      private String color;		//色泽
      private String shape;		//体型
@@ -34,7 +35,7 @@ public class TrepangGi  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TrepangGi(String trepangBrand, String trepangType, String appearance, Float protein, Float water, Float salt, Float sand, String otherDescr, String color, String shape) {
+    public TrepangGi(String trepangBrand, String trepangType, String appearance, String protein, String water, String salt, String sand, String otherDescr, String color, String shape) {
         this.trepangBrand = trepangBrand;
         this.trepangType = trepangType;
         this.appearance = appearance;
@@ -68,6 +69,16 @@ public class TrepangGi  implements java.io.Serializable {
 	}
 
 
+	public String getHabitat() {
+		return habitat;
+	}
+
+
+	public void setHabitat(String habitat) {
+		this.habitat = habitat;
+	}
+
+
 	public String getTrepangBrand() {
         return this.trepangBrand;
     }
@@ -92,35 +103,35 @@ public class TrepangGi  implements java.io.Serializable {
         this.appearance = appearance;
     }
 
-    public Float getProtein() {
+    public String getProtein() {
         return this.protein;
     }
     
-    public void setProtein(Float protein) {
+    public void setProtein(String protein) {
         this.protein = protein;
     }
 
-    public Float getWater() {
+    public String getWater() {
         return this.water;
     }
     
-    public void setWater(Float water) {
+    public void setWater(String water) {
         this.water = water;
     }
 
-    public Float getSalt() {
+    public String getSalt() {
         return this.salt;
     }
     
-    public void setSalt(Float salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
     }
 
-    public Float getSand() {
+    public String getSand() {
         return this.sand;
     }
     
-    public void setSand(Float sand) {
+    public void setSand(String sand) {
         this.sand = sand;
     }
 

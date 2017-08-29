@@ -51,12 +51,16 @@ public class UserAction extends ActionSupport{
 	//private String userId;					//用户id，根据登录用户名可以找到企业信息
 	private ProcessCompany processCompany;	//封装加工企业信息
 
+	/*修改密码*/
+	private String old_pwd;
+	private String new_pwd;
 
 	
 	private JSONObject isRegisterSuccess;  //注册响应
 	private JSONObject isLoginSuccess;     //登录响应
 	private JSONObject breedCompanySave;   //提交养殖企业信息响应
 	private JSONObject processCompanySave;   //提交加工企业信息响应
+	private JSONObject changePwd; //修改密码响应
 
 	//用户注册
 	public String register(){
@@ -154,8 +158,10 @@ public class UserAction extends ActionSupport{
 					isLoginSuccess.put("companyId", cId);
 					}
 					
-				if(u.getRole().equals("加工企业"))
+				else if(u.getRole().equals("加工企业"))
 					isLoginSuccess.put("companyId", userService.findProcessCompanyByUserId(u.getId()).getCompanyId());
+				else if(u.getRole().equals("消费者"))
+					isLoginSuccess.put("userId", u.getId());
 				return SUCCESS;
 			}				
 			
@@ -164,6 +170,22 @@ public class UserAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	public String changePassword(){
+		if(id != null)
+			user = userService.findObjectById(id);
+		if(user != null){
+			if(user.getPassword().equals(old_pwd)){
+				user.setPassword(new_pwd);	
+				userService.update(user);  //更改密码
+				changePwd = JsonUtils.toJSONResult(true);
+			}
+			else
+				changePwd = JsonUtils.toJSONResult(false,"原密码不匹配");
+		}
+		else
+			changePwd = JsonUtils.toJSONResult(false,"用户不存在");
+		return SUCCESS;
+	}
 	
 	public UserService getUserService() {
 		return userService;
@@ -382,5 +404,29 @@ public class UserAction extends ActionSupport{
 
 	public void setProcessCompanySave(JSONObject processCompanySave) {
 		this.processCompanySave = processCompanySave;
+	}
+
+	public JSONObject getChangePwd() {
+		return changePwd;
+	}
+
+	public void setChangePwd(JSONObject changePwd) {
+		this.changePwd = changePwd;
+	}
+
+	public String getOld_pwd() {
+		return old_pwd;
+	}
+
+	public void setOld_pwd(String old_pwd) {
+		this.old_pwd = old_pwd;
+	}
+
+	public String getNew_pwd() {
+		return new_pwd;
+	}
+
+	public void setNew_pwd(String new_pwd) {
+		this.new_pwd = new_pwd;
 	}
 }

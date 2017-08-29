@@ -13,6 +13,11 @@
         <property name="thumbnail" type="java.lang.String">
 			<column name="thumbnail" length="500" not-null="false" />
 		</property>
+		<property name="habitat" type="java.lang.String">
+            <column name="habitat" length="15">
+                <comment>产地</comment>
+            </column>
+        </property>
         <property name="type" type="java.lang.String">
             <column name="type" length="15">
                 <comment>品种</comment>
@@ -33,13 +38,13 @@
                 <comment>蟹黄</comment>
             </column>
         </property>
-        <property name="crudeProtein" type="java.lang.Float">
-            <column name="crudeProtein" precision="10" scale="2">
+        <property name="crudeProtein" type="java.lang.String">
+            <column name="crudeProtein" length="30">
                 <comment>粗蛋白</comment>
             </column>
         </property>
-        <property name="crudeFat" type="java.lang.Float">
-            <column name="crudeFat" precision="10" scale="2">
+        <property name="crudeFat" type="java.lang.String">
+            <column name="crudeFat" length="30">
                 <comment>粗脂肪</comment>
             </column>
         </property>

@@ -248,10 +248,18 @@ public class BreedLogServiceImpl extends BaseServiceImpl<BreedNo> implements Bre
 	
 	//get outpond list
 	public List<OutPond> getOutPondList(List<OutPond> list, Integer start, Integer limit){
-			pageResult = outPondDao.getPageResult(list, start/limit + 1, limit);
+		pageResult = outPondDao.getPageResult(list, start/limit + 1, limit);
 
-			return pageResult.getItems();
-		}
+		return pageResult.getItems();
+	}
+	
+	//get outpond list
+	public List<OutPond> getOutPondList(Integer start, Integer limit){
+		QueryHelper queryHelper = new QueryHelper(OutPond.class, "outPond");
+		queryHelper.addOrderByProperty("outPond.outTime", "DESC");  //降序排列
+		pageResult = outPondDao.getPageResult(queryHelper, start/limit+1, limit);
+		return pageResult.getItems();
+	}
 	
 	//获取公司下的所有出塘记录
 	public List<OutPond> getOutPond(Integer start, Integer limit, BreedCompany breedCompany){

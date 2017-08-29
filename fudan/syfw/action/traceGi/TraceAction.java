@@ -73,9 +73,9 @@ public class TraceAction extends ActionSupport{
 	private String sex;		//性别
 	private String appearance;	//感官特色
 	private String crabRoe;	//蟹黄
-	private Float crudeProtein;	//粗蛋白(百分比）
+	/*private Float crudeProtein;	//粗蛋白(百分比）
 	private Float crudeFat;		//粗脂肪(百分比）
-	private String otherDescr;	//其他
+*/	private String otherDescr;	//其他
 	private String crust;		//壳
 	private String belly;		//肚（腹）
 	private String claw;		//爪
@@ -91,11 +91,11 @@ public class TraceAction extends ActionSupport{
 	private String trepangBrand;	//海参品牌（獐子岛，大连，烟台）
 	private String trepangType;	//海参种类（淡干，盐渍，活，干，盐干）
 	//private String appearance;	//感官特色
-	private Float protein;		//蛋白质（百分比）
+	/*private Float protein;		//蛋白质（百分比）
 	private Float water;		//水分（百分比）
 	private Float salt;			//盐分（百分比）
 	private Float sand;			//含砂量（百分比）
-	//private String otherDescr;	//其他
+*/	//private String otherDescr;	//其他
 	private String color;		//色泽
 	private String shape;		//体型
 	private TrepangGi trepangGi;
@@ -202,7 +202,8 @@ public class TraceAction extends ActionSupport{
 				 map.put("paw", paw);
 			 }
 			 
-			 List<CrabGi> list = traceService.findCrabByAppearance(map);
+			 //List<CrabGi> list = traceService.findCrabByAppearance(map);
+			 List<CrabGi> list = traceService.findCrabByAppearance(crust, belly, claw, fair, clamp, back, paw);
 			// json_exclude = new String[]{"handler","hibernateLazyInitializer"};
 			 CrabInfoDisplay = JsonUtils.toJSONResult(true, list);
 			 return SUCCESS;
@@ -804,21 +805,6 @@ public class TraceAction extends ActionSupport{
 		this.crabRoe = crabRoe;
 	}
 
-	public Float getCrudeProtein() {
-		return crudeProtein;
-	}
-
-	public void setCrudeProtein(Float crudeProtein) {
-		this.crudeProtein = crudeProtein;
-	}
-
-	public Float getCrudeFat() {
-		return crudeFat;
-	}
-
-	public void setCrudeFat(Float crudeFat) {
-		this.crudeFat = crudeFat;
-	}
 
 	public String getOtherDescr() {
 		return otherDescr;
@@ -916,37 +902,7 @@ public class TraceAction extends ActionSupport{
 		this.trepangType = trepangType;
 	}
 
-	public Float getProtein() {
-		return protein;
-	}
-
-	public void setProtein(Float protein) {
-		this.protein = protein;
-	}
-
-	public Float getWater() {
-		return water;
-	}
-
-	public void setWater(Float water) {
-		this.water = water;
-	}
-
-	public Float getSalt() {
-		return salt;
-	}
-
-	public void setSalt(Float salt) {
-		this.salt = salt;
-	}
-
-	public Float getSand() {
-		return sand;
-	}
-
-	public void setSand(Float sand) {
-		this.sand = sand;
-	}
+	
 
 	public String getColor() {
 		return color;

@@ -21,6 +21,7 @@ public class ProcessInfo  implements java.io.Serializable, Comparable<ProcessInf
      private OrderInfo orderInfo;	//订单信息
      private Date processTime;		//加工日期
      private String personInCharge; //负责人
+     private String cageWeight; //成品箱重量
 //     private Set traces = new HashSet(0);
 
 
@@ -109,6 +110,14 @@ public class ProcessInfo  implements java.io.Serializable, Comparable<ProcessInf
     public void setPersonInCharge(String personInCharge) {
         this.personInCharge = personInCharge;
     }
+
+	public String getCageWeight() {
+		return cageWeight;
+	}
+
+	public void setCageWeight(String cageWeight) {
+		this.cageWeight = cageWeight;
+	}
 
    /* public Set getTraces() {
         return this.traces;

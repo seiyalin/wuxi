@@ -2,15 +2,21 @@ package org.wuxi.fudan.syfw.service.user;
 
 import java.util.List;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import org.wuxi.fudan.syfw.model.hibernate.BreedCompany;
 import org.wuxi.fudan.syfw.model.hibernate.ProcessCompany;
 import org.wuxi.fudan.syfw.model.hibernate.User;
 import org.wuxi.fudan.syfw.service.base.BaseService;
 
+@WebService
 public interface UserService extends BaseService<User> {
 
-	public String findRoleByNameAndPwd(String username, String pwd);
+	//public String findRoleByNameAndPwd(String username, String pwd);
+	public String findRoleByNameAndPwd(@WebParam(name="username") String username, @WebParam(name="pwd")String pwd);
 	
+	public String sayHello();
 	//save processCompany information
 	public void saveProcessCompany(ProcessCompany processCompany);
 	//find processCompany by companyId

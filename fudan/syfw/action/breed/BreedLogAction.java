@@ -507,7 +507,7 @@ public class BreedLogAction extends ActionSupport{
      }
      
      //保存出塘记录
-     @SuppressWarnings("unchecked")
+
 	public String saveOutPond(){
     	 //breedCompany = userService.findBreedCompanyById(companyId);
     	 try {

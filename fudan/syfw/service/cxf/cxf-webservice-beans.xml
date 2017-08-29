@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" 
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+<!-- 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> -->
+	<!-- <jaxws:endpoint id="SoapQueryService" implementor="org.oliot.epcis.service.query.SoapQueryService"
+		address="/QueryService">
+	</jaxws:endpoint>
+	<jaxws:endpoint id="SoapCaptureService" implementor="org.oliot.epcis.service.capture.SoapCaptureService" address="/CaptureService"> </jaxws:endpoint> -->
+	<!-- <jaxws:endpoint id="test" implementor="org.oliot.epcis.service.mysqlservice.testwebservice.Test" address="/test"> </jaxws:endpoint> -->
+	<!--  <jaxws:endpoint id="MySql" implementor="#teacherService" implementorClass="org.oliot.epcis.service.mysqlservice.impl.BaseServiceImpl"  address="/MySql"> </jaxws:endpoint>  -->
+	 
+	
+	 
+	<!--  UserService implementorClass是接口，这样才能注入dao -->
+	   <jaxws:endpoint implementorClass="org.wuxi.fudan.syfw.service.user.UserService" implementor="#userService" address="/UserService"> 
+	   </jaxws:endpoint>
+	   
+	 <!--   <jaxws:endpoint id="base" implementor="org/wuxi/fudan/syfw/service/base/BaseServiceImpl.java" address="/baseService"> 
+	   </jaxws:endpoint> -->
+
+	 <!--  <jaxws:endpoint id="SoapRoleService" implementor="org.oliot.epcis.service.mysqlservice.role.impl.SoapRoleService" address="/RoleService"> </jaxws:endpoint>
+	   -->
+  
+<!-- 	 <jaxws:endpoint id="MySql" implementor="org.oliot.epcis.service.mysqlservice.impl.BaseServiceImpl" address="/MySql"> </jaxws:endpoint>  -->
+</beans>
+<!--通过Spring配置文件发布服务 -->
+<!--     利用wsimport工具生成本地代理的命令 其中.代表控制台所在的当前目录    wsimport -s . -p  info  -keep http://localhost:8080/epcis/webservice/MySql?wsdl -->

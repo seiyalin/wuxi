@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
@@ -53,11 +54,11 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 	//find all trepang
 	public List<TrepangGi> getTrepang(Integer start, Integer limit) {
 			
-			QueryHelper queryHelper = new QueryHelper(TrepangGi.class, "trepangGi");
+		QueryHelper queryHelper = new QueryHelper(TrepangGi.class, "trepangGi");
 				//pageNo=start/limit + 1       起始页从第一页开始的
-			pageResult = trepangGiDao.getPageResult(queryHelper, start/limit + 1, limit);
+		pageResult = trepangGiDao.getPageResult(queryHelper, start/limit + 1, limit);
 
-			return pageResult.getItems();
+		return pageResult.getItems();
 	}
 	
 	//find epcis food by cageId
@@ -100,6 +101,41 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		return pageResult.getItems();
 	}
 	
+	/*不分页*/
+	//find epcis food by cageId
+		public List<Trace> traceByCage(String cageId){
+			QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+			queryHelper.addCondition("trace.processInfo.cageId=?", cageId);
+			queryHelper.addOrderByProperty("trace.epcis", "DESC");
+	//		pageResult = traceDao.getPageResult(queryHelper, start/limit + 1, limit);
+
+			return traceDao.findObjects(queryHelper);
+		}
+		
+		//find epcis food by breedId
+		public List<Trace> traceByBreed(String breedId){
+			QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+			queryHelper.addCondition("trace.breedNo.breedNo =?", breedId);
+			queryHelper.addOrderByProperty("trace.epcis", "DESC");
+			return traceDao.findObjects(queryHelper);
+		}
+		
+		//find epcis food by transId
+		public List<Trace> traceByTrans(String transId){
+			QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+			queryHelper.addCondition("trace.transportationInfo.transId =?", transId);
+			queryHelper.addOrderByProperty("trace.epcis", "DESC");
+			return traceDao.findObjects(queryHelper);
+		}
+			
+		//find epcis food by restaurant
+		public List<Trace> traceByRest(String restaurant){
+			QueryHelper queryHelper = new QueryHelper(Trace.class, "trace");
+			queryHelper.addCondition("trace.restaurant =?", restaurant);
+			queryHelper.addOrderByProperty("trace.epcis", "DESC");
+			return traceDao.findObjects(queryHelper);
+		}
+		
 	//get total number
 	public int getCount() {
 			// TODO Auto-generated method stub
@@ -125,7 +161,7 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		if (whereClause.length() > 1) {//非第一个查询条件
 			whereClause += " AND " + condition;
 		} else {//第一个查询条件
-			whereClause += " WHERE " + condition;
+			whereClause += condition;
 		}
 		return whereClause;
 	}
@@ -136,10 +172,12 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		List<String> params = new ArrayList<String>();
 		whereClause = "";
 		
-		String hql = "crab.app=?";
+		StringBuffer hql = new StringBuffer("crab.");
 		for(Map.Entry<String, String> entry:appear.entrySet()){
-			hql.replace("app", entry.getKey());
-			whereClause = addWhereClause(hql);
+			hql.replace(5, hql.length(), entry.getKey());
+			hql.append("=?");
+			
+			whereClause = addWhereClause(hql.toString());
 			params.add(entry.getValue());
 		}
 		
@@ -160,32 +198,32 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 			params.add(entry.getValue());
 		}*/
 		
-		if(crust != null){
-			whereClause = addWhereClause("crab.crust like '%'"+ crust+ '%');
+		if(crust != null && !(crust.equals("unknown"))){
+			whereClause = addWhereClause("(crab.crust like '%"+ crust+ "%' or crab.crust='其他')");
 			//params.add(crust);
 		}
-		if(belly != null){
-			whereClause = addWhereClause("crab.belly like '%'"+ belly+ '%');
+		if(belly != null && !(belly.equals("unknown"))){
+			whereClause = addWhereClause("(crab.belly like '%"+ belly+ "%' or crab.belly='其他')");
 			//params.add(belly);
 		}
-		if(claw != null){
-			whereClause = addWhereClause("crab.claw like '%'"+ claw+ '%');
+		if(claw != null && !(claw.equals("unknown"))){
+			whereClause = addWhereClause("(crab.claw like '%"+ claw+ "%' or crab.claw='其他')");
 			//params.add(claw);
 		}
-		if(fair != null){
-			whereClause = addWhereClause("crab.fair like '%'"+ fair+ '%');
+		if(fair != null && !(fair.equals("unknown"))){
+			whereClause = addWhereClause("(crab.fair like '%"+ fair+ "%' or crab.fair='其他')");
 			//params.add(fair);
 		}
-		if(clamp != null){
-			whereClause = addWhereClause("crab.clamp like '%'"+ clamp+ '%');
+		if(clamp != null && !(clamp.equals("unknown"))){
+			whereClause = addWhereClause("(crab.clamp like '%"+ clamp+ "%' or crab.clamp='其他')");
 			//params.add(clamp);
 		}
-		if(back != null){
-			whereClause = addWhereClause("crab.back like '%'"+ back+ '%');
+		if(back != null && !(back.equals("unknown"))){
+			whereClause = addWhereClause("(crab.back like '%"+ back+ "%' or crab.back='其他')");
 			//params.add(back);
 		}
-		if(paw != null){
-			whereClause = addWhereClause("crab.paw like '%'"+ paw+ '%');
+		if(paw != null && !(paw.equals("unknown"))){
+			whereClause = addWhereClause("(crab.paw like '%"+ paw+ "%' or crab.paw='其他')");
 			//params.add(paw);
 		}
 		
@@ -224,12 +262,12 @@ public class TraceServiceImpl extends BaseServiceImpl<Trace> implements TraceSer
 		QueryHelper queryHelper = new QueryHelper(TrepangGi.class, "trepang");
 		//List<String> params = new ArrayList<String>();
 		whereClause = "";
-		if(color != null){
-			whereClause = addWhereClause("trepang.color like '%'"+ color+ '%');
+		if(color != null && !(color.equals("unknown"))){
+			whereClause = addWhereClause("(trepang.color like '%"+ color+ "%' or trepang.color='其他')");
 			//params.add(color);
 		}
-		if(shape != null){
-			whereClause = addWhereClause("trepang.shape like '%'"+ shape+ '%');
+		if(shape != null && !(shape.equals("unknown"))){
+			whereClause = addWhereClause("(trepang.shape like '%"+ shape+ "%' or trepang.shape='其他')");
 			//params.add(shape);
 		}
 		queryHelper.addCondition(whereClause);

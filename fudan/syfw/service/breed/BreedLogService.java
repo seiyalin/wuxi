@@ -75,6 +75,9 @@ public interface BreedLogService extends BaseService<BreedNo> {
 	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedNo breedNo);
 	//get outpond list
 	public List<OutPond> getOutPondList(List<OutPond> list, Integer start, Integer limit);
+	
+	//get outpond list
+	public List<OutPond> getOutPondList(Integer start, Integer limit);
 		
 	//获取公司下的所有喂养记录
 	public List<BreedLog> getBreedLog(Integer start, Integer limit, BreedCompany breedCompany);

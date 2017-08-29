@@ -88,33 +88,41 @@ public class CbackAction extends ActionSupport{
      
      //根据成品箱查看所有可能需要召回的最终产品(加工环节有问题）
      public String traceByCage(){
-    	 List<Trace> list = traceService.traceByCage(iDisplayStart, iDisplayLength, cageId);
+    	/* List<Trace> list = traceService.traceByCage(iDisplayStart, iDisplayLength, cageId);
     	 int count = traceService.getCount();
-    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);*/
+    	 List<Trace> list = traceService.traceByCage(cageId);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(true, list, json_exclude);
     	 return SUCCESS;
      }
      
    //根据养殖批次查看所有可能需要召回的最终产品(养殖环节有问题）
      public String traceByBreed(){
-    	 List<Trace> list = traceService.traceByBreed(iDisplayStart, iDisplayLength, breedId);
+    	/* List<Trace> list = traceService.traceByBreed(iDisplayStart, iDisplayLength, breedId);
     	 int count = traceService.getCount();
-    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);*/
+    	 List<Trace> list = traceService.traceByBreed(breedId);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(true, list, json_exclude);
     	 return SUCCESS;
      }
      
    //根据运输编号查看所有可能需要召回的最终产品(运输环节有问题）
      public String traceByTrans(){
-    	 List<Trace> list = traceService.traceByTrans(iDisplayStart, iDisplayLength, transId);
+    	 /*List<Trace> list = traceService.traceByTrans(iDisplayStart, iDisplayLength, transId);
     	 int count = traceService.getCount();
-    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);*/
+    	 List<Trace> list = traceService.traceByTrans(transId);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(true, list, json_exclude);
     	 return SUCCESS;
      }
      
      //根据餐厅查看所有可能需要召回的最终产品(制作环节有问题）
      public String traceByRestaurant(){
-    	 List<Trace> list = traceService.traceByRest(iDisplayStart, iDisplayLength, restaurant);
+    	 /*List<Trace> list = traceService.traceByRest(iDisplayStart, iDisplayLength, restaurant);
     	 int count = traceService.getCount();
-    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(count, list, sEcho, json_exclude);*/
+    	 List<Trace> list = traceService.traceByRest(restaurant);
+    	 TraceInfoDisplay = JsonUtils.toJSONResult(true, list, json_exclude);
     	 return SUCCESS;
      }
    

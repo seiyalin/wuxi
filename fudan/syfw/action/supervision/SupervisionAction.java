@@ -104,7 +104,7 @@ public class SupervisionAction extends ActionSupport{
     	 complaintInfo = supervisionService.findObjectById(complaintId);
     	 complaintInfo.setComplaintStatus(complaintStatus);
     	 supervisionService.update(complaintInfo);
-    	 ComplaintInfoUpdate = JsonUtils.toJSONResult(true);
+    	 setComplaintInfoUpdate(JsonUtils.toJSONResult(true));
 		 return SUCCESS;
     	 
      }
@@ -128,7 +128,7 @@ public class SupervisionAction extends ActionSupport{
 		try {
 			if(complaintInfo.getComplaintTime()==null)
 				complaintInfo.setComplaintTime(new Date()); //获取时间
-			if(companyId != null){
+			if(companyId!=null && !companyId.equals("null")){
 				BreedCompany bc = userService.findBreedCompanyById(companyId);
 				if(bc != null)
 					complaintInfo.setUserId(bc.getUserId());
@@ -169,7 +169,7 @@ public class SupervisionAction extends ActionSupport{
 	//查看本用户发起的投诉
 		public String complaintLaunch(){
 			try {
-				if(userId==null){
+				if(userId==null || userId.equals("null")){
 					BreedCompany bc = userService.findBreedCompanyById(companyId);
 					if(bc != null)
 						userId = bc.getUserId();
@@ -585,6 +585,14 @@ public class SupervisionAction extends ActionSupport{
 
 	public void setCompanyList(JSONObject companyList) {
 		this.companyList = companyList;
+	}
+
+	public JSONObject getComplaintInfoUpdate() {
+		return ComplaintInfoUpdate;
+	}
+
+	public void setComplaintInfoUpdate(JSONObject complaintInfoUpdate) {
+		ComplaintInfoUpdate = complaintInfoUpdate;
 	}
 	
 	
