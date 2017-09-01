@@ -3,6 +3,10 @@ package org.wuxi.fudan.syfw.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
 public class PageResult {
 
 	//总记录数
@@ -14,6 +18,7 @@ public class PageResult {
 	//页大小
 	private int pageSize;
 	//列表记录
+
 	private List items;
 	
 	//计算总页数

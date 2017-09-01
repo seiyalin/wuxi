@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 import org.wuxi.fudan.syfw.common.PageResult;
 import org.wuxi.fudan.syfw.common.QueryHelper;
@@ -52,14 +56,18 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	}*/
 
 	@Override
-	public T findObjectById(String id) {
+	@GET
+	@Path("/findObjectById/{id}")
+	@Produces({ "application/json", "application/xml" })
+	public T findObjectById(@PathParam("id")String id) {
 		// TODO Auto-generated method stub
 		return baseDao.findObjectById(id);
 	}
 
-
-
 	@Override
+	@GET
+	@Path("/findObjects")
+	@Produces({ "application/json", "application/xml" })
 	public List<T> findObjects() {
 		return baseDao.findObjects();
 	}

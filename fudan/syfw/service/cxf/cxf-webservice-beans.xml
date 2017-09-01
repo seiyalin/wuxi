@@ -1,14 +1,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:soap="http://cxf.apache.org/bindings/soap" 
 	xmlns:cxf="http://cxf.apache.org/core"
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	http://cxf.apache.org/jaxrs
+	http://cxf.apache.org/schemas/jaxrs.xsd
+	http://cxf.apache.org/jaxws 
+	http://cxf.apache.org/schemas/jaxws.xsd">
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	
+	<!-- 
+	 -->
 <!-- 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> -->
 	<!-- <jaxws:endpoint id="SoapQueryService" implementor="org.oliot.epcis.service.query.SoapQueryService"
 		address="/QueryService">
@@ -17,7 +24,17 @@
 	<!-- <jaxws:endpoint id="test" implementor="org.oliot.epcis.service.mysqlservice.testwebservice.Test" address="/test"> </jaxws:endpoint> -->
 	<!--  <jaxws:endpoint id="MySql" implementor="#teacherService" implementorClass="org.oliot.epcis.service.mysqlservice.impl.BaseServiceImpl"  address="/MySql"> </jaxws:endpoint>  -->
 	 
-	
+	 <!-- restful web service -->
+	<jaxrs:server id="rs_server" address="/rs">
+        <jaxrs:serviceBeans>
+            <ref bean="userService" />
+            <ref bean="breedAreaService" />
+        </jaxrs:serviceBeans>
+        <jaxrs:providers> 
+        <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/> 
+		</jaxrs:providers>
+        
+    </jaxrs:server>
 	 
 	<!--  UserService implementorClass是接口，这样才能注入dao -->
 	   <jaxws:endpoint implementorClass="org.wuxi.fudan.syfw.service.user.UserService" implementor="#userService" address="/UserService"> 

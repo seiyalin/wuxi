@@ -1,5 +1,7 @@
 package org.wuxi.fudan.syfw.model.hibernate;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 
 /**
@@ -7,6 +9,7 @@ package org.wuxi.fudan.syfw.model.hibernate;
  * 用户信息管理，处理用户登录，注册
  */
 
+@XmlRootElement(name="User")
 public class User  implements java.io.Serializable {
 
 

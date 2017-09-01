@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
 
 import org.springframework.stereotype.Service;
 import org.wuxi.fudan.syfw.common.QueryHelper;
@@ -99,18 +100,19 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 		
 		
-	
+
 	public UserDao getUserDao() {
 		return userDao;
 	}
 
 	//@Resource: dao注入service
-	@Resource
+	@Resource	
 	public void setUserDao(UserDao userDao) { //在UserServiceImpl中，通过自动注入userDao的同时，
 		//将userDao传递给BaseServiceImpl转换为BaseDao
 		super.setBaseDao(userDao);   //注入userDao
 		this.userDao = userDao;
 	}
+	
 
 	public BreedCompanyDao getBreedCompanyDao() {
 		return breedCompanyDao;
@@ -130,11 +132,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		this.processCompanyDao = processCompanyDao;
 	}
 
-	@Override
-	@WebMethod
-	public String sayHello() {
-		// TODO Auto-generated method stub
-		return "hello world";
-	}
+
 
 }

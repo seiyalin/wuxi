@@ -3,12 +3,14 @@ package org.wuxi.fudan.syfw.model.hibernate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  * ProcessCompany entity. @author MyEclipse Persistence Tools
  * 加工企业具体信息
  */
-
+@XmlRootElement(name="ProcessCompany")
 public class ProcessCompany  implements java.io.Serializable {
 
 

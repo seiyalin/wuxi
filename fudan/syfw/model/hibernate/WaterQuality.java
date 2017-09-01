@@ -2,12 +2,15 @@ package org.wuxi.fudan.syfw.model.hibernate;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  * WaterQuility entity. @author MyEclipse Persistence Tools
  * 水质管理
  */
-
+@XmlRootElement(name="WaterQuality")
 public class WaterQuality  implements java.io.Serializable,Comparable<WaterQuality> {
 
 
@@ -59,6 +62,7 @@ public class WaterQuality  implements java.io.Serializable,Comparable<WaterQuali
         this.waterId = waterId;
     }
 
+    @XmlTransient
     public NetCage getNetCage() {
         return this.netCage;
     }

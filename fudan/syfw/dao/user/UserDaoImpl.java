@@ -14,9 +14,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	
 	@SuppressWarnings("unchecked")
 	public String findRoleByNameAndPwd(String username, String pwd){
-		String hql = "FROM user WHERE username = ?";
+		String hql = "FROM User u WHERE u.username = ?";
 		if(StringUtils.isNotBlank(pwd)){
-			hql += " AND pwd=?";
+			hql += " AND u.password=?";
 		}
 		Query query = getSession().createQuery(hql);
 		query.setParameter(0, username);

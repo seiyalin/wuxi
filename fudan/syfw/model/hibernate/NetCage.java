@@ -3,12 +3,19 @@ package org.wuxi.fudan.syfw.model.hibernate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  * NetCage entity. @author MyEclipse Persistence Tools
  * 网箱管理（一个养殖区域对应多个网箱）
  */
-
+@XmlRootElement(name="NetCage")
+@XmlSeeAlso({BreedArea.class})
 public class NetCage  implements java.io.Serializable {
 
 
@@ -22,6 +29,7 @@ public class NetCage  implements java.io.Serializable {
      private BreedArea breedArea;				//属于的养殖区域
 
      //private Set<BreedNo> breedNos = new HashSet<BreedNo>(0);		//水产品批次
+     
      private Set<WaterQuality> waterQualities = new HashSet<WaterQuality>(0);	//水质监测记录
 
 
@@ -61,6 +69,7 @@ public class NetCage  implements java.io.Serializable {
         this.netcageId = netcageId;
     }
 
+    @XmlTransient
     public BreedArea getBreedArea() {
         return this.breedArea;
     }
@@ -78,7 +87,8 @@ public class NetCage  implements java.io.Serializable {
     public void setBreedNos(Set<BreedNo> breedNos) {
         this.breedNos = breedNos;
     }*/
-
+    @XmlElementWrapper(name="waterQuality")
+    @XmlElement(name="wq")
     public Set<WaterQuality> getWaterQualities() {
         return this.waterQualities;
     }

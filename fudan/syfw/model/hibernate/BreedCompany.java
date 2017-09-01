@@ -3,12 +3,14 @@ package org.wuxi.fudan.syfw.model.hibernate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  * BreedCompany entity. @author MyEclipse Persistence Tools
  * 养殖企业信息
  */
-
+@XmlRootElement(name="BreedCompany")
 public class BreedCompany  implements java.io.Serializable {
 
 
